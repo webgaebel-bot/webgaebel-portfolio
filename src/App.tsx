@@ -45,9 +45,14 @@ const getRouteFromPath = (pathname: string): RoutePath => {
 
 function App() {
   const [route, setRoute] = useState<RoutePath>(getRouteFromPath(window.location.pathname));
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
   const [isLoaderVisible, setIsLoaderVisible] = useState(false);
 
   useEffect(() => {
+    const initialLoaderTimer = window.setTimeout(() => {
+      setIsInitialLoading(false);
+    }, 1500);
+
     const handlePopState = () => {
       const nextRoute = getRouteFromPath(window.location.pathname);
       setRoute(nextRoute);
@@ -56,7 +61,10 @@ function App() {
     };
 
     window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
+    return () => {
+      window.clearTimeout(initialLoaderTimer);
+      window.removeEventListener('popstate', handlePopState);
+    };
   }, []);
 
   const completeNavigation = (path: RoutePath, sectionId?: string) => {
@@ -116,9 +124,9 @@ function App() {
       <Navbar currentPath={route} onNavigate={navigateTo} />
 
       <AnimatePresence>
-        {isLoaderVisible && (
+        {(isInitialLoading || isLoaderVisible) && (
           <motion.div
-            key="project-loader"
+            key={isInitialLoading ? 'initial-loader' : 'project-loader'}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
