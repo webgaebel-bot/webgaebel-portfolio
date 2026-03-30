@@ -108,8 +108,8 @@ export default function Testimonials() {
 
         {testimonials.length > 0 && (
           <div className="mx-auto max-w-4xl">
-            <div className="relative overflow-hidden rounded-3xl bg-white p-8 shadow-2xl md:p-12">
-              <div className="absolute top-8 left-8 text-blue-600/10"><Quote size={80} /></div>
+            <div className="relative overflow-hidden rounded-3xl bg-white p-6 shadow-2xl sm:p-8 md:p-12">
+              <div className="absolute left-5 top-5 text-blue-600/10 sm:left-8 sm:top-8"><Quote size={64} className="sm:h-20 sm:w-20" /></div>
               <AnimatePresence mode="wait">
                 <motion.div key={testimonials[currentIndex].id} initial={{ opacity: 0, x: 100 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -100 }} transition={{ duration: 0.5 }} className="relative z-10">
                   <div className="mb-6 flex justify-center gap-1">
@@ -117,21 +117,21 @@ export default function Testimonials() {
                       <Star key={i} size={24} className="fill-yellow-400 text-yellow-400" />
                     ))}
                   </div>
-                  <p className="mb-8 text-center text-xl leading-relaxed text-gray-700 italic md:text-2xl">"{testimonials[currentIndex].content}"</p>
+                  <p className="mb-8 text-center text-lg leading-relaxed text-gray-700 italic sm:text-xl md:text-2xl">"{testimonials[currentIndex].content}"</p>
                   <div className="text-center">
                     <div className="text-xl font-bold text-gray-900">{testimonials[currentIndex].name}</div>
                     <div className="font-medium text-blue-600">{testimonials[currentIndex].role}</div>
                   </div>
                 </motion.div>
               </AnimatePresence>
-              <div className="mt-8 flex items-center justify-center gap-4">
-                <button onClick={prevTestimonial} className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-gray-700 transition-all duration-300 hover:scale-110 hover:bg-blue-600 hover:text-white"><ChevronLeft size={24} /></button>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+                <button onClick={prevTestimonial} className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-700 transition-all duration-300 hover:scale-110 hover:bg-blue-600 hover:text-white sm:h-12 sm:w-12"><ChevronLeft size={22} /></button>
                 <div className="flex gap-2">
                   {testimonials.map((item, index) => (
                     <button key={item.id} onClick={() => setCurrentIndex(index)} className={`h-2 rounded-full transition-all duration-300 ${index === currentIndex ? 'w-8 bg-blue-600' : 'w-2 bg-gray-300'}`} />
                   ))}
                 </div>
-                <button onClick={nextTestimonial} className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-gray-700 transition-all duration-300 hover:scale-110 hover:bg-blue-600 hover:text-white"><ChevronRight size={24} /></button>
+                <button onClick={nextTestimonial} className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-700 transition-all duration-300 hover:scale-110 hover:bg-blue-600 hover:text-white sm:h-12 sm:w-12"><ChevronRight size={22} /></button>
               </div>
             </div>
           </div>
@@ -159,7 +159,7 @@ export default function Testimonials() {
         )}
 
         <div className="mx-auto mt-16 max-w-3xl">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 }} className="rounded-3xl bg-white p-8 shadow-xl">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 }} className="rounded-3xl bg-white p-6 shadow-xl sm:p-8">
             <h3 className="mb-2 text-2xl font-bold text-gray-900">Leave Your Feedback</h3>
             <p className="mb-6 text-gray-600">Your feedback will be saved directly to the project feedback file.</p>
             <form onSubmit={handleSubmit} className="space-y-5">

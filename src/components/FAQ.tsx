@@ -68,19 +68,19 @@ export default function FAQ({ onNavigateToContact }: FAQProps) {
   return (
     <section className="bg-white py-20 md:py-32" ref={ref}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-8 xl:grid-cols-[320px_1fr] xl:items-start">
+        <div className="grid gap-6 xl:grid-cols-[320px_1fr] xl:items-start xl:gap-8">
           <motion.aside
             initial={{ opacity: 0, x: -24 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="rounded-[8px] border border-[rgba(11,61,102,0.08)] bg-[linear-gradient(180deg,#fbfdff,#f5f9fc)] p-6 shadow-[0_14px_34px_rgba(11,61,102,0.06)]"
+            className="rounded-[8px] border border-[rgba(11,61,102,0.08)] bg-[linear-gradient(180deg,#fbfdff,#f5f9fc)] p-5 shadow-[0_14px_34px_rgba(11,61,102,0.06)] sm:p-6"
           >
             <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
               Need Assistance?
             </div>
             <div className="mt-4 h-px bg-[rgba(11,61,102,0.10)]" />
 
-            <div className="mt-7 flex items-start gap-4">
+            <div className="mt-7 flex items-start gap-3 sm:gap-4">
               <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(11,61,102,0.08)] bg-white text-[var(--color-corporate-blue)]">
                 <Phone className="h-4 w-4" />
               </div>
@@ -119,7 +119,7 @@ export default function FAQ({ onNavigateToContact }: FAQProps) {
             className="rounded-[8px] bg-white"
           >
             <div className="border-b border-[rgba(11,61,102,0.10)] pb-6">
-              <div className="theme-heading text-3xl font-bold uppercase tracking-[0.02em] text-slate-900 md:text-4xl">
+              <div className="theme-heading text-2xl font-bold uppercase tracking-[0.02em] text-slate-900 sm:text-3xl md:text-4xl">
                 Frequently Asked Questions
               </div>
               <p className="mt-4 max-w-3xl text-base leading-8 text-slate-600">
@@ -138,7 +138,7 @@ export default function FAQ({ onNavigateToContact }: FAQProps) {
                       onClick={() => setOpenIndex(isOpen ? -1 : index)}
                       className="flex w-full items-center justify-between gap-4 py-6 text-left transition-soft hover:text-[var(--color-corporate-blue)]"
                     >
-                      <span className="pr-4 text-sm font-medium text-slate-800 md:text-base">
+                      <span className="pr-4 text-left text-sm font-medium leading-7 text-slate-800 md:text-base">
                         {faq.question}
                       </span>
                       {isOpen ? (

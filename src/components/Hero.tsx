@@ -43,7 +43,7 @@ export default function Hero({ onNavigateToProjects, onNavigateToContact }: Hero
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.35 }}
-            className="theme-heading text-4xl font-bold leading-tight text-slate-900 sm:text-5xl md:text-6xl lg:text-7xl"
+            className="theme-heading text-3xl font-bold leading-tight text-slate-900 sm:text-5xl md:text-6xl lg:text-7xl"
           >
             We transform ambitious businesses into
             <span className="text-gradient-brand"> standout digital brands</span>
@@ -53,7 +53,7 @@ export default function Hero({ onNavigateToProjects, onNavigateToContact }: Hero
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-slate-600 sm:text-xl"
+            className="mx-auto mt-8 max-w-3xl text-base leading-8 text-slate-600 sm:text-xl"
           >
             The home page is now more focused, with reviews kept on the homepage while detailed
             contact and process content live on their own dedicated pages.
@@ -80,7 +80,7 @@ export default function Hero({ onNavigateToProjects, onNavigateToContact }: Hero
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
-            className="mx-auto mt-16 grid max-w-3xl grid-cols-2 gap-5 md:grid-cols-4"
+            className="mx-auto mt-16 grid max-w-3xl grid-cols-2 gap-4 sm:gap-5 md:grid-cols-4"
           >
             {[
               { value: '700+', label: 'Clients Served' },
@@ -93,9 +93,9 @@ export default function Hero({ onNavigateToProjects, onNavigateToContact }: Hero
                 initial={{ opacity: 0, scale: 0.88 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.45, delay: 1.15 + index * 0.08 }}
-                className="rounded-[24px] border border-[rgba(11,61,102,0.08)] bg-white/78 px-5 py-6 shadow-[0_16px_36px_rgba(11,61,102,0.08)] backdrop-blur-sm"
+                className="rounded-[22px] border border-[rgba(11,61,102,0.08)] bg-white/78 px-4 py-5 shadow-[0_16px_36px_rgba(11,61,102,0.08)] backdrop-blur-sm sm:rounded-[24px] sm:px-5 sm:py-6"
               >
-                <div className="theme-heading text-3xl font-bold text-[var(--color-corporate-blue)]">
+                <div className="theme-heading text-2xl font-bold text-[var(--color-corporate-blue)] sm:text-3xl">
                   {stat.value}
                 </div>
                 <div className="mt-2 text-sm text-slate-600">{stat.label}</div>

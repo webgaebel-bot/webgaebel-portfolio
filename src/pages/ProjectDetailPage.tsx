@@ -18,7 +18,7 @@ export default function ProjectDetailPage({
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
           <button
             onClick={onBackToProjects}
-            className="theme-button-secondary mb-8 gap-2 !px-5 !py-3 text-sm"
+            className="theme-button-secondary mb-8 gap-2 !px-4 !py-3 text-sm sm:!px-5"
           >
             <ArrowLeft size={16} />
             Back to Projects
@@ -31,12 +31,12 @@ export default function ProjectDetailPage({
               transition={{ duration: 0.6 }}
             >
               <span className="theme-badge">{project.category}</span>
-              <h1 className="theme-heading mt-6 text-4xl font-bold text-slate-900 sm:text-5xl md:text-6xl">
+              <h1 className="theme-heading mt-6 text-3xl font-bold text-slate-900 sm:text-5xl md:text-6xl">
                 {project.title}
               </h1>
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">{project.description}</p>
+              <p className="mt-6 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg">{project.description}</p>
 
-              <div className="mt-8 inline-flex items-center gap-4 rounded-[24px] bg-[var(--color-ink)] px-6 py-4 text-white shadow-[0_22px_44px_rgba(11,61,102,0.18)]">
+              <div className="mt-8 inline-flex max-w-full flex-col items-start gap-2 rounded-[24px] bg-[var(--color-ink)] px-5 py-4 text-white shadow-[0_22px_44px_rgba(11,61,102,0.18)] sm:flex-row sm:items-center sm:gap-4 sm:px-6">
                 <span className="text-sm uppercase tracking-[0.24em] text-[var(--color-cyan)]">Result</span>
                 <span className="theme-heading text-2xl font-bold">{project.result}</span>
               </div>
@@ -46,12 +46,12 @@ export default function ProjectDetailPage({
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className={`min-h-[340px] rounded-[34px] bg-gradient-to-br ${project.color} p-8 text-white shadow-[0_28px_56px_rgba(11,61,102,0.18)]`}
+              className={`min-h-[300px] rounded-[28px] bg-gradient-to-br ${project.color} p-6 text-white shadow-[0_28px_56px_rgba(11,61,102,0.18)] sm:min-h-[340px] sm:rounded-[34px] sm:p-8`}
             >
               <div className="flex h-full flex-col justify-between">
                 <div>
                   <div className="text-sm uppercase tracking-[0.32em] text-white/80">WEBGAEBEL</div>
-                  <div className="theme-heading mt-6 text-3xl font-bold">{project.title}</div>
+                  <div className="theme-heading mt-6 text-2xl font-bold sm:text-3xl">{project.title}</div>
                   <p className="mt-4 max-w-sm text-white/90">{project.description}</p>
                 </div>
                 <div className="inline-flex items-center gap-2 text-sm font-semibold text-white">
@@ -67,7 +67,7 @@ export default function ProjectDetailPage({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.15 }}
-              className="theme-panel p-8"
+              className="theme-panel p-6 sm:p-8"
             >
               <h2 className="theme-heading text-2xl font-bold text-slate-900">Challenge</h2>
               <p className="mt-4 leading-8 text-slate-600">{project.challenge}</p>
@@ -76,7 +76,7 @@ export default function ProjectDetailPage({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="theme-panel p-8"
+              className="theme-panel p-6 sm:p-8"
             >
               <h2 className="theme-heading text-2xl font-bold text-slate-900">Solution</h2>
               <p className="mt-4 leading-8 text-slate-600">{project.solution}</p>
@@ -85,7 +85,7 @@ export default function ProjectDetailPage({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.25 }}
-              className="theme-panel p-8"
+              className="theme-panel p-6 sm:p-8"
             >
               <h2 className="theme-heading text-2xl font-bold text-slate-900">Impact</h2>
               <ul className="mt-4 space-y-3">
@@ -103,7 +103,7 @@ export default function ProjectDetailPage({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="theme-panel mt-10 p-8"
+            className="theme-panel mt-10 p-6 sm:p-8"
           >
             <h2 className="theme-heading text-2xl font-bold text-slate-900">Deliverables</h2>
             <div className="mt-6 grid gap-4 md:grid-cols-2">

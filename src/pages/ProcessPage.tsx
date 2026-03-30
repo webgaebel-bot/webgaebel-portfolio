@@ -98,8 +98,8 @@ export default function ProcessPage() {
             </p>
           </motion.div>
 
-          <div className="mt-16 rounded-[34px] border border-[rgba(11,61,102,0.08)] bg-white/90 p-6 shadow-[var(--shadow-card)] md:p-10">
-            <div className="grid gap-10 xl:grid-cols-[0.95fr_1.05fr] xl:items-center">
+          <div className="mt-16 rounded-[26px] border border-[rgba(11,61,102,0.08)] bg-white/90 p-4 shadow-[var(--shadow-card)] sm:p-6 md:rounded-[34px] md:p-10">
+            <div className="hidden gap-10 xl:grid xl:grid-cols-[0.95fr_1.05fr] xl:items-center">
               <div className="relative flex min-h-[540px] items-center justify-center">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.92 }}
@@ -170,6 +170,42 @@ export default function ProcessPage() {
                   </motion.div>
                 ))}
               </div>
+            </div>
+
+            <div className="grid gap-4 xl:hidden">
+              <div className="rounded-[24px] bg-[radial-gradient(circle,rgba(244,251,253,1),rgba(255,255,255,0.94))] px-5 py-8 text-center shadow-[0_18px_42px_rgba(11,61,102,0.08)]">
+                <div className="theme-heading text-4xl font-bold text-[#5c43cb] sm:text-5xl">SDLC</div>
+                <div className="mt-3 text-lg font-semibold text-[var(--color-corporate-blue)] sm:text-xl">
+                  Software Development Life Cycle
+                </div>
+              </div>
+
+              {sdlcSteps.map((step, index) => (
+                <motion.div
+                  key={step.number}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.45, delay: 0.08 * index }}
+                  className="rounded-[24px] border border-[rgba(11,61,102,0.08)] bg-white p-4 shadow-[0_14px_30px_rgba(11,61,102,0.08)] sm:p-5"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className={`flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl border-4 ${step.ring} bg-white text-lg font-bold text-[var(--color-corporate-blue)] shadow-[0_10px_22px_rgba(11,61,102,0.08)]`}>
+                      {step.number}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className={`inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${step.color} text-white shadow-[0_12px_24px_rgba(11,61,102,0.12)]`}>
+                        <step.icon className="h-6 w-6" />
+                      </div>
+                      <div className="theme-heading mt-4 text-xl font-bold leading-tight text-slate-900 sm:text-2xl">
+                        {step.title}
+                      </div>
+                      <div className="mt-2 text-sm leading-7 text-slate-600 sm:text-base">
+                        {step.short}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>

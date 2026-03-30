@@ -66,14 +66,14 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="theme-panel p-8"
+            className="theme-panel p-5 sm:p-8"
           >
-            <h3 className="theme-heading mb-6 text-2xl font-bold text-slate-900">Send Us a Message</h3>
+              <h3 className="theme-heading mb-6 text-xl font-bold text-slate-900 sm:text-2xl">Send Us a Message</h3>
 
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
@@ -152,8 +152,8 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            <div className="theme-panel p-8">
-              <h3 className="theme-heading mb-6 text-2xl font-bold text-slate-900">Contact Information</h3>
+            <div className="theme-panel p-5 sm:p-8">
+              <h3 className="theme-heading mb-6 text-xl font-bold text-slate-900 sm:text-2xl">Contact Information</h3>
 
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
@@ -202,14 +202,14 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-[28px] border border-[rgba(11,61,102,0.12)] bg-white shadow-[var(--shadow-card)]">
-              <div className="bg-[linear-gradient(135deg,var(--color-deep-navy),var(--color-corporate-blue),var(--color-teal))] px-6 py-5 text-white">
-                <h3 className="theme-heading text-2xl font-bold">Find Us on the Map</h3>
+            <div className="overflow-hidden rounded-[24px] border border-[rgba(11,61,102,0.12)] bg-white shadow-[var(--shadow-card)] sm:rounded-[28px]">
+              <div className="bg-[linear-gradient(135deg,var(--color-deep-navy),var(--color-corporate-blue),var(--color-teal))] px-5 py-5 text-white sm:px-6">
+                <h3 className="theme-heading text-xl font-bold sm:text-2xl">Find Us on the Map</h3>
                 <p className="mt-2 text-sm text-white/80">
                   Contact section me map bhi add kar diya gaya hai for a more complete company presence.
                 </p>
               </div>
-              <div className="h-[320px]">
+              <div className="h-[260px] sm:h-[320px]">
                 <iframe
                   title="Webgaebel location map"
                   src="https://www.google.com/maps?q=Pakistan&z=5&output=embed"
