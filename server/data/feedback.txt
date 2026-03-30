@@ -1,0 +1,27 @@
+Feedback 1
+Name: Michael Anderson
+Role: CEO, TechVision Inc
+Rating: 5/5
+Date: 2026-03-01T10:00:00.000Z
+Message: WEBGAEBEL transformed our online presence completely. Our conversion rate increased by 65% within three months. Their team is professional, responsive, and truly understands digital marketing.
+
+Feedback 2
+Name: Sarah Martinez
+Role: Founder, Elite Fashion Co
+Rating: 5/5
+Date: 2026-03-03T10:00:00.000Z
+Message: The Shopify store they built for us is absolutely stunning. Sales have tripled since launch. Every detail was perfectly executed. Best investment we made for our business.
+
+Feedback 3
+Name: David Chen
+Role: Director, Global Solutions Ltd
+Rating: 5/5
+Date: 2026-03-05T10:00:00.000Z
+Message: Working with WEBGAEBEL has been an absolute pleasure. They delivered our WordPress site ahead of schedule, and the results speak for themselves. Highly recommend their services.
+
+Feedback 4
+Name: Emily Thompson
+Role: Owner, Wellness Studio
+Rating: 5/5
+Date: 2026-03-07T10:00:00.000Z
+Message: From concept to launch, the entire process was seamless. Our new website looks premium and performs even better. Client inquiries have increased by 120%. Thank you, WEBGAEBEL!

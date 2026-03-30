@@ -1,0 +1,34 @@
+[
+  {
+    "id": "default-1",
+    "name": "Michael Anderson",
+    "role": "CEO, TechVision Inc",
+    "content": "WEBGAEBEL transformed our online presence completely. Our conversion rate increased by 65% within three months. Their team is professional, responsive, and truly understands digital marketing.",
+    "rating": 5,
+    "createdAt": "2026-03-01T10:00:00.000Z"
+  },
+  {
+    "id": "default-2",
+    "name": "Sarah Martinez",
+    "role": "Founder, Elite Fashion Co",
+    "content": "The Shopify store they built for us is absolutely stunning. Sales have tripled since launch. Every detail was perfectly executed. Best investment we made for our business.",
+    "rating": 5,
+    "createdAt": "2026-03-03T10:00:00.000Z"
+  },
+  {
+    "id": "default-3",
+    "name": "David Chen",
+    "role": "Director, Global Solutions Ltd",
+    "content": "Working with WEBGAEBEL has been an absolute pleasure. They delivered our WordPress site ahead of schedule, and the results speak for themselves. Highly recommend their services.",
+    "rating": 5,
+    "createdAt": "2026-03-05T10:00:00.000Z"
+  },
+  {
+    "id": "default-4",
+    "name": "Emily Thompson",
+    "role": "Owner, Wellness Studio",
+    "content": "From concept to launch, the entire process was seamless. Our new website looks premium and performs even better. Client inquiries have increased by 120%. Thank you, WEBGAEBEL!",
+    "rating": 5,
+    "createdAt": "2026-03-07T10:00:00.000Z"
+  }
+]
