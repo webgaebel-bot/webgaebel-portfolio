@@ -43,6 +43,196 @@ const getRouteFromPath = (pathname: string): RoutePath => {
   return '/';
 };
 
+const SITE_NAME = 'WEBGAEBEL';
+const SITE_URL = 'https://webgaebel.com';
+const DEFAULT_TITLE = 'WebGaebel | Full Stack Development & AI Solutions Agency';
+const DEFAULT_DESCRIPTION =
+  'Expert MERN stack, .NET Core, and Custom AI development services for global enterprises.';
+const DEFAULT_IMAGE = `${SITE_URL}/logo.png`;
+const DEFAULT_KEYWORDS =
+  'WebGaebel, MERN stack development, .NET Core development, custom AI solutions, enterprise software development, OpenAI integration, NLP solutions, computer vision development';
+
+type SeoPayload = {
+  title: string;
+  description: string;
+  keywords?: string;
+  type?: 'website' | 'article';
+  image?: string;
+  schema?: Record<string, unknown>;
+};
+
+const setMetaContent = (selector: string, content: string) => {
+  let element = document.head.querySelector(selector);
+
+  if (!element) {
+    const match = selector.match(/^meta\[(name|property)="(.+)"\]$/);
+    if (!match) return;
+
+    element = document.createElement('meta');
+    element.setAttribute(match[1], match[2]);
+    document.head.appendChild(element);
+  }
+
+  element.setAttribute('content', content);
+};
+
+const setCanonicalUrl = (href: string) => {
+  let link = document.head.querySelector('link[rel="canonical"]');
+  if (!link) {
+    link = document.createElement('link');
+    link.setAttribute('rel', 'canonical');
+    document.head.appendChild(link);
+  }
+
+  link.setAttribute('href', href);
+};
+
+const setStructuredData = (schema?: Record<string, unknown>) => {
+  const scriptId = 'dynamic-seo-schema';
+  const existingScript = document.getElementById(scriptId);
+
+  if (!schema) {
+    existingScript?.remove();
+    return;
+  }
+
+  const script = existingScript ?? document.createElement('script');
+  script.id = scriptId;
+  script.setAttribute('type', 'application/ld+json');
+  script.textContent = JSON.stringify(schema);
+
+  if (!existingScript) {
+    document.head.appendChild(script);
+  }
+};
+
+const buildSeoPayload = (route: RoutePath, activeService: (typeof services)[number] | null, activeProject: (typeof projects)[number] | null): SeoPayload => {
+  if (route === '/services') {
+    return {
+      title: `Services | ${SITE_NAME}`,
+        description:
+          'Explore WEBGAEBEL services including website development, Shopify, WordPress, SEO, UI/UX design, custom web apps, automation, and digital marketing.',
+      keywords:
+        'web development services, Shopify development, WordPress development, SEO services, UI UX design, digital marketing agency',
+      schema: {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: 'WEBGAEBEL Services',
+        description:
+          'Service catalog covering web development, Shopify, WordPress, SEO, UI/UX design, automation, and digital marketing.',
+      },
+    };
+  }
+
+  if (route === '/projects') {
+    return {
+      title: `Projects | ${SITE_NAME}`,
+      description:
+        'View WEBGAEBEL portfolio projects across e-commerce, healthcare, real estate, SaaS, legal, restaurant, and service business websites.',
+      keywords: 'agency portfolio, web design portfolio, Shopify portfolio, SaaS website case studies, digital agency projects',
+      schema: {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: 'WEBGAEBEL Projects',
+        description: 'Portfolio and case study collection for WEBGAEBEL client work.',
+      },
+    };
+  }
+
+  if (route === '/process') {
+    return {
+      title: `Process | ${SITE_NAME}`,
+      description:
+        'Learn how WEBGAEBEL handles discovery, design, development, launch, and optimization for websites, web apps, and digital growth systems.',
+      keywords: 'agency process, web design process, development workflow, digital project delivery',
+    };
+  }
+
+  if (route === '/contact') {
+    return {
+      title: `Contact | ${SITE_NAME}`,
+      description:
+        'Contact WEBGAEBEL for website development, Shopify, WordPress, SEO, branding support, digital marketing, and custom web app inquiries.',
+      keywords: 'contact web agency, website development inquiry, Shopify expert contact, SEO consultation',
+      schema: {
+        '@context': 'https://schema.org',
+        '@type': 'ContactPage',
+        name: 'Contact WEBGAEBEL',
+        description: 'Contact page for project inquiries and agency communication.',
+      },
+    };
+  }
+
+  if (route === '/privacy-policy') {
+    return {
+      title: `Privacy Policy | ${SITE_NAME}`,
+      description: 'Read the WEBGAEBEL privacy policy for information on how inquiries, communication, and submitted data are handled and protected.',
+    };
+  }
+
+  if (route === '/terms-of-service') {
+    return {
+      title: `Terms of Service | ${SITE_NAME}`,
+      description: 'Review WEBGAEBEL terms of service, website usage conditions, responsibilities, and project engagement limitations.',
+    };
+  }
+
+  if (activeService) {
+    return {
+      title: `${activeService.title} | ${SITE_NAME}`,
+      description: `${activeService.description} ${activeService.outcomes}`,
+      keywords: `${activeService.title}, ${activeService.industries.join(', ')}, web agency services, ${SITE_NAME}`,
+      type: 'article',
+      schema: {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: activeService.title,
+        description: `${activeService.description} ${activeService.overview}`,
+        provider: {
+          '@type': 'Organization',
+          name: SITE_NAME,
+        },
+        areaServed: 'Worldwide',
+        url: `${SITE_URL}${route}`,
+      },
+    };
+  }
+
+  if (activeProject) {
+    return {
+      title: `${activeProject.title} | ${SITE_NAME} Project`,
+      description: `${activeProject.description} Result: ${activeProject.result}.`,
+      keywords: `${activeProject.title}, ${activeProject.category}, case study, project portfolio, ${SITE_NAME}`,
+      type: 'article',
+      schema: {
+        '@context': 'https://schema.org',
+        '@type': 'CreativeWork',
+        name: activeProject.title,
+        description: activeProject.description,
+        about: activeProject.category,
+        creator: {
+          '@type': 'Organization',
+          name: SITE_NAME,
+        },
+        url: `${SITE_URL}${route}`,
+      },
+    };
+  }
+
+  return {
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    keywords: DEFAULT_KEYWORDS,
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+        name: DEFAULT_TITLE,
+        description: DEFAULT_DESCRIPTION,
+        url: SITE_URL,
+      },
+  };
+};
+
 function App() {
   const [route, setRoute] = useState<RoutePath>(getRouteFromPath(window.location.pathname));
   const [isInitialLoading, setIsInitialLoading] = useState(true);
@@ -118,6 +308,31 @@ function App() {
         : null,
     [route]
   );
+
+  useEffect(() => {
+    const seo = buildSeoPayload(route, activeService, activeProject);
+    const canonicalUrl = `${SITE_URL}${window.location.pathname}`;
+    const imageUrl = seo.image?.startsWith('http')
+      ? seo.image
+      : seo.image
+        ? `${SITE_URL}${seo.image}`
+        : DEFAULT_IMAGE;
+
+    document.title = seo.title;
+
+    setMetaContent('meta[name="description"]', seo.description);
+    setMetaContent('meta[name="keywords"]', seo.keywords ?? '');
+    setMetaContent('meta[property="og:title"]', seo.title);
+    setMetaContent('meta[property="og:description"]', seo.description);
+    setMetaContent('meta[property="og:type"]', seo.type ?? 'website');
+    setMetaContent('meta[property="og:url"]', canonicalUrl);
+    setMetaContent('meta[property="og:image"]', imageUrl);
+    setMetaContent('meta[name="twitter:title"]', seo.title);
+    setMetaContent('meta[name="twitter:description"]', seo.description);
+    setMetaContent('meta[name="twitter:image"]', imageUrl);
+    setCanonicalUrl(canonicalUrl);
+    setStructuredData(seo.schema);
+  }, [route, activeProject, activeService]);
 
   return (
     <div className="site-shell">

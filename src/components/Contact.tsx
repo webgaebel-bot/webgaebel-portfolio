@@ -1,6 +1,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Mail, MapPinned, MessageSquare, Send } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 export default function Contact() {
   const ref = useRef(null);
@@ -11,33 +12,36 @@ export default function Contact() {
     phone: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setStatusMessage('');
 
-    const subject = encodeURIComponent(`New Website Inquiry from ${formData.name}`);
-    const body = encodeURIComponent(
-      [
-        `Name: ${formData.name}`,
-        `Email: ${formData.email}`,
-        `Phone: ${formData.phone || 'Not provided'}`,
-        '',
-        'Message:',
-        formData.message,
-      ].join('\n')
-    );
+    try {
+      const { error } = await supabase.from('contact_submissions').insert({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim() || null,
+        message: formData.message.trim(),
+      });
 
-    window.open(
-      `https://mail.google.com/mail/?view=cm&fs=1&to=webgaebel@gmail.com&su=${subject}&body=${body}`,
-      '_blank'
-    );
+      if (error) throw error;
 
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      message: '',
-    });
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        message: '',
+      });
+      setStatusMessage('Your inquiry has been submitted successfully. Our team will contact you shortly.');
+    } catch (error) {
+      setStatusMessage(error instanceof Error ? error.message : 'Unable to submit your inquiry.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -140,9 +144,10 @@ export default function Contact() {
               </div>
 
               <button type="submit" className="theme-button-primary w-full gap-2">
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
                 <Send size={18} />
               </button>
+              {statusMessage && <p className="text-sm font-medium text-[var(--color-corporate-blue)]">{statusMessage}</p>}
             </form>
           </motion.div>
 

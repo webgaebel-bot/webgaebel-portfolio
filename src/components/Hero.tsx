@@ -45,8 +45,8 @@ export default function Hero({ onNavigateToProjects, onNavigateToContact }: Hero
             transition={{ duration: 0.8, delay: 0.35 }}
             className="theme-heading text-3xl font-bold leading-tight text-slate-900 sm:text-5xl md:text-6xl lg:text-7xl"
           >
-            We transform ambitious businesses into
-            <span className="text-gradient-brand"> standout digital brands</span>
+            Elevate Your Business with
+            <span className="text-gradient-brand"> Enterprise-Grade Software & AI</span>
           </motion.h1>
 
           <motion.p
@@ -55,8 +55,9 @@ export default function Hero({ onNavigateToProjects, onNavigateToContact }: Hero
             transition={{ duration: 0.8, delay: 0.5 }}
             className="mx-auto mt-8 max-w-3xl text-base leading-8 text-slate-600 sm:text-xl"
           >
-            The home page is now more focused, with reviews kept on the homepage while detailed
-            contact and process content live on their own dedicated pages.
+            WebGaebel delivers high-performance MERN platforms, secure .NET enterprise systems,
+            and custom machine learning solutions engineered to help global organizations scale,
+            automate, and compete with confidence.
           </motion.p>
 
           <motion.div
@@ -66,12 +67,12 @@ export default function Hero({ onNavigateToProjects, onNavigateToContact }: Hero
             className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6"
           >
             <button onClick={onNavigateToProjects} className="theme-button-primary w-full gap-2 sm:w-auto">
-              Explore Projects
+              Review Case Studies
               <ArrowRight size={20} />
             </button>
 
             <button onClick={onNavigateToContact} className="theme-button-secondary w-full gap-2 sm:w-auto">
-              Start a Project
+              Schedule a Consultation
               <ArrowRight size={20} />
             </button>
           </motion.div>
@@ -80,25 +81,25 @@ export default function Hero({ onNavigateToProjects, onNavigateToContact }: Hero
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
-            className="mx-auto mt-16 grid max-w-3xl grid-cols-2 gap-4 sm:gap-5 md:grid-cols-4"
+            className="mx-auto mt-16 grid max-w-4xl grid-cols-2 gap-4 sm:gap-5 md:grid-cols-4"
           >
             {[
-              { value: '700+', label: 'Clients Served' },
-              { value: '97%', label: 'Satisfaction Rate' },
-              { value: '6+', label: 'Years of Delivery' },
-              { value: '30%+', label: 'Average Growth Lift' },
+              { value: 'Enterprise', label: 'Delivery Standard' },
+              { value: 'MERN', label: 'Scalable Product Engineering' },
+              { value: '.NET', label: 'Secure Backend Architecture' },
+              { value: 'AI', label: 'Automation and Intelligence' },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, scale: 0.88 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.45, delay: 1.15 + index * 0.08 }}
-                className="rounded-[22px] border border-[rgba(11,61,102,0.08)] bg-white/78 px-4 py-5 shadow-[0_16px_36px_rgba(11,61,102,0.08)] backdrop-blur-sm sm:rounded-[24px] sm:px-5 sm:py-6"
+                className="flex min-h-[132px] flex-col justify-center rounded-[22px] border border-[rgba(11,61,102,0.08)] bg-white/78 px-3 py-5 shadow-[0_16px_36px_rgba(11,61,102,0.08)] backdrop-blur-sm sm:rounded-[24px] sm:px-5 sm:py-6"
               >
-                <div className="theme-heading text-2xl font-bold text-[var(--color-corporate-blue)] sm:text-3xl">
+                <div className="theme-heading text-2xl font-bold leading-none text-[var(--color-corporate-blue)] sm:text-3xl">
                   {stat.value}
                 </div>
-                <div className="mt-2 text-sm text-slate-600">{stat.label}</div>
+                <div className="mt-3 text-sm leading-6 text-slate-600 sm:px-2">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>

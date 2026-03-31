@@ -1,7 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { ArrowRight } from 'lucide-react';
-import { services } from '../data/services';
+import { ArrowRight, BrainCircuit, Database, ShieldCheck } from 'lucide-react';
 
 type ServicesProps = {
   onNavigateToServices: () => void;
@@ -11,6 +10,44 @@ type ServicesProps = {
 export default function Services({ onNavigateToServices, onOpenService }: ServicesProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const featuredServices = [
+    {
+      slug: 'custom-web-apps',
+      title: 'MERN Stack Engineering',
+      description:
+        'Architected for high-growth businesses that require resilient web platforms, our MERN solutions combine MongoDB flexibility, Express-powered APIs, React performance optimization, and maintainable Node.js services. We design modular application layers, streamline state and rendering performance, and build delivery pipelines that support scale without compromising user experience.',
+      points: [
+        'Scalable MongoDB schema design and API architecture',
+        'React performance optimization for faster, smoother interfaces',
+        'Modular full-stack systems built for feature velocity and growth',
+      ],
+      icon: Database,
+    },
+    {
+      slug: 'application-development',
+      title: '.NET Enterprise Solutions',
+      description:
+        'Our .NET delivery practice is built for organizations that value governance, stability, and long-term maintainability. We develop secure ASP.NET Core platforms and C# services with strong authentication models, integration-ready backend layers, and enterprise workflows that support internal operations, customer portals, and mission-critical digital products.',
+      points: [
+        'Secure backend engineering with ASP.NET Core and C#',
+        'Enterprise-grade APIs, business logic, and integration layers',
+        'Structured architecture for compliance, reliability, and maintainability',
+      ],
+      icon: ShieldCheck,
+    },
+    {
+      slug: 'automation-solutions',
+      title: 'AI Innovation Systems',
+      description:
+        'We help forward-looking companies operationalize AI through custom NLP pipelines, computer vision workflows, and OpenAI-powered product features. From intelligent document processing to conversational interfaces and predictive automation, our AI implementations are grounded in measurable business outcomes, practical deployment strategy, and secure integration with your existing technology stack.',
+      points: [
+        'Custom NLP and intelligent automation workflows',
+        'Computer vision solutions for classification and analysis',
+        'OpenAI integration for assistants, copilots, and AI-enabled products',
+      ],
+      icon: BrainCircuit,
+    },
+  ];
 
   return (
     <section id="services" className="section-wash py-20 md:py-32" ref={ref}>
@@ -23,16 +60,17 @@ export default function Services({ onNavigateToServices, onOpenService }: Servic
         >
           <span className="theme-badge">Our Services</span>
           <h2 className="theme-heading mt-5 text-3xl font-bold text-slate-900 sm:text-4xl md:text-5xl">
-            Every service is visible, structured, and built for business growth.
+            Specialized engineering services for organizations that require performance, security, and scale.
           </h2>
           <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-            From Shopify and WordPress to SaaS platforms, Search Engine Optimization, and Digital Marketing,
-            we deliver services that are designed to look premium and perform with purpose.
+            WebGaebel partners with ambitious companies to deliver modern application platforms,
+            enterprise backend systems, and applied AI solutions that strengthen operations,
+            improve customer experience, and accelerate growth.
           </p>
         </motion.div>
 
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {services.slice(0, 9).map((service, index) => (
+          {featuredServices.map((service, index) => (
             <motion.article
               key={service.slug}
               initial={{ opacity: 0, y: 36 }}
@@ -61,7 +99,7 @@ export default function Services({ onNavigateToServices, onOpenService }: Servic
                 onClick={() => onOpenService(service.slug)}
                 className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-corporate-blue)] transition-soft group-hover:translate-x-1 group-hover:text-[var(--color-teal)]"
               >
-                View service details
+                Discuss this capability
                 <ArrowRight size={18} />
               </button>
             </motion.article>
@@ -70,7 +108,7 @@ export default function Services({ onNavigateToServices, onOpenService }: Servic
 
         <div className="mt-12 text-center">
           <button onClick={onNavigateToServices} className="theme-button-secondary">
-            View All Services
+            Explore the Full Service Portfolio
           </button>
         </div>
       </div>

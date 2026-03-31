@@ -45,7 +45,7 @@ export default function Navbar({ currentPath, onNavigate }: NavbarProps) {
       className={`fixed inset-x-0 top-0 z-50 transition-soft ${
         isScrolled
           ? 'border-b border-white/60 bg-white/88 shadow-[0_20px_50px_rgba(11,61,102,0.12)] backdrop-blur-xl'
-          : 'bg-transparent'
+          : 'bg-[linear-gradient(180deg,rgba(7,18,33,0.82),rgba(7,18,33,0.38),transparent)]'
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -59,10 +59,18 @@ export default function Navbar({ currentPath, onNavigate }: NavbarProps) {
           >
             <img src="/logo.png" alt="Webgaebel Tech Solutions" className="h-12 w-auto" />
             <div className="hidden text-left sm:block">
-              <div className="font-['Space_Grotesk'] text-sm font-bold tracking-[0.25em] text-[var(--color-corporate-blue)]">
+              <div
+                className={`font-['Space_Grotesk'] text-sm font-bold tracking-[0.25em] ${
+                  isScrolled ? 'text-[var(--color-corporate-blue)]' : 'text-white'
+                }`}
+              >
                 WEBGAEBEL
               </div>
-              <div className="text-xs uppercase tracking-[0.24em] text-[var(--color-teal)]">
+              <div
+                className={`text-xs uppercase tracking-[0.24em] ${
+                  isScrolled ? 'text-[var(--color-teal)]' : 'text-white/72'
+                }`}
+              >
                 Tech Solutions
               </div>
             </div>
@@ -116,7 +124,11 @@ export default function Navbar({ currentPath, onNavigate }: NavbarProps) {
           </div>
 
           <button
-            className="rounded-full border border-white/70 bg-white/80 p-3 text-[var(--color-corporate-blue)] shadow-[0_14px_34px_rgba(11,61,102,0.08)] transition-soft hover:border-brand hover:text-[var(--color-teal)] xl:hidden"
+            className={`rounded-full p-3 shadow-[0_14px_34px_rgba(11,61,102,0.18)] transition-soft xl:hidden ${
+              isScrolled
+                ? 'border border-white/70 bg-white/80 text-[var(--color-corporate-blue)] hover:border-brand hover:text-[var(--color-teal)]'
+                : 'border border-white/20 bg-[rgba(7,18,33,0.72)] text-white hover:border-white/45 hover:bg-[rgba(7,18,33,0.88)]'
+            }`}
             onClick={() => setIsMobileMenuOpen((value) => !value)}
             aria-label="Toggle menu"
           >
@@ -127,36 +139,45 @@ export default function Navbar({ currentPath, onNavigate }: NavbarProps) {
 
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="border-t border-[rgba(11,61,102,0.08)] bg-white/92 backdrop-blur-xl xl:hidden"
-          >
-            <div className="container mx-auto space-y-3 px-4 py-5">
-              {navLinks.map((link) => {
-                const active = isLinkActive(link.path);
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 top-20 z-40 bg-[rgba(7,18,33,0.48)] xl:hidden"
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
+            <motion.div
+              initial={{ opacity: 0, y: -18 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -18 }}
+              className="fixed inset-x-4 top-24 z-50 rounded-[28px] border border-white/12 bg-[linear-gradient(180deg,rgba(10,33,56,0.98),rgba(7,24,44,0.98))] p-4 shadow-[0_28px_60px_rgba(3,10,20,0.45)] backdrop-blur-xl xl:hidden"
+            >
+              <div className="space-y-3">
+                {navLinks.map((link) => {
+                  const active = isLinkActive(link.path);
 
-                return (
-                  <button
-                    key={link.name}
-                    onClick={() => handleNavigation(link.path, link.id)}
-                    className={`block w-full rounded-2xl px-4 py-3 text-left text-sm font-semibold transition-soft ${
-                      active
-                        ? 'bg-[var(--color-corporate-blue)] text-white shadow-[0_16px_36px_rgba(11,61,102,0.18)]'
-                        : 'bg-[rgba(11,61,102,0.04)] text-slate-700 hover:bg-[rgba(47,178,177,0.14)] hover:text-[var(--color-corporate-blue)]'
-                    }`}
-                  >
-                    {link.name}
-                  </button>
-                );
-              })}
+                  return (
+                    <button
+                      key={link.name}
+                      onClick={() => handleNavigation(link.path, link.id)}
+                      className={`block w-full rounded-2xl px-4 py-3 text-left text-base font-semibold transition-soft ${
+                        active
+                          ? 'bg-[linear-gradient(135deg,var(--color-deep-navy),var(--color-teal),var(--color-cyan))] text-white shadow-[0_16px_36px_rgba(11,61,102,0.28)]'
+                          : 'bg-white/6 text-white hover:bg-white/12'
+                      }`}
+                    >
+                      {link.name}
+                    </button>
+                  );
+                })}
 
-              <button onClick={() => handleNavigation('/contact')} className="theme-button-primary w-full text-sm">
-                Start Project
-              </button>
-            </div>
-          </motion.div>
+                <button onClick={() => handleNavigation('/contact')} className="theme-button-primary mt-2 w-full text-sm">
+                  Start Project
+                </button>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </motion.nav>

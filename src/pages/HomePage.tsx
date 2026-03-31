@@ -1,5 +1,6 @@
 import Hero from '../components/Hero';
 import Services from '../components/Services';
+import TechStack from '../components/TechStack';
 import Testimonials from '../components/Testimonials';
 import WhyChooseUs from '../components/WhyChooseUs';
 import FAQ from '../components/FAQ';
@@ -20,6 +21,7 @@ export default function HomePage({
   return (
     <>
       <Hero onNavigateToProjects={onNavigateToProjects} onNavigateToContact={onNavigateToContact} />
+      <TechStack />
       <Services onNavigateToServices={onNavigateToServices} onOpenService={onOpenService} />
       <WhyChooseUs onNavigateToContact={onNavigateToContact} />
       <Testimonials />

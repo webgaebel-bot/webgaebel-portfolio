@@ -1,6 +1,7 @@
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 type FeedbackEntry = {
   id: string;
@@ -27,13 +28,28 @@ export default function Testimonials() {
 
   const loadFeedback = async () => {
     try {
-      const response = await fetch('/api/feedback');
-      if (!response.ok) throw new Error('Failed to load feedback');
-      const data = (await response.json()) as FeedbackEntry[];
-      setFeedbacks(data.slice().reverse());
+      const { data, error } = await supabase
+        .from('feedback')
+        .select('id, name, role, content, rating, created_at')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+
+      const nextFeedback = (data ?? []).map((item) => ({
+        id: item.id,
+        name: item.name,
+        role: item.role,
+        content: item.content,
+        rating: item.rating,
+        createdAt: item.created_at,
+      }));
+
+      setFeedbacks(nextFeedback);
       setCurrentIndex(0);
+      setStatusMessage('');
     } catch {
-      setStatusMessage('Unable to load feedback right now. Please make sure the server is running and try again.');
+      setFeedbacks([]);
+      setStatusMessage('Testimonials are temporarily unavailable. Please try again shortly.');
     }
   };
 
@@ -69,18 +85,14 @@ export default function Testimonials() {
     setStatusMessage('');
 
     try {
-      const response = await fetch('/api/feedback', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+      const { error } = await supabase.from('feedback').insert({
+        name: formData.name.trim(),
+        role: formData.role.trim(),
+        content: formData.content.trim(),
+        rating: formData.rating,
       });
 
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.message || 'Unable to save feedback.');
-      }
+      if (error) throw error;
 
       setFormData({
         name: '',
@@ -141,7 +153,7 @@ export default function Testimonials() {
           <div className="mx-auto mt-16 max-w-6xl">
             <div className="mb-8 text-center">
               <h3 className="text-2xl font-bold text-gray-900 md:text-3xl">Latest Client Feedback</h3>
-              <p className="mt-2 text-gray-600">This feedback is loaded from the saved file, and new submissions are stored there as well.</p>
+              <p className="mt-2 text-gray-600">Client feedback is loaded directly from the database to keep testimonials current and reliable.</p>
             </div>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {feedbacks.map((item) => (
@@ -161,7 +173,7 @@ export default function Testimonials() {
         <div className="mx-auto mt-16 max-w-3xl">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 }} className="rounded-3xl bg-white p-6 shadow-xl sm:p-8">
             <h3 className="mb-2 text-2xl font-bold text-gray-900">Leave Your Feedback</h3>
-            <p className="mb-6 text-gray-600">Your feedback will be saved directly to the project feedback file.</p>
+            <p className="mb-6 text-gray-600">Your feedback will be stored in the database and reviewed by our team.</p>
             <form onSubmit={handleSubmit} className="space-y-5">
               <div><label className="mb-2 block text-sm font-medium text-gray-700">Your Name</label><input type="text" required value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none transition-all focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20" placeholder="Client name" /></div>
               <div><label className="mb-2 block text-sm font-medium text-gray-700">Role / Company</label><input type="text" required value={formData.role} onChange={(e) => setFormData({ ...formData, role: e.target.value })} className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none transition-all focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20" placeholder="Founder, Company Name" /></div>

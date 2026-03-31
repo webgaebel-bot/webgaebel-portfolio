@@ -19,7 +19,6 @@ export default function Footer({ currentPath, onNavigate }: FooterProps) {
       <div className="container relative mx-auto px-4 py-14 sm:px-6 lg:px-8 md:py-16">
         <div className="mb-10 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <img src="/logo.png" alt="Webgaebel Tech Solutions" className="mb-4 h-20 w-auto" />
             <p className="max-w-sm leading-8 text-white/72">
               Premium websites, custom systems, automation workflows, and polished product design
               for ambitious businesses.
