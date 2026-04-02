@@ -1,6 +1,7 @@
 import Hero from '../components/Hero';
 import Services from '../components/Services';
 import TechStack from '../components/TechStack';
+import Testimonials from '../components/Testimonials';
 import FAQ from '../components/FAQ';
 
 type HomePageProps = {
@@ -19,6 +20,7 @@ export default function HomePage({
       <Hero onNavigateToServices={onNavigateToServices} onNavigateToContact={onNavigateToContact} />
       <TechStack />
       <Services onNavigateToServices={onNavigateToServices} onOpenService={onOpenService} />
+      <Testimonials />
       <FAQ onNavigateToContact={onNavigateToContact} />
     </>
   );

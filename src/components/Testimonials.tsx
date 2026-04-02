@@ -149,27 +149,6 @@ export default function Testimonials() {
           </div>
         )}
 
-        {feedbacks.length > 0 && (
-          <div className="mx-auto mt-16 max-w-6xl">
-            <div className="mb-8 text-center">
-              <h3 className="text-2xl font-bold text-gray-900 md:text-3xl">Latest Client Feedback</h3>
-              <p className="mt-2 text-gray-600">Client feedback is loaded directly from the database to keep testimonials current and reliable.</p>
-            </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {feedbacks.map((item) => (
-                <motion.article key={item.id} initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.4 }} className="rounded-3xl border border-gray-200 bg-white p-6 shadow-lg">
-                  <div className="mb-4 flex gap-1">{[...Array(item.rating)].map((_, i) => <Star key={i} size={18} className="fill-yellow-400 text-yellow-400" />)}</div>
-                  <p className="mb-5 line-clamp-5 text-sm leading-7 text-gray-600">{item.content}</p>
-                  <div className="border-t border-gray-100 pt-4">
-                    <div className="font-semibold text-gray-900">{item.name}</div>
-                    <div className="text-sm text-blue-600">{item.role}</div>
-                  </div>
-                </motion.article>
-              ))}
-            </div>
-          </div>
-        )}
-
         <div className="mx-auto mt-16 max-w-3xl">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 }} className="rounded-3xl bg-white p-6 shadow-xl sm:p-8">
             <h3 className="mb-2 text-2xl font-bold text-gray-900">Leave Your Feedback</h3>
