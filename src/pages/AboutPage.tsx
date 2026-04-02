@@ -54,7 +54,7 @@ const teamMembers = [
   {
     name: 'Wasif',
     role: 'Data Analyst',
-    image: '/team/wasif.png',
+    image: '/team/wasif.jpeg',
     bio:
       'Data analyst focused on reporting, pattern finding, and insight generation. Wasif helps the team make clearer decisions from performance data and campaign results.',
   },
