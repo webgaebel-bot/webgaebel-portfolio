@@ -1,4 +1,18 @@
 {
+  "redirects": [
+    { "source": "/services/application-development", "destination": "/mobile-app-development", "permanent": true },
+    { "source": "/services/website-development", "destination": "/web-development-services", "permanent": true },
+    { "source": "/services/shopify-development", "destination": "/services/shopify-development-services", "permanent": true },
+    { "source": "/services/graphic-designing", "destination": "/services/graphic-design-services", "permanent": true },
+    { "source": "/services/digital-marketing", "destination": "/services/digital-marketing-services", "permanent": true },
+    { "source": "/services/search-engine-optimization", "destination": "/services/seo-services-for-new-websites", "permanent": true },
+    { "source": "/services/saas-design-and-development", "destination": "/services/saas-development-services", "permanent": true },
+    { "source": "/services/wordpress-development", "destination": "/services/wordpress-development-services", "permanent": true },
+    { "source": "/services/automation-solutions", "destination": "/ai-development-services", "permanent": true },
+    { "source": "/services/ui-ux-design", "destination": "/services/ui-ux-design-services", "permanent": true },
+    { "source": "/services/custom-web-apps", "destination": "/custom-software-development", "permanent": true },
+    { "source": "/services/maintenance-and-support", "destination": "/services/website-maintenance-support", "permanent": true }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",

@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Mail, MapPinned, MessageSquare, Send } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Mail, MapPinned, MessageSquare, Send, Twitter } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 export default function Contact() {
@@ -202,6 +202,53 @@ export default function Contact() {
                       We work with local and international clients on websites, applications, and
                       complete digital systems.
                     </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[rgba(11,61,102,0.08)]">
+                    <Linkedin className="h-6 w-6 text-[var(--color-corporate-blue)]" />
+                  </div>
+                  <div>
+                    <div className="mb-1 font-semibold text-slate-900">Social Profiles</div>
+                    <div className="flex flex-wrap gap-3">
+                      <a
+                        href="https://www.instagram.com/webgaebel?igsh=MTAxMjl4b3B3aWEwdg=="
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full border border-[rgba(11,61,102,0.12)] px-4 py-2 text-sm font-medium text-slate-700 transition-soft hover:border-[var(--color-cyan)] hover:text-[var(--color-corporate-blue)]"
+                      >
+                        <Instagram className="h-4 w-4" />
+                        Instagram
+                      </a>
+                      <a
+                        href="https://www.facebook.com/profile.php?id=61576470094663&mibextid=ZbWKw"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full border border-[rgba(11,61,102,0.12)] px-4 py-2 text-sm font-medium text-slate-700 transition-soft hover:border-[var(--color-cyan)] hover:text-[var(--color-corporate-blue)]"
+                      >
+                        <Facebook className="h-4 w-4" />
+                        Facebook
+                      </a>
+                      <a
+                        href="https://www.linkedin.com/in/web-gaebel-516aa43ba?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full border border-[rgba(11,61,102,0.12)] px-4 py-2 text-sm font-medium text-slate-700 transition-soft hover:border-[var(--color-cyan)] hover:text-[var(--color-corporate-blue)]"
+                      >
+                        <Linkedin className="h-4 w-4" />
+                        LinkedIn
+                      </a>
+                      <a
+                        href="https://x.com/WebGaebel"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full border border-[rgba(11,61,102,0.12)] px-4 py-2 text-sm font-medium text-slate-700 transition-soft hover:border-[var(--color-cyan)] hover:text-[var(--color-corporate-blue)]"
+                      >
+                        <Twitter className="h-4 w-4" />
+                        X
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>

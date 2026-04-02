@@ -1,0 +1,28 @@
+<svg width="800" height="1000" viewBox="0 0 800 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="800" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F2742"/>
+      <stop offset="0.55" stop-color="#0B3D66"/>
+      <stop offset="1" stop-color="#18A9DA"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="140" y1="160" x2="660" y2="840" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.04"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" rx="64" fill="url(#bg)"/>
+  <circle cx="400" cy="332" r="154" fill="#F5D8BC"/>
+  <path d="M276 372C310 297 346 256 400 256C454 256 490 297 524 372C512 450 468 486 400 486C332 486 288 450 276 372Z" fill="#172033"/>
+  <path d="M292 382C316 311 351 282 400 282C449 282 484 311 508 382C489 421 452 444 400 444C348 444 311 421 292 382Z" fill="#0E1626"/>
+  <path d="M260 748C266 625 318 556 400 556C482 556 534 625 540 748C541 787 510 820 471 820H329C290 820 259 787 260 748Z" fill="#121A2B"/>
+  <path d="M220 746C235 621 286 548 400 548C514 548 565 621 580 746C583 777 560 804 529 804H271C240 804 217 777 220 746Z" fill="url(#glass)"/>
+  <path d="M300 532L400 600L500 532L542 630L400 708L258 630L300 532Z" fill="#F4F7FB"/>
+  <path d="M324 520H476C493 520 506 533 506 550V592C506 616 492 638 470 648L400 680L330 648C308 638 294 616 294 592V550C294 533 307 520 324 520Z" fill="#FFFFFF"/>
+  <path d="M330 520H470C486 520 498 532 498 548V588C498 611 484 632 463 642L400 672L337 642C316 632 302 611 302 588V548C302 532 314 520 330 520Z" fill="#0F2742"/>
+  <circle cx="400" cy="336" r="12" fill="#0F2742"/>
+  <circle cx="338" cy="336" r="12" fill="#0F2742"/>
+  <path d="M350 378C366 392 386 400 400 400C414 400 434 392 450 378" stroke="#0F2742" stroke-width="14" stroke-linecap="round"/>
+  <rect x="170" y="822" width="460" height="48" rx="24" fill="#FFFFFF" fill-opacity="0.12"/>
+  <text x="400" y="926" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="54" font-weight="700">Wasif</text>
+  <text x="400" y="976" text-anchor="middle" fill="#DCE8F5" font-family="Arial, sans-serif" font-size="28" font-weight="400">Data Analyst</text>
+</svg>

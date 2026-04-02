@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { ArrowRight, BrainCircuit, Database, ShieldCheck } from 'lucide-react';
+import { ArrowRight, BrainCircuit, Database, Smartphone } from 'lucide-react';
 
 type ServicesProps = {
   onNavigateToServices: () => void;
@@ -12,8 +12,8 @@ export default function Services({ onNavigateToServices, onOpenService }: Servic
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const featuredServices = [
     {
-      slug: 'custom-web-apps',
-      title: 'MERN Stack Engineering',
+      slug: 'custom-web-app-development-services',
+      title: 'Custom Web App Development Services',
       description:
         'Architected for high-growth businesses that require resilient web platforms, our MERN solutions combine MongoDB flexibility, Express-powered APIs, React performance optimization, and maintainable Node.js services. We design modular application layers, streamline state and rendering performance, and build delivery pipelines that support scale without compromising user experience.',
       points: [
@@ -24,20 +24,20 @@ export default function Services({ onNavigateToServices, onOpenService }: Servic
       icon: Database,
     },
     {
-      slug: 'application-development',
-      title: '.NET Enterprise Solutions',
+      slug: 'mobile-app-development',
+      title: 'Mobile App Development',
       description:
-        'Our .NET delivery practice is built for organizations that value governance, stability, and long-term maintainability. We develop secure ASP.NET Core platforms and C# services with strong authentication models, integration-ready backend layers, and enterprise workflows that support internal operations, customer portals, and mission-critical digital products.',
+        'Our mobile app development work is built for organizations that want a polished iOS and Android presence, a clear user journey, and a practical path from idea to launch. We plan the screens, flows, and integrations that support business goals without overcomplicating the product.',
       points: [
-        'Secure backend engineering with ASP.NET Core and C#',
-        'Enterprise-grade APIs, business logic, and integration layers',
-        'Structured architecture for compliance, reliability, and maintainability',
+        'iOS and Android-ready builds with clean user flows',
+        'API, payment, and third-party integrations for real workflows',
+        'Mobile-first architecture that supports future scaling',
       ],
-      icon: ShieldCheck,
+      icon: Smartphone,
     },
     {
-      slug: 'automation-solutions',
-      title: 'AI Innovation Systems',
+      slug: 'ai-development-services',
+      title: 'AI Development Services',
       description:
         'We help forward-looking companies operationalize AI through custom NLP pipelines, computer vision workflows, and OpenAI-powered product features. From intelligent document processing to conversational interfaces and predictive automation, our AI implementations are grounded in measurable business outcomes, practical deployment strategy, and secure integration with your existing technology stack.',
       points: [
@@ -60,12 +60,12 @@ export default function Services({ onNavigateToServices, onOpenService }: Servic
         >
           <span className="theme-badge">Our Services</span>
           <h2 className="theme-heading mt-5 text-3xl font-bold text-slate-900 sm:text-4xl md:text-5xl">
-            Specialized engineering services for organizations that require performance, security, and scale.
+            Web development services, mobile app development, and AI delivery for modern businesses.
           </h2>
           <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-            WebGaebel partners with ambitious companies to deliver modern application platforms,
-            enterprise backend systems, and applied AI solutions that strengthen operations,
-            improve customer experience, and accelerate growth.
+            We help companies shape clearer digital experiences, stronger search visibility, and
+            practical software systems across web development services, SaaS development, mobile apps,
+            and automation.
           </p>
         </motion.div>
 

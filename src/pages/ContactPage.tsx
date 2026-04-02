@@ -15,11 +15,16 @@ export default function ContactPage() {
           >
             <span className="theme-badge">Contact WEBGAEBEL</span>
             <h1 className="theme-heading mt-6 text-4xl font-bold text-slate-900 sm:text-5xl md:text-6xl">
-              Dedicated contact page with form, company details, and location map.
+              Contact a software development agency for web, mobile, and AI projects.
             </h1>
             <p className="mt-6 text-lg leading-8 text-slate-600">
-              The inquiry experience now lives on a dedicated page so the website feels cleaner,
-              more focused, and more aligned with a professional agency presentation.
+              Use this page to start a project conversation, request a service page plan, or share
+              your target keyword list for SEO-focused content and page structure.
+            </p>
+            <p className="mt-4 text-base leading-8 text-slate-600">
+              We keep the intake simple. Tell us what you want to rank for, which services matter
+              most, and whether you need a homepage, service page, about page, or supporting page
+              refresh.
             </p>
           </motion.div>
         </div>

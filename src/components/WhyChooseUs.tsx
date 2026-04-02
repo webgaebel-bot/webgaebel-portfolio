@@ -38,8 +38,8 @@ export default function WhyChooseUs({ onNavigateToContact }: WhyChooseUsProps) {
     },
     {
       icon: CheckCircle,
-      title: 'Proven Track Record',
-      description: 'Our delivery style is built around consistency, polish, and business-first problem solving.',
+      title: 'SEO-Friendly Structure',
+      description: 'We plan content, headings, and page flow so search engines and users both understand the offer quickly.',
     },
   ];
 
@@ -54,11 +54,11 @@ export default function WhyChooseUs({ onNavigateToContact }: WhyChooseUsProps) {
         >
           <span className="theme-badge">Why Choose Us</span>
           <h2 className="theme-heading mt-5 text-3xl font-bold text-slate-900 sm:text-4xl md:text-5xl">
-            A stronger blend of design taste, technical structure, and growth thinking.
+            A stronger blend of design taste, technical structure, and search-friendly content.
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">
-            We combine visual polish, development discipline, and business clarity so your website
-            works hard, not just looks good.
+            We combine visual polish, development discipline, and keyword-aware content planning so
+            the website works hard, not just looks good.
           </p>
         </motion.div>
 
@@ -88,9 +88,9 @@ export default function WhyChooseUs({ onNavigateToContact }: WhyChooseUsProps) {
           className="mt-16 text-center"
         >
           <div className="rounded-[32px] bg-[linear-gradient(135deg,var(--color-deep-navy),var(--color-corporate-blue),var(--color-teal))] p-8 text-white shadow-[0_26px_56px_rgba(11,61,102,0.18)] md:p-12">
-            <h3 className="theme-heading text-2xl font-bold md:text-3xl">Ready to transform your business?</h3>
+            <h3 className="theme-heading text-2xl font-bold md:text-3xl">Ready to improve your search visibility?</h3>
             <p className="mx-auto mt-4 mb-8 max-w-2xl text-white/80">
-              Join businesses that want cleaner execution, sharper branding, and smoother digital systems.
+              Let&apos;s build a clearer website structure, stronger service pages, and cleaner content that supports discovery.
             </p>
             <button onClick={onNavigateToContact} className="theme-button-secondary !bg-white">
               Start Your Project Today

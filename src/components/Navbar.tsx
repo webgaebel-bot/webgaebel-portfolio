@@ -26,8 +26,9 @@ export default function Navbar({ currentPath, onNavigate }: NavbarProps) {
   const navLinks = [
     { name: 'Home', path: '/' as RoutePath, id: 'hero' },
     { name: 'Services', path: '/services' as RoutePath },
-    { name: 'Process', path: '/process' as RoutePath },
+    { name: 'About', path: '/about' as RoutePath },
     { name: 'Projects', path: '/projects' as RoutePath },
+    { name: 'Process', path: '/process' as RoutePath },
     { name: 'Contact', path: '/contact' as RoutePath },
   ];
 

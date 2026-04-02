@@ -31,11 +31,17 @@ export default function ServicesPage({ onOpenService }: ServicesPageProps) {
           >
             <span className="theme-badge">WEBGAEBEL Services</span>
             <h1 className="theme-heading mt-6 text-4xl font-bold leading-tight text-slate-900 sm:text-5xl md:text-6xl">
-              Detailed digital services with a strong process, premium look, and clear business value.
+              Web development services for software, mobile, Shopify, and AI projects.
             </h1>
             <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600">
-              Explore detailed service offerings across Shopify, WordPress, SaaS, Digital Marketing,
-              Search Engine Optimization (SEO), application development, automation, and more.
+              Explore the full service catalogue built for businesses that want better page
+              structure, cleaner search intent matching, and practical delivery across web, app, and
+              AI projects.
+            </p>
+            <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-slate-600">
+              This page acts as the main services hub. Each service has its own keyword focus,
+              unique URL, and supporting content so the site can cover one search intent per page
+              without overlapping the same keyword across multiple pages.
             </p>
           </motion.div>
 
@@ -90,10 +96,10 @@ export default function ServicesPage({ onOpenService }: ServicesPageProps) {
                 <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/12 backdrop-blur-sm">
                   <PanelTop className="h-7 w-7" />
                 </div>
-                <h2 className="theme-heading mt-6 text-3xl font-bold">Service Delivery Through SDLC</h2>
+                <h2 className="theme-heading mt-6 text-3xl font-bold">How the service pages are structured</h2>
                 <p className="mt-4 max-w-md leading-8 text-white/82">
-                  SDLC is included in the process so the page feels more structured, more attractive,
-                  and more trustworthy at the same time.
+                  Every page begins with a primary keyword in the H1, then supports it with related
+                  terms, practical headings, and a clear call to action.
                 </p>
               </div>
 

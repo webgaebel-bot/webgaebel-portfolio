@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, PlayCircle } from 'lucide-react';
 import { projects } from '../data/projects';
 
 type PortfolioProps = {
@@ -24,11 +24,11 @@ export default function Portfolio({ onNavigateToProjects, onOpenProject }: Portf
         >
           <span className="theme-badge">Portfolio</span>
           <h2 className="theme-heading mt-5 text-3xl font-bold text-slate-900 sm:text-4xl md:text-5xl">
-            Selected work designed to feel premium and perform hard.
+            Selected projects with real previews, detail links, and video slots.
           </h2>
           <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-            Open any portfolio item and a branded loader now appears before the project detail page,
-            giving the transition a polished studio feel.
+            Each project card gives visitors a visual snapshot, a project summary, and a clean path
+            to the detailed case view. It is designed to build trust without feeling cluttered.
           </p>
         </motion.div>
 
@@ -41,53 +41,56 @@ export default function Portfolio({ onNavigateToProjects, onOpenProject }: Portf
               transition={{ duration: 0.5, delay: index * 0.08 }}
               onHoverStart={() => setHoveredIndex(index)}
               onHoverEnd={() => setHoveredIndex(null)}
-              onClick={() => onOpenProject(project.slug)}
               className="group relative cursor-pointer overflow-hidden rounded-[28px] border border-[rgba(11,61,102,0.08)] bg-white shadow-[var(--shadow-card)] transition-soft hover:-translate-y-2 hover:shadow-[0_26px_56px_rgba(11,61,102,0.16)]"
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-95`} />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.34),transparent_45%)]" />
-
-              <div className="relative flex h-[300px] flex-col justify-between p-6 text-white">
-                <div>
-                  <div className="flex items-start justify-between gap-4">
-                    <span className="rounded-full border border-white/20 bg-white/12 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] backdrop-blur-sm">
-                      {project.category}
-                    </span>
-                    <motion.div
-                      animate={{
-                        rotate: hoveredIndex === index ? 45 : 0,
-                        scale: hoveredIndex === index ? 1.08 : 1,
-                      }}
-                      transition={{ duration: 0.3 }}
-                      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/12 backdrop-blur-sm"
-                    >
-                      <ArrowUpRight size={18} />
-                    </motion.div>
-                  </div>
-
-                  <h3 className="theme-heading mt-10 text-3xl font-bold">{project.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-white/88">{project.description}</p>
+              <div className="relative">
+                <img src={project.preview} alt={`${project.title} preview`} className="h-60 w-full object-cover" />
+                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-18`} />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(8,38,63,0.56))]" />
+                <div className="absolute left-5 top-5 rounded-full border border-white/20 bg-white/12 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-sm">
+                  {project.category}
                 </div>
-
-                <div className="flex items-end justify-between gap-4">
-                  <div>
-                    <div className="text-sm uppercase tracking-[0.3em] text-white/70">Result</div>
-                    <div className="mt-2 text-2xl font-bold">{project.result}</div>
-                  </div>
-                  <motion.div
-                    animate={{ x: hoveredIndex === index ? 6 : 0 }}
-                    className="rounded-full bg-white/14 px-4 py-2 text-sm font-semibold backdrop-blur-sm"
-                  >
-                    View Case
-                  </motion.div>
-                </div>
+                <motion.div
+                  animate={{
+                    rotate: hoveredIndex === index ? 45 : 0,
+                    scale: hoveredIndex === index ? 1.08 : 1,
+                  }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/12 text-white backdrop-blur-sm"
+                >
+                  <ArrowUpRight size={18} />
+                </motion.div>
               </div>
 
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: hoveredIndex === index ? 1 : 0 }}
-                className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(8,38,63,0.25))] pointer-events-none"
-              />
+              <div className="p-6">
+                <h3 className="theme-heading text-2xl font-bold text-slate-900">{project.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-slate-600">{project.description}</p>
+
+                <div className="mt-5 flex items-end justify-between gap-4">
+                  <div>
+                    <div className="text-xs uppercase tracking-[0.28em] text-slate-400">Result</div>
+                    <div className="mt-2 text-xl font-bold text-[var(--color-corporate-blue)]">{project.result}</div>
+                  </div>
+                  {project.videoUrl ? (
+                    <div className="inline-flex items-center gap-2 rounded-full border border-[rgba(11,61,102,0.10)] px-4 py-2 text-xs font-semibold text-slate-700">
+                      <PlayCircle size={16} />
+                      Video included
+                    </div>
+                  ) : (
+                    <div className="inline-flex items-center gap-2 rounded-full border border-[rgba(11,61,102,0.10)] px-4 py-2 text-xs font-semibold text-slate-700">
+                      Project preview
+                    </div>
+                  )}
+                </div>
+
+                <button
+                  onClick={() => onOpenProject(project.slug)}
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-corporate-blue)] transition-soft group-hover:translate-x-1 group-hover:text-[var(--color-teal)]"
+                >
+                  View project details
+                  <ArrowRight size={18} />
+                </button>
+              </div>
             </motion.article>
           ))}
         </div>

@@ -76,6 +76,29 @@ const sdlcSteps = [
   },
 ];
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.14,
+      delayChildren: 0.12,
+    },
+  },
+};
+
+const stepVariants = {
+  hidden: { opacity: 0, y: 24, scale: 0.98 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.55,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
 export default function ProcessPage() {
   return (
     <main className="min-h-screen pt-28">
@@ -84,26 +107,38 @@ export default function ProcessPage() {
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
             transition={{ duration: 0.7 }}
             className="mx-auto max-w-4xl text-center"
           >
             <span className="theme-badge">Process & SDLC</span>
             <h1 className="theme-heading mt-6 text-4xl font-bold text-slate-900 sm:text-5xl md:text-6xl">
-              A proper SDLC process page with animated chart and clearer professional structure.
+              Web development project timeline guide with a clear SDLC flow.
             </h1>
             <p className="mt-6 text-lg leading-8 text-slate-600">
-              The process section now opens on its own dedicated page, with an SDLC chart designed
-              to feel more visual, structured, and aligned with your reference.
+              This page explains how a service or product build moves from discovery to design,
+              development, QA, launch, and post-launch support.
+            </p>
+            <p className="mt-4 text-base leading-8 text-slate-600">
+              It is written to support search intent around project timelines, development planning,
+              and the practical steps that shape a well-scoped website or application build.
             </p>
           </motion.div>
 
           <div className="mt-16 rounded-[26px] border border-[rgba(11,61,102,0.08)] bg-white/90 p-4 shadow-[var(--shadow-card)] sm:p-6 md:rounded-[34px] md:p-10">
-            <div className="hidden gap-10 xl:grid xl:grid-cols-[0.95fr_1.05fr] xl:items-center">
+            <motion.div
+              className="hidden gap-10 xl:grid xl:grid-cols-[0.95fr_1.05fr] xl:items-center"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.25 }}
+            >
               <div className="relative flex min-h-[540px] items-center justify-center">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.92 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, amount: 0.4 }}
                   transition={{ duration: 0.7 }}
                   className="relative flex h-[300px] w-[300px] items-center justify-center rounded-full border border-[rgba(11,61,102,0.08)] bg-[radial-gradient(circle,rgba(244,251,253,1),rgba(255,255,255,0.94))] text-center shadow-[0_24px_54px_rgba(11,61,102,0.10)]"
                 >
@@ -131,8 +166,9 @@ export default function ProcessPage() {
                     <motion.div
                       key={step.number}
                       initial={{ opacity: 0, scale: 0.8, x: x * 0.82, y: y * 0.82 }}
-                      animate={{ opacity: 1, scale: 1, x, y }}
-                      transition={{ duration: 0.55, delay: 0.08 * index }}
+                      whileInView={{ opacity: 1, scale: 1, x, y }}
+                      viewport={{ once: true, amount: 0.25 }}
+                      transition={{ duration: 0.6, delay: 0.14 * index, ease: [0.22, 1, 0.36, 1] }}
                       whileHover={{ scale: 1.06, rotate: 2 }}
                       className="absolute left-1/2 top-1/2 -ml-[58px] -mt-[58px]"
                     >
@@ -146,33 +182,46 @@ export default function ProcessPage() {
                 })}
               </div>
 
-              <div className="space-y-5">
-                {sdlcSteps.map((step, index) => (
+              <motion.div
+                className="space-y-5"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.25 }}
+              >
+                {sdlcSteps.map((step) => (
                   <motion.div
                     key={step.number}
-                    initial={{ opacity: 0, x: 32 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.55, delay: 0.1 * index }}
-                    whileHover={{ x: 6 }}
+                    variants={stepVariants}
+                    viewport={{ once: true, amount: 0.2 }}
+                    whileHover={{ x: 8, scale: 1.01 }}
                     className="group flex items-center gap-4"
                   >
-                    <div className={`flex h-[76px] w-[76px] flex-shrink-0 items-center justify-center rounded-full border-4 ${step.ring} bg-white text-2xl font-bold text-[var(--color-corporate-blue)] shadow-[0_12px_24px_rgba(11,61,102,0.10)]`}>
+                    <div
+                      className={`flex h-[72px] w-[72px] flex-shrink-0 items-center justify-center rounded-full border-4 ${step.ring} bg-white text-2xl font-bold text-[var(--color-corporate-blue)] shadow-[0_12px_24px_rgba(11,61,102,0.10)]`}
+                    >
                       {step.number}
                     </div>
-                    <div className={`flex-1 rounded-full bg-gradient-to-r ${step.color} px-6 py-5 text-white shadow-[0_14px_30px_rgba(11,61,102,0.12)] transition-soft group-hover:shadow-[0_18px_36px_rgba(11,61,102,0.18)]`}>
+                    <div
+                      className={`flex-1 rounded-full bg-gradient-to-r ${step.color} px-6 py-5 text-white shadow-[0_14px_30px_rgba(11,61,102,0.12)] transition-soft group-hover:shadow-[0_18px_36px_rgba(11,61,102,0.18)]`}
+                    >
                       <div className="theme-heading text-xl font-bold leading-tight md:text-2xl">
                         {step.title}
                       </div>
-                      <div className="mt-1 text-sm text-white/90 md:text-base">
-                        {step.short}
-                      </div>
+                      <div className="mt-1 text-sm text-white/90 md:text-base">{step.short}</div>
                     </div>
                   </motion.div>
                 ))}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
-            <div className="grid gap-4 xl:hidden">
+            <motion.div
+              className="grid gap-4 xl:hidden"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+            >
               <div className="rounded-[24px] bg-[radial-gradient(circle,rgba(244,251,253,1),rgba(255,255,255,0.94))] px-5 py-8 text-center shadow-[0_18px_42px_rgba(11,61,102,0.08)]">
                 <div className="theme-heading text-4xl font-bold text-[#5c43cb] sm:text-5xl">SDLC</div>
                 <div className="mt-3 text-lg font-semibold text-[var(--color-corporate-blue)] sm:text-xl">
@@ -180,12 +229,11 @@ export default function ProcessPage() {
                 </div>
               </div>
 
-              {sdlcSteps.map((step, index) => (
+              {sdlcSteps.map((step) => (
                 <motion.div
                   key={step.number}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.45, delay: 0.08 * index }}
+                  variants={stepVariants}
+                  viewport={{ once: true, amount: 0.2 }}
                   className="rounded-[24px] border border-[rgba(11,61,102,0.08)] bg-white p-4 shadow-[0_14px_30px_rgba(11,61,102,0.08)] sm:p-5"
                 >
                   <div className="flex items-start gap-4">
@@ -206,7 +254,7 @@ export default function ProcessPage() {
                   </div>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

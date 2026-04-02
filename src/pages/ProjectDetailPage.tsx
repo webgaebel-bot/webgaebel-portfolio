@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Link2, PlayCircle } from 'lucide-react';
 import { ProjectItem } from '../data/projects';
 
 type ProjectDetailPageProps = {
@@ -46,17 +46,15 @@ export default function ProjectDetailPage({
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className={`min-h-[300px] rounded-[28px] bg-gradient-to-br ${project.color} p-6 text-white shadow-[0_28px_56px_rgba(11,61,102,0.18)] sm:min-h-[340px] sm:rounded-[34px] sm:p-8`}
+              className="overflow-hidden rounded-[28px] border border-[rgba(11,61,102,0.08)] bg-white shadow-[0_28px_56px_rgba(11,61,102,0.18)] sm:rounded-[34px]"
             >
-              <div className="flex h-full flex-col justify-between">
-                <div>
-                  <div className="text-sm uppercase tracking-[0.32em] text-white/80">WEBGAEBEL</div>
-                  <div className="theme-heading mt-6 text-2xl font-bold sm:text-3xl">{project.title}</div>
-                  <p className="mt-4 max-w-sm text-white/90">{project.description}</p>
-                </div>
-                <div className="inline-flex items-center gap-2 text-sm font-semibold text-white">
-                  Premium project case study
-                  <ArrowRight size={16} />
+              <div className="relative">
+                <img src={project.preview} alt={`${project.title} preview`} className="h-full w-full object-cover" />
+                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20`} />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(7,18,33,0.58))]" />
+                <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/12 px-4 py-2 text-sm font-semibold text-white backdrop-blur-sm">
+                  <Link2 className="h-4 w-4" />
+                  Project preview
                 </div>
               </div>
             </motion.div>
@@ -105,16 +103,45 @@ export default function ProjectDetailPage({
             transition={{ duration: 0.5, delay: 0.3 }}
             className="theme-panel mt-10 p-6 sm:p-8"
           >
-            <h2 className="theme-heading text-2xl font-bold text-slate-900">Deliverables</h2>
-            <div className="mt-6 grid gap-4 md:grid-cols-2">
-              {project.deliverables.map((item) => (
-                <div
-                  key={item}
-                  className="rounded-2xl border border-[rgba(11,61,102,0.08)] bg-[rgba(244,251,253,0.88)] px-5 py-4 font-medium text-[var(--color-corporate-blue)]"
-                >
-                  {item}
+            <div className="grid gap-8 lg:grid-cols-[1fr_0.9fr]">
+              <div>
+                <h2 className="theme-heading text-2xl font-bold text-slate-900">Deliverables</h2>
+                <div className="mt-6 grid gap-4 md:grid-cols-2">
+                  {project.deliverables.map((item) => (
+                    <div
+                      key={item}
+                      className="rounded-2xl border border-[rgba(11,61,102,0.08)] bg-[rgba(244,251,253,0.88)] px-5 py-4 font-medium text-[var(--color-corporate-blue)]"
+                    >
+                      {item}
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+
+              <div className="overflow-hidden rounded-[28px] border border-[rgba(11,61,102,0.08)] bg-[linear-gradient(135deg,var(--color-ink),var(--color-deep-navy),var(--color-corporate-blue))] p-5 text-white">
+                <div className="flex items-center gap-3">
+                  <PlayCircle className="h-6 w-6 text-[var(--color-cyan)]" />
+                  <h3 className="theme-heading text-xl font-bold">Video walkthrough slot</h3>
+                </div>
+                <p className="mt-4 text-sm leading-7 text-white/80">
+                  If you have a Loom, MP4, or YouTube walkthrough for this project, it can live here
+                  as a trust-building video preview. The layout is already ready for it.
+                </p>
+                {project.videoUrl ? (
+                  <video controls className="mt-5 aspect-video w-full rounded-2xl bg-black" poster={project.preview}>
+                    <source src={project.videoUrl} />
+                  </video>
+                ) : (
+                  <div className="mt-5 flex aspect-video items-center justify-center rounded-2xl border border-white/12 bg-white/6 text-center">
+                    <div>
+                      <div className="theme-heading text-2xl font-bold">Video slot ready</div>
+                      <p className="mt-2 text-sm text-white/72">
+                        Drop in a project clip whenever you have one.
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </motion.section>
         </div>

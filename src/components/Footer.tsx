@@ -1,4 +1,4 @@
-import { Mail, MapPinned } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Mail, MapPinned, Twitter } from 'lucide-react';
 import type { RoutePath } from '../App';
 
 type FooterProps = {
@@ -20,8 +20,7 @@ export default function Footer({ currentPath, onNavigate }: FooterProps) {
         <div className="mb-10 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <p className="max-w-sm leading-8 text-white/72">
-              Premium websites, custom systems, automation workflows, and polished product design
-              for ambitious businesses.
+              SEO-focused websites, custom systems, mobile apps, and AI delivery for ambitious businesses.
             </p>
           </div>
 
@@ -30,8 +29,8 @@ export default function Footer({ currentPath, onNavigate }: FooterProps) {
             <ul className="space-y-3 text-white/76">
               <li><button onClick={() => goTo('/')} className="transition-soft hover:text-[var(--color-cyan)]">Home</button></li>
               <li><button onClick={() => goTo('/services')} className="transition-soft hover:text-[var(--color-cyan)]">Services</button></li>
+              <li><button onClick={() => goTo('/about')} className="transition-soft hover:text-[var(--color-cyan)]">About</button></li>
               <li><button onClick={() => goTo('/process')} className="transition-soft hover:text-[var(--color-cyan)]">Process + SDLC</button></li>
-              <li><button onClick={() => goTo('/projects')} className="transition-soft hover:text-[var(--color-cyan)]">Projects</button></li>
               <li><button onClick={() => goTo('/contact')} className="transition-soft hover:text-[var(--color-cyan)]">Contact</button></li>
             </ul>
           </div>
@@ -39,10 +38,10 @@ export default function Footer({ currentPath, onNavigate }: FooterProps) {
           <div>
             <h3 className="theme-heading mb-4 text-lg font-bold">Core Services</h3>
             <ul className="space-y-3 text-white/76">
-              <li><button onClick={() => goTo('/services')} className="transition-soft hover:text-[var(--color-cyan)]">Application Development</button></li>
-              <li><button onClick={() => goTo('/services')} className="transition-soft hover:text-[var(--color-cyan)]">Website Development</button></li>
-              <li><button onClick={() => goTo('/services')} className="transition-soft hover:text-[var(--color-cyan)]">Automation Solutions</button></li>
-              <li><button onClick={() => goTo('/services')} className="transition-soft hover:text-[var(--color-cyan)]">UI/UX Design</button></li>
+              <li><button onClick={() => goTo('/web-development-services')} className="transition-soft hover:text-[var(--color-cyan)]">Web Development Services</button></li>
+              <li><button onClick={() => goTo('/mobile-app-development')} className="transition-soft hover:text-[var(--color-cyan)]">Mobile App Development</button></li>
+              <li><button onClick={() => goTo('/ai-development-services')} className="transition-soft hover:text-[var(--color-cyan)]">AI Development Services</button></li>
+              <li><button onClick={() => goTo('/custom-software-development')} className="transition-soft hover:text-[var(--color-cyan)]">Custom Software</button></li>
             </ul>
           </div>
 
@@ -65,10 +64,10 @@ export default function Footer({ currentPath, onNavigate }: FooterProps) {
                   goTo(
                     currentPath === '/services'
                       ? '/services'
+                      : currentPath === '/about'
+                        ? '/about'
                       : currentPath === '/process'
                         ? '/process'
-                        : currentPath.startsWith('/projects')
-                          ? '/projects'
                           : '/contact'
                   )
                 }
@@ -76,18 +75,62 @@ export default function Footer({ currentPath, onNavigate }: FooterProps) {
               >
                 {currentPath === '/services'
                   ? 'Revisit Services'
+                  : currentPath === '/about'
+                    ? 'View About'
                   : currentPath === '/process'
                     ? 'View Process'
-                    : currentPath.startsWith('/projects')
-                      ? 'View Projects'
-                      : 'Start Conversation'}
+                    : 'Start Conversation'}
               </button>
+
+              <div className="pt-4">
+                <div className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-white/50">
+                  Follow Us
+                </div>
+                <div className="flex items-center gap-3">
+                  <a
+                    href="https://www.instagram.com/webgaebel?igsh=MTAxMjl4b3B3aWEwdg=="
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/16 bg-white/8 transition-soft hover:border-[var(--color-cyan)] hover:text-[var(--color-cyan)]"
+                  >
+                    <Instagram className="h-4 w-4" />
+                  </a>
+                  <a
+                    href="https://www.facebook.com/profile.php?id=61576470094663&mibextid=ZbWKw"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/16 bg-white/8 transition-soft hover:border-[var(--color-cyan)] hover:text-[var(--color-cyan)]"
+                  >
+                    <Facebook className="h-4 w-4" />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/web-gaebel-516aa43ba?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/16 bg-white/8 transition-soft hover:border-[var(--color-cyan)] hover:text-[var(--color-cyan)]"
+                  >
+                    <Linkedin className="h-4 w-4" />
+                  </a>
+                  <a
+                    href="https://x.com/WebGaebel"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="X"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/16 bg-white/8 transition-soft hover:border-[var(--color-cyan)] hover:text-[var(--color-cyan)]"
+                  >
+                    <Twitter className="h-4 w-4" />
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-white/60 md:flex-row">
-          <p>© {currentYear} WEBGAEBEL. All rights reserved.</p>
+          <p>(c) {currentYear} WEBGAEBEL. All rights reserved.</p>
           <div className="flex flex-wrap items-center gap-6">
             <button onClick={() => goTo('/privacy-policy')} className="transition-soft hover:text-[var(--color-cyan)]">
               Privacy Policy
@@ -101,3 +144,4 @@ export default function Footer({ currentPath, onNavigate }: FooterProps) {
     </footer>
   );
 }
+

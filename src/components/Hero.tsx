@@ -2,18 +2,18 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
 type HeroProps = {
-  onNavigateToProjects: () => void;
+  onNavigateToServices: () => void;
   onNavigateToContact: () => void;
 };
 
-export default function Hero({ onNavigateToProjects, onNavigateToContact }: HeroProps) {
+export default function Hero({ onNavigateToServices, onNavigateToContact }: HeroProps) {
   return (
     <section
       id="hero"
       className="relative flex min-h-screen items-center justify-center overflow-hidden pt-20"
     >
       <div className="absolute inset-0 bg-grid-pattern opacity-20" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(73,197,211,0.24),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(47,178,177,0.18),transparent_26%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(73,197,211,0.18),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(47,178,177,0.14),transparent_26%)]" />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -43,21 +43,21 @@ export default function Hero({ onNavigateToProjects, onNavigateToContact }: Hero
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.35 }}
-            className="theme-heading text-3xl font-bold leading-tight text-slate-900 sm:text-5xl md:text-6xl lg:text-7xl"
+            className="theme-heading mx-auto max-w-4xl text-2xl font-bold leading-[0.96] tracking-[-0.04em] text-slate-900 sm:text-3xl md:text-4xl lg:text-5xl"
           >
-            Elevate Your Business with
-            <span className="text-gradient-brand"> Enterprise-Grade Software & AI</span>
+            <span className="block text-[var(--color-ink)]">We turn your business into a</span>
+            <span className="block text-[var(--color-ink)]">modern digital experience</span>
+            <span className="block text-gradient-brand">using AI and custom software solutions.</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="mx-auto mt-8 max-w-3xl text-base leading-8 text-slate-600 sm:text-xl"
+            className="mx-auto mt-8 max-w-3xl text-sm leading-7 text-slate-600 sm:text-lg"
           >
-            WebGaebel delivers high-performance MERN platforms, secure .NET enterprise systems,
-            and custom machine learning solutions engineered to help global organizations scale,
-            automate, and compete with confidence.
+            WebGaebel helps businesses grow by turning their ideas into powerful digital solutions
+            through modern software, mobile apps, SaaS development, and AI-driven technologies.
           </motion.p>
 
           <motion.div
@@ -66,8 +66,8 @@ export default function Hero({ onNavigateToProjects, onNavigateToContact }: Hero
             transition={{ duration: 0.8, delay: 0.7 }}
             className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6"
           >
-            <button onClick={onNavigateToProjects} className="theme-button-primary w-full gap-2 sm:w-auto">
-              Review Case Studies
+            <button onClick={onNavigateToServices} className="theme-button-primary w-full gap-2 sm:w-auto">
+              Explore Services
               <ArrowRight size={20} />
             </button>
 
@@ -84,10 +84,10 @@ export default function Hero({ onNavigateToProjects, onNavigateToContact }: Hero
             className="mx-auto mt-16 grid max-w-4xl grid-cols-2 gap-4 sm:gap-5 md:grid-cols-4"
           >
             {[
-              { value: 'Enterprise', label: 'Delivery Standard' },
-              { value: 'MERN', label: 'Scalable Product Engineering' },
-              { value: '.NET', label: 'Secure Backend Architecture' },
-              { value: 'AI', label: 'Automation and Intelligence' },
+              { value: 'Web', label: 'Development Services' },
+              { value: 'Mobile', label: 'App Development' },
+              { value: 'AI', label: 'Automation Systems' },
+              { value: 'SEO', label: 'Organic Growth' },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
