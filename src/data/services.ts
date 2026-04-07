@@ -93,6 +93,19 @@ export const services: ServiceItem[] = [
     industries: ['Agencies', 'Service businesses', 'SaaS brands', 'E-commerce'],
   },
   {
+    slug: 'data-solutions',
+    icon: BarChart3,
+    title: 'Data Solutions',
+    description: 'Data annotation, labelling, analysis, and interpretation support for AI and business workflows.',
+    points: ['Data annotation and label preparation', 'Data analysis and interpretation', 'Structured datasets for AI training'],
+    outcomes: 'Best for teams that need cleaner datasets, better insights, and organised data work for AI or operations.',
+    overview:
+      'Our Data Solutions service helps businesses turn raw data into something useful, whether that means preparing training data for AI, labelling content for machine learning, or analysing information so decision-making becomes clearer. The focus is on accuracy, structure, and practical interpretation.',
+    deliverables: ['Data annotation guidelines', 'Labelling workflows', 'Dataset cleaning support', 'Analysis summaries', 'Insight interpretation reports'],
+    process: ['Data review and task scoping', 'Annotation and labelling setup', 'Analysis and quality checks', 'Interpretation and reporting'],
+    industries: ['AI teams', 'Startups', 'Research projects', 'Operations teams'],
+  },
+  {
     slug: 'seo-services-for-new-websites',
     icon: SearchCheck,
     title: 'SEO Services for New Websites',

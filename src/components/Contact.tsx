@@ -1,7 +1,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Facebook, Instagram, Linkedin, Mail, MapPinned, MessageSquare, Send, Twitter } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { isSupabaseConfigured, supabase } from '../lib/supabase';
 
 export default function Contact() {
   const ref = useRef(null);
@@ -19,6 +19,12 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     setStatusMessage('');
+
+    if (!supabase) {
+      setStatusMessage('Contact form is temporarily unavailable because Supabase is not configured.');
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       const { error } = await supabase.from('contact_submissions').insert({
@@ -143,8 +149,8 @@ export default function Contact() {
                 />
               </div>
 
-              <button type="submit" className="theme-button-primary w-full gap-2">
-                {isSubmitting ? 'Sending...' : 'Send Message'}
+              <button type="submit" disabled={!isSupabaseConfigured} className="theme-button-primary w-full gap-2 disabled:cursor-not-allowed disabled:opacity-70">
+                {isSubmitting ? 'Sending...' : isSupabaseConfigured ? 'Send Message' : 'Messaging Unavailable'}
                 <Send size={18} />
               </button>
               {statusMessage && <p className="text-sm font-medium text-[var(--color-corporate-blue)]">{statusMessage}</p>}

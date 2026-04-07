@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { ArrowRight, ArrowUpRight, PlayCircle } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, ExternalLink, PlayCircle } from 'lucide-react';
 import { projects } from '../data/projects';
 
 type PortfolioProps = {
@@ -12,6 +12,10 @@ export default function Portfolio({ onNavigateToProjects, onOpenProject }: Portf
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const openProject = (slug: string) => {
+    onOpenProject(slug);
+  };
 
   return (
     <section id="portfolio" className="py-20 md:py-32" ref={ref}>
@@ -41,12 +45,66 @@ export default function Portfolio({ onNavigateToProjects, onOpenProject }: Portf
               transition={{ duration: 0.5, delay: index * 0.08 }}
               onHoverStart={() => setHoveredIndex(index)}
               onHoverEnd={() => setHoveredIndex(null)}
-              className="group relative cursor-pointer overflow-hidden rounded-[28px] border border-[rgba(11,61,102,0.08)] bg-white shadow-[var(--shadow-card)] transition-soft hover:-translate-y-2 hover:shadow-[0_26px_56px_rgba(11,61,102,0.16)]"
+              role="button"
+              tabIndex={0}
+              onClick={() => openProject(project.slug)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  openProject(project.slug);
+                }
+              }}
+              className="group relative cursor-pointer overflow-hidden rounded-[28px] border border-[rgba(11,61,102,0.08)] bg-white shadow-[var(--shadow-card)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_26px_56px_rgba(11,61,102,0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-teal)] focus-visible:ring-offset-2"
             >
               <div className="relative">
-                <img src={project.preview} alt={`${project.title} preview`} className="h-60 w-full object-cover" />
+                {project.liveUrl ? (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="group/preview block"
+                    aria-label={`Open ${project.title} live preview in a new tab`}
+                  >
+                    <div className="relative aspect-[16/10] overflow-hidden bg-slate-950/5">
+                      <img
+                        src={project.preview}
+                        alt={`${project.title} preview`}
+                        className="h-full w-full object-contain p-3 transition-transform duration-500 group-hover:scale-[1.03] group-hover/preview:scale-[1.01]"
+                      />
+                      <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(8,38,63,0.24))]" />
+                    </div>
+                    <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-3 px-5 pb-5">
+                      <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/14 px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-sm">
+                        Preview
+                      </span>
+                      <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-xs font-semibold text-[var(--color-ink)] shadow-[0_10px_24px_rgba(7,18,33,0.18)] transition-transform duration-300 group-hover/preview:translate-x-0.5 group-hover/preview:-translate-y-0.5">
+                        Open in new tab
+                        <ExternalLink size={14} />
+                      </span>
+                    </div>
+                  </a>
+                ) : (
+                  <div className="relative">
+                    <div className="relative aspect-[16/10] overflow-hidden bg-slate-950/5">
+                      <img
+                        src={project.preview}
+                        alt={`${project.title} preview`}
+                        className="h-full w-full object-contain p-3 transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                      <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(8,38,63,0.24))]" />
+                    </div>
+                    <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-3 px-5 pb-5">
+                      <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/14 px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-sm">
+                        Preview
+                      </span>
+                      <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-xs font-semibold text-[var(--color-ink)] shadow-[0_10px_24px_rgba(7,18,33,0.18)]">
+                        Detail ready
+                      </span>
+                    </div>
+                  </div>
+                )}
                 <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-18`} />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(8,38,63,0.56))]" />
                 <div className="absolute left-5 top-5 rounded-full border border-white/20 bg-white/12 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-sm">
                   {project.category}
                 </div>
@@ -84,12 +142,28 @@ export default function Portfolio({ onNavigateToProjects, onOpenProject }: Portf
                 </div>
 
                 <button
-                  onClick={() => onOpenProject(project.slug)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openProject(project.slug);
+                  }}
                   className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-corporate-blue)] transition-soft group-hover:translate-x-1 group-hover:text-[var(--color-teal)]"
                 >
                   View project details
                   <ArrowRight size={18} />
                 </button>
+
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-teal)] transition-soft hover:text-[var(--color-corporate-blue)]"
+                  >
+                    Open live site
+                    <ExternalLink size={16} />
+                  </a>
+                )}
               </div>
             </motion.article>
           ))}

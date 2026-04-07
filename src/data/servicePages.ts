@@ -2,7 +2,8 @@ export type ServicePageRoute =
   | '/mobile-app-development'
   | '/web-development-services'
   | '/ai-development-services'
-  | '/custom-software-development';
+  | '/custom-software-development'
+  | '/data-solutions';
 
 export type ServicePageContent = {
   route: ServicePageRoute;
@@ -30,6 +31,7 @@ export const servicePathBySlug: Record<string, ServicePageRoute> = {
   'website-development': '/web-development-services',
   'automation-solutions': '/ai-development-services',
   'custom-web-apps': '/custom-software-development',
+  'data-solutions': '/data-solutions',
 };
 
 export const serviceSlugByRoute: Record<ServicePageRoute, string> = {
@@ -37,6 +39,7 @@ export const serviceSlugByRoute: Record<ServicePageRoute, string> = {
   '/web-development-services': 'website-development',
   '/ai-development-services': 'automation-solutions',
   '/custom-software-development': 'custom-web-apps',
+  '/data-solutions': 'data-solutions',
 };
 
 export const servicePageContentByRoute: Record<ServicePageRoute, ServicePageContent> = {
@@ -542,6 +545,132 @@ export const servicePageContentByRoute: Record<ServicePageRoute, ServicePageCont
       { label: 'Web Development Services', path: '/web-development-services' },
       { label: 'Mobile App Development', path: '/mobile-app-development' },
       { label: 'AI Development Services', path: '/ai-development-services' },
+    ],
+  },
+  '/data-solutions': {
+    route: '/data-solutions',
+    serviceSlug: 'data-solutions',
+    metaTitle: 'Data Solutions Services | WEBGAEBEL',
+    metaDescription:
+      'Prepare, label, analyse, and interpret business data with WEBGAEBEL data solutions services for AI and operations.',
+    h1: 'Data Solutions Services',
+    primaryKeyword: 'data solutions services',
+    secondaryKeywords: [
+      'data annotation',
+      'data labelling',
+      'data analysis',
+      'data interpretation',
+      'dataset preparation',
+      'AI training data',
+      'quality review',
+      'structured data workflows',
+    ],
+    subheading:
+      'Transform raw information into organised, accurate, and usable data that supports AI systems, reporting, and smarter business decisions.',
+    introParagraphs: [
+      'Data solutions are about making information usable. Raw datasets can be messy, incomplete, inconsistent, or difficult to interpret, which makes them hard to trust for AI systems and hard to use for business decisions. Good data work brings order to that mess by defining labels, cleaning records, checking quality, and turning the final output into something that is easier to understand and act on.',
+      'At WEBGAEBEL, data solutions are handled as a practical delivery service for teams that need accuracy and structure. We can support annotation and labelling tasks, organise datasets for machine learning, analyse patterns, and provide clear interpretations that explain what the data is actually saying. The goal is not just to process information, but to make it more reliable and more useful for the next step in the workflow.',
+    ],
+    processSteps: [
+      {
+        title: '1. Data review and task definition',
+        detail:
+          'We first understand the source data, the target outcome, and the labeling or interpretation rules so the work starts with a clear framework.',
+      },
+      {
+        title: '2. Annotation and labelling setup',
+        detail:
+          'Label categories, instructions, and quality standards are established so the dataset can be prepared consistently and checked against the same logic.',
+      },
+      {
+        title: '3. Analysis and validation',
+        detail:
+          'The data is reviewed for patterns, gaps, quality issues, and useful signals so the output is not only structured but also trustworthy.',
+      },
+      {
+        title: '4. Interpretation and reporting',
+        detail:
+          'We translate the processed data into clear summaries and findings that help the team understand what the numbers or records mean in context.',
+      },
+      {
+        title: '5. Final delivery and iteration support',
+        detail:
+          'The finished dataset, report, or labelling output is delivered in a usable format, with room for refinement if the workflow needs another pass.',
+      },
+    ],
+    features: [
+      {
+        title: 'Data annotation',
+        detail:
+          'We tag and mark records, images, text, or other inputs according to the rules needed for your AI or analytics workflow.',
+      },
+      {
+        title: 'Data labelling',
+        detail:
+          'Consistent labels are applied so machine learning or internal categorisation tasks can use the dataset more effectively.',
+      },
+      {
+        title: 'Data analysis',
+        detail:
+          'We review the structure, patterns, and quality of the information so the dataset can support reliable decisions.',
+      },
+      {
+        title: 'Data interpretation',
+        detail:
+          'The findings are explained in clear language so your team can understand what the data is showing and what it means next.',
+      },
+      {
+        title: 'Quality control',
+        detail:
+          'Review steps help keep the work consistent, accurate, and aligned with the intended outcome before delivery.',
+      },
+    ],
+    benefits: [
+      {
+        title: 'Cleaner AI inputs',
+        detail:
+          'Better prepared data gives machine learning and AI workflows a stronger starting point, which improves the usefulness of the output.',
+      },
+      {
+        title: 'More reliable insights',
+        detail:
+          'Structured analysis and interpretation make it easier to trust the information and use it in real decisions.',
+      },
+      {
+        title: 'Less manual confusion',
+        detail:
+          'A clear labelling and annotation process reduces ambiguity and keeps data handling more consistent across the team.',
+      },
+      {
+        title: 'Faster next steps',
+        detail:
+          'Once the data is organised and explained properly, the team can move more quickly into product, reporting, or AI work.',
+      },
+    ],
+    technologies: [
+      { group: 'Data work', items: ['Annotation guidelines', 'Labelling systems', 'Dataset cleaning', 'Quality checks'] },
+      { group: 'Analysis', items: ['Spreadsheets', 'Reporting logic', 'Trend review', 'Pattern spotting'] },
+      { group: 'AI support', items: ['Training datasets', 'Classification prep', 'Structured inputs', 'Review workflows'] },
+      { group: 'Delivery', items: ['Documentation', 'CSV / JSON outputs', 'Summary reports', 'Iteration notes'] },
+    ],
+    whyChooseUsParagraphs: [
+      'Data work only helps when the process behind it is consistent. We focus on clarity in the rules, accuracy in the output, and practical organization so the final dataset or report can actually be used with confidence.',
+      'We also keep interpretation tied to context. Numbers and labels are only useful when they are explained in a way that connects to the business question, AI task, or operational goal behind them.',
+    ],
+    whyChooseUsPoints: [
+      'Clear annotation rules and consistent labelling',
+      'Practical data analysis with usable summaries',
+      'Interpretation written for real business decisions',
+    ],
+    ctaTitle: 'Need help with data annotation or analysis?',
+    ctaParagraphs: [
+      'If you have raw data, labels to prepare, or insights you need interpreted, we can help structure the work and deliver a cleaner result.',
+      'Reach out through the contact page and we will map the right data workflow for your project.',
+    ],
+    relatedLinks: [
+      { label: 'AI Development Services', path: '/ai-development-services' },
+      { label: 'Custom Software Development', path: '/custom-software-development' },
+      { label: 'Web Development Services', path: '/web-development-services' },
     ],
   },
 };

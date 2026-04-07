@@ -34,6 +34,7 @@ export type RoutePath =
   | '/web-development-services'
   | '/ai-development-services'
   | '/custom-software-development'
+  | '/data-solutions'
   | `/services/${string}`
   | `/projects/${string}`;
 
@@ -53,6 +54,7 @@ const getRouteFromPath = (pathname: string): RoutePath => {
   if (pathname === '/services/website-development') return '/web-development-services';
   if (pathname === '/services/automation-solutions') return '/ai-development-services';
   if (pathname === '/services/custom-web-apps') return '/custom-software-development';
+  if (pathname === '/services/data-solutions') return '/data-solutions';
   if (pathname === '/process') return '/process';
   if (pathname === '/contact') return '/contact';
   if (pathname === '/privacy-policy') return '/privacy-policy';
@@ -465,8 +467,8 @@ function App() {
           exit="exit"
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
         >
-          {route === '/services' ? (
-            <ServicesPage onOpenService={(slug) => navigateTo(`/services/${slug}`)} />
+        {route === '/services' ? (
+            <ServicesPage onOpenService={(slug) => navigateTo(getServicePathBySlug(slug))} />
           ) : route === '/about' ? (
             <AboutPage onNavigateToServices={() => navigateTo('/services')} onNavigateToContact={() => navigateTo('/contact')} />
           ) : getServicePageContent(route) && activeService ? (

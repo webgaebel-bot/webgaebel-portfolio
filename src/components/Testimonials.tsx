@@ -1,7 +1,7 @@
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { isSupabaseConfigured, supabase } from '../lib/supabase';
 
 type FeedbackEntry = {
   id: string;
@@ -27,6 +27,12 @@ export default function Testimonials() {
   });
 
   const loadFeedback = async () => {
+    if (!supabase) {
+      setFeedbacks([]);
+      setStatusMessage('Testimonials are temporarily unavailable because Supabase is not configured.');
+      return;
+    }
+
     try {
       const { data, error } = await supabase
         .from('feedback')
@@ -83,6 +89,12 @@ export default function Testimonials() {
     e.preventDefault();
     setIsSubmitting(true);
     setStatusMessage('');
+
+    if (!supabase) {
+      setStatusMessage('Feedback submission is temporarily unavailable because Supabase is not configured.');
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       const { error } = await supabase.from('feedback').insert({
@@ -159,7 +171,7 @@ export default function Testimonials() {
               <div><label className="mb-2 block text-sm font-medium text-gray-700">Rating</label><div className="flex gap-2">{[1, 2, 3, 4, 5].map((star) => (<button key={star} type="button" onClick={() => setFormData({ ...formData, rating: star })} className="transition-transform hover:scale-110"><Star size={28} className={star <= formData.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'} /></button>))}</div></div>
               <div><label className="mb-2 block text-sm font-medium text-gray-700">Feedback</label><textarea required rows={5} value={formData.content} onChange={(e) => setFormData({ ...formData, content: e.target.value })} className="w-full resize-none rounded-lg border border-gray-300 px-4 py-3 outline-none transition-all focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20" placeholder="Share your experience with WEBGAEBEL..." /></div>
               {statusMessage && <p className="text-sm font-medium text-blue-600">{statusMessage}</p>}
-              <button type="submit" disabled={isSubmitting} className="rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-blue-700 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70">{isSubmitting ? 'Saving...' : 'Save Feedback'}</button>
+              <button type="submit" disabled={isSubmitting || !isSupabaseConfigured} className="rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-blue-700 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70">{isSubmitting ? 'Saving...' : isSupabaseConfigured ? 'Save Feedback' : 'Feedback Unavailable'}</button>
             </form>
           </motion.div>
         </div>

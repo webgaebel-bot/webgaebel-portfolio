@@ -94,7 +94,7 @@ const stepVariants = {
     scale: 1,
     transition: {
       duration: 0.55,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as const,
     },
   },
 };
@@ -168,7 +168,7 @@ export default function ProcessPage() {
                       initial={{ opacity: 0, scale: 0.8, x: x * 0.82, y: y * 0.82 }}
                       whileInView={{ opacity: 1, scale: 1, x, y }}
                       viewport={{ once: true, amount: 0.25 }}
-                      transition={{ duration: 0.6, delay: 0.14 * index, ease: [0.22, 1, 0.36, 1] }}
+                      transition={{ duration: 0.6, delay: 0.14 * index, ease: [0.22, 1, 0.36, 1] as const }}
                       whileHover={{ scale: 1.06, rotate: 2 }}
                       className="absolute left-1/2 top-1/2 -ml-[58px] -mt-[58px]"
                     >

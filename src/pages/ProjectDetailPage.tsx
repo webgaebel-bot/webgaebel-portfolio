@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowLeft, CheckCircle2, Link2, PlayCircle } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, ExternalLink, Link2, PlayCircle } from 'lucide-react';
 import { ProjectItem } from '../data/projects';
 
 type ProjectDetailPageProps = {
@@ -16,13 +16,26 @@ export default function ProjectDetailPage({
       <section className="relative overflow-hidden py-16 md:py-24">
         <div className="absolute inset-0 bg-grid-pattern opacity-15" />
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
-          <button
-            onClick={onBackToProjects}
-            className="theme-button-secondary mb-8 gap-2 !px-4 !py-3 text-sm sm:!px-5"
-          >
-            <ArrowLeft size={16} />
-            Back to Projects
-          </button>
+          <div className="mb-8 flex flex-wrap gap-3">
+            <button
+              onClick={onBackToProjects}
+              className="theme-button-secondary gap-2 !px-4 !py-3 text-sm sm:!px-5"
+            >
+              <ArrowLeft size={16} />
+              Back to Projects
+            </button>
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="theme-button-primary gap-2 !px-4 !py-3 text-sm sm:!px-5"
+              >
+                Open Live Site
+                <ExternalLink size={16} />
+              </a>
+            )}
+          </div>
 
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
             <motion.div
