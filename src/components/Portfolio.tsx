@@ -66,11 +66,12 @@ export default function Portfolio({ onNavigateToProjects, onOpenProject }: Portf
                     className="group/preview block"
                     aria-label={`Open ${project.title} live preview in a new tab`}
                   >
-                    <div className="relative aspect-[16/10] overflow-hidden bg-slate-950/5">
+                    <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
                       <img
                         src={project.preview}
                         alt={`${project.title} preview`}
-                        className="h-full w-full object-contain p-3 transition-transform duration-500 group-hover:scale-[1.03] group-hover/preview:scale-[1.01]"
+                        className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+                        loading="lazy"
                       />
                       <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(8,38,63,0.24))]" />
                     </div>
@@ -86,11 +87,12 @@ export default function Portfolio({ onNavigateToProjects, onOpenProject }: Portf
                   </a>
                 ) : (
                   <div className="relative">
-                    <div className="relative aspect-[16/10] overflow-hidden bg-slate-950/5">
+                    <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
                       <img
                         src={project.preview}
                         alt={`${project.title} preview`}
-                        className="h-full w-full object-contain p-3 transition-transform duration-500 group-hover:scale-[1.03]"
+                        className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+                        loading="lazy"
                       />
                       <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(8,38,63,0.24))]" />
                     </div>
@@ -104,7 +106,7 @@ export default function Portfolio({ onNavigateToProjects, onOpenProject }: Portf
                     </div>
                   </div>
                 )}
-                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-18`} />
+                {/* <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-18`} /> */}
                 <div className="absolute left-5 top-5 rounded-full border border-white/20 bg-white/12 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-sm">
                   {project.category}
                 </div>

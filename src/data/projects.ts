@@ -55,12 +55,12 @@ const makePreview = (title: string, category: string, gradientA: string, gradien
 };
 
 const projectPreviewImages = {
-  'build-my-ai-resume-79': new URL('../../project-images/AI-powered resume.png', import.meta.url).href,
-  'coffee-shop-website': new URL('../../project-images/coffee-shop-website.png', import.meta.url).href,
-  'e-commerce-store': new URL('../../project-images/e-commerce-store.png', import.meta.url).href,
-  'furniture-website': new URL('../../project-images/furniture-shop.png', import.meta.url).href,
-  'grocery-shop-website': new URL('../../project-images/grocery-shop-website.png', import.meta.url).href,
-  'restaurant-pos-system': new URL('../../project-images/Restaurant POS System.png', import.meta.url).href,
+  'build-my-ai-resume-79': '/project-images/AI-powered resume.png',
+  'coffee-shop-website': '/project-images/coffee-shop-website.png',
+  'e-commerce-store': '/project-images/e-commerce-store.png',
+  'furniture-website': '/project-images/furniture-shop.png',
+  'grocery-shop-website': '/project-images/grocery-shop-website.png',
+  'restaurant-pos-system': '/project-images/Restaurant POS System.png',
 } satisfies Partial<Record<string, string>>;
 
 const projectSeeds = [
@@ -188,11 +188,12 @@ const projectSeeds = [
     slug: 'freelancer-booking-app',
     title: 'Freelancer Booking App',
     category: 'Mobile App',
-    result: 'Concept build',
+    result: 'Video included',
     description: 'Booking app concept for scheduling freelance services, project calls, and client time slots.',
     color: 'from-indigo-600 to-blue-700',
     gradientA: '#4f46e5',
     gradientB: '#1d4ed8',
+    videoUrl: '/project-videos/freelancing-app.mp4',
     challenge: 'The booking flow needed to feel simple for clients while keeping scheduling details organized.',
     solution: 'We structured the app around service selection, time booking, and clear confirmation steps.',
     impact: ['Simpler booking path', 'Cleaner scheduling', 'More professional client flow'],

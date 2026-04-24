@@ -64,10 +64,18 @@ export default function ProjectsPage({ onOpenProject }: ProjectsPageProps) {
             ))}
           </div>
 
-          <div className="mt-14 grid gap-6 lg:grid-cols-2">
+          <div className="mt-16">
+            <Portfolio
+              onNavigateToProjects={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              onOpenProject={onOpenProject}
+            />
+          </div>
+
+          <div className="mt-20 grid gap-6 lg:grid-cols-2">
             <motion.article
               initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.6 }}
               className="theme-panel p-8 md:p-10"
             >
@@ -96,7 +104,8 @@ export default function ProjectsPage({ onOpenProject }: ProjectsPageProps) {
 
             <motion.article
               initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               className="rounded-[30px] bg-[linear-gradient(135deg,var(--color-ink),var(--color-deep-navy),var(--color-corporate-blue))] p-8 text-white shadow-[var(--shadow-soft)] md:p-10"
             >
@@ -118,13 +127,6 @@ export default function ProjectsPage({ onOpenProject }: ProjectsPageProps) {
                 <ArrowRight size={18} />
               </button>
             </motion.article>
-          </div>
-
-          <div className="mt-16">
-            <Portfolio
-              onNavigateToProjects={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              onOpenProject={onOpenProject}
-            />
           </div>
         </div>
       </section>
