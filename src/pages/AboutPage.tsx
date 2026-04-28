@@ -51,13 +51,6 @@ const teamMembers = [
     bio:
       'Digital growth and Shopify specialist supporting store operations, client hunting, and lead generation. Ali focuses on practical execution that helps brands scale with consistency.',
   },
-  {
-    name: 'Wasif',
-    role: 'Data Analyst',
-    image: '/team/wasif.jpeg',
-    bio:
-      'Data analyst focused on reporting, pattern finding, and insight generation. Wasif helps the team make clearer decisions from performance data and campaign results.',
-  },
 ];
 
 export default function AboutPage({ onNavigateToServices, onNavigateToContact }: AboutPageProps) {
