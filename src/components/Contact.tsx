@@ -237,7 +237,7 @@ export default function Contact() {
                         Facebook
                       </a>
                       <a
-                        href="https://www.linkedin.com/in/web-gaebel-516aa43ba?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                        href="https://www.linkedin.com/company/112655199/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 rounded-full border border-[rgba(11,61,102,0.12)] px-4 py-2 text-sm font-medium text-slate-700 transition-soft hover:border-[var(--color-cyan)] hover:text-[var(--color-corporate-blue)]"

@@ -106,7 +106,7 @@ export default function Footer({ currentPath, onNavigate }: FooterProps) {
                     <Facebook className="h-4 w-4" />
                   </a>
                   <a
-                    href="https://www.linkedin.com/in/web-gaebel-516aa43ba?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                    href="https://www.linkedin.com/company/112655199/"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="LinkedIn"

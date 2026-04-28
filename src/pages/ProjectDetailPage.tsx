@@ -141,8 +141,16 @@ export default function ProjectDetailPage({
                   as a trust-building video preview. The layout is already ready for it.
                 </p>
                 {project.videoUrl ? (
-                  <video controls className="mt-5 aspect-video w-full rounded-2xl bg-black" poster={project.preview}>
-                    <source src={project.videoUrl} />
+                  <video
+                    key={project.videoUrl}
+                    controls
+                    preload="metadata"
+                    playsInline
+                    className="mt-5 aspect-video w-full rounded-2xl bg-black"
+                    poster={project.preview}
+                  >
+                    <source src={project.videoUrl} type="video/mp4" />
+                    Your browser does not support the video tag.
                   </video>
                 ) : (
                   <div className="mt-5 flex aspect-video items-center justify-center rounded-2xl border border-white/12 bg-white/6 text-center">

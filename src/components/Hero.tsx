@@ -10,7 +10,7 @@ export default function Hero({ onNavigateToServices, onNavigateToContact }: Hero
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden pt-20"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden px-0 pb-16 pt-20 md:pb-24"
     >
       <div className="absolute inset-0 bg-grid-pattern opacity-20" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(73,197,211,0.18),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(47,178,177,0.14),transparent_26%)]" />
@@ -81,7 +81,7 @@ export default function Hero({ onNavigateToServices, onNavigateToContact }: Hero
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
-            className="mx-auto mt-16 grid max-w-4xl grid-cols-2 gap-4 sm:gap-5 md:grid-cols-4"
+            className="mx-auto mt-14 grid max-w-4xl grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4"
           >
             {[
               { value: 'Web', label: 'Development Services' },
@@ -94,12 +94,15 @@ export default function Hero({ onNavigateToServices, onNavigateToContact }: Hero
                 initial={{ opacity: 0, scale: 0.88 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.45, delay: 1.15 + index * 0.08 }}
-                className="flex min-h-[132px] flex-col justify-center rounded-[22px] border border-[rgba(11,61,102,0.08)] bg-white/78 px-3 py-5 shadow-[0_16px_36px_rgba(11,61,102,0.08)] backdrop-blur-sm sm:rounded-[24px] sm:px-5 sm:py-6"
+                whileHover={{ y: -6, scale: 1.02 }}
+                className="flex min-h-[112px] flex-col justify-center rounded-[20px] border border-[rgba(11,61,102,0.08)] bg-white/80 px-4 py-4 shadow-[0_14px_30px_rgba(11,61,102,0.08)] backdrop-blur-sm sm:min-h-[120px] sm:rounded-[22px] sm:px-5 sm:py-5"
               >
-                <div className="theme-heading text-2xl font-bold leading-none text-[var(--color-corporate-blue)] sm:text-3xl">
+                <div className="theme-heading text-xl font-bold leading-none text-[var(--color-corporate-blue)] sm:text-[1.7rem]">
                   {stat.value}
                 </div>
-                <div className="mt-3 text-sm leading-6 text-slate-600 sm:px-2">{stat.label}</div>
+                <div className="mt-2 text-xs leading-5 text-slate-600 sm:text-sm sm:leading-6">
+                  {stat.label}
+                </div>
               </motion.div>
             ))}
           </motion.div>

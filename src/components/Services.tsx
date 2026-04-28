@@ -50,13 +50,13 @@ export default function Services({ onNavigateToServices, onOpenService }: Servic
   ];
 
   return (
-    <section id="services" className="section-wash py-20 md:py-32" ref={ref}>
+    <section id="services" className="section-wash py-18 md:py-24" ref={ref}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65 }}
-          className="mb-16 text-center"
+          className="mb-12 text-center"
         >
           <span className="theme-badge">Our Services</span>
           <h2 className="theme-heading mt-5 text-3xl font-bold text-slate-900 sm:text-4xl md:text-5xl">
@@ -69,27 +69,41 @@ export default function Services({ onNavigateToServices, onOpenService }: Servic
           </p>
         </motion.div>
 
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {featuredServices.map((service, index) => (
             <motion.article
               key={service.slug}
               initial={{ opacity: 0, y: 36 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.08 }}
-              whileHover={{ y: -8 }}
-              className="theme-panel group p-8 transition-soft hover:border-[rgba(47,178,177,0.35)]"
+              whileHover={{ y: -10, scale: 1.01 }}
+              className="theme-panel group relative overflow-hidden p-6 transition-soft hover:border-[rgba(47,178,177,0.35)]"
             >
-              <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,var(--color-corporate-blue),var(--color-teal),var(--color-cyan))] text-white shadow-[0_16px_34px_rgba(11,61,102,0.16)]">
-                <service.icon className="h-7 w-7" />
-              </div>
+              <motion.div
+                initial={{ opacity: 0.32, x: '-18%' }}
+                animate={isInView ? { opacity: 0.65, x: '118%' } : {}}
+                transition={{ duration: 1.6, delay: 0.3 + index * 0.14, ease: 'easeInOut' }}
+                className="pointer-events-none absolute inset-y-0 left-0 w-24 -skew-x-12 bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.45),transparent)]"
+              />
+              <div className="absolute inset-x-6 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(73,197,211,0.8),transparent)] opacity-70" />
 
-              <h3 className="theme-heading text-2xl font-bold text-slate-900">{service.title}</h3>
-              <p className="mt-4 leading-7 text-slate-600">{service.description}</p>
+              <motion.div
+                whileHover={{ rotate: 4, scale: 1.08 }}
+                transition={{ type: 'spring', stiffness: 280, damping: 16 }}
+                className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-[18px] bg-[linear-gradient(135deg,var(--color-corporate-blue),var(--color-teal),var(--color-cyan))] text-white shadow-[0_14px_30px_rgba(11,61,102,0.16)]"
+              >
+                <service.icon className="h-6 w-6" />
+              </motion.div>
 
-              <ul className="mt-6 space-y-3">
-                {service.points.map((feature) => (
-                  <li key={feature} className="flex items-center gap-3 text-sm font-medium text-slate-700">
-                    <span className="h-2.5 w-2.5 rounded-full bg-[var(--color-cyan)] shadow-[0_0_0_5px_rgba(73,197,211,0.12)]" />
+              <h3 className="theme-heading text-xl font-bold text-slate-900 sm:text-[1.35rem]">{service.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-slate-600 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:5] overflow-hidden">
+                {service.description}
+              </p>
+
+              <ul className="mt-5 space-y-2.5">
+                {service.points.slice(0, 3).map((feature) => (
+                  <li key={feature} className="flex items-start gap-3 text-sm font-medium leading-6 text-slate-700">
+                    <span className="mt-2 h-2 w-2 rounded-full bg-[var(--color-cyan)] shadow-[0_0_0_5px_rgba(73,197,211,0.12)]" />
                     {feature}
                   </li>
                 ))}
@@ -97,16 +111,22 @@ export default function Services({ onNavigateToServices, onOpenService }: Servic
 
               <button
                 onClick={() => onOpenService(service.slug)}
-                className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-corporate-blue)] transition-soft group-hover:translate-x-1 group-hover:text-[var(--color-teal)]"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-corporate-blue)] transition-soft group-hover:translate-x-1 group-hover:text-[var(--color-teal)]"
               >
                 Discuss this capability
-                <ArrowRight size={18} />
+                <motion.span
+                  className="inline-flex"
+                  whileHover={{ x: 4 }}
+                  transition={{ type: 'spring', stiffness: 320, damping: 18 }}
+                >
+                  <ArrowRight size={18} />
+                </motion.span>
               </button>
             </motion.article>
           ))}
         </div>
 
-        <div className="mt-12 text-center">
+        <div className="mt-10 text-center">
           <button onClick={onNavigateToServices} className="theme-button-secondary">
             Explore the Full Service Portfolio
           </button>

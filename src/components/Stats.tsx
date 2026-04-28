@@ -42,7 +42,7 @@ export default function Stats() {
 
   return (
     <section
-      className="relative overflow-hidden bg-[linear-gradient(135deg,var(--color-deep-navy),var(--color-corporate-blue),var(--color-teal))] py-20 md:py-32"
+      className="relative overflow-hidden bg-[linear-gradient(135deg,var(--color-deep-navy),var(--color-corporate-blue),var(--color-teal))] py-16 md:py-20"
       ref={ref}
     >
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.12 }} className="absolute inset-0 bg-grid-pattern" />
@@ -52,20 +52,20 @@ export default function Stats() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          className="mb-10 text-center"
         >
           <span className="text-sm font-semibold uppercase tracking-[0.32em] text-[var(--color-cyan)]">
             Our Impact
           </span>
-          <h2 className="theme-heading mt-3 text-3xl font-bold text-white sm:text-4xl md:text-5xl">
+          <h2 className="theme-heading mt-3 text-3xl font-bold text-white sm:text-4xl">
             Numbers That Speak
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/78">
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-white/78 sm:text-lg">
             Trusted by growing businesses to deliver design clarity, stronger systems, and real performance improvements.
           </p>
         </motion.div>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -73,16 +73,16 @@ export default function Stats() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ y: -8 }}
-              className="rounded-[28px] border border-white/14 bg-white/10 p-8 text-center backdrop-blur-lg transition-soft hover:bg-white/14"
+              className="rounded-[24px] border border-white/14 bg-white/10 p-5 text-center backdrop-blur-lg transition-soft hover:bg-white/14 sm:p-6"
             >
-              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/14">
-                <stat.icon className="h-8 w-8 text-white" />
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-[18px] bg-white/14">
+                <stat.icon className="h-6 w-6 text-white" />
               </div>
-              <div className="theme-heading mb-2 text-4xl font-bold text-white md:text-5xl">
+              <div className="theme-heading mb-1.5 text-3xl font-bold text-white md:text-4xl">
                 <Counter value={stat.value} suffix={stat.suffix} />
               </div>
-              <div className="text-xl font-semibold text-white">{stat.label}</div>
-              <div className="mt-2 text-sm text-[var(--color-cyan)]">{stat.description}</div>
+              <div className="text-lg font-semibold text-white">{stat.label}</div>
+              <div className="mt-1.5 text-sm text-[var(--color-cyan)]">{stat.description}</div>
             </motion.div>
           ))}
         </div>

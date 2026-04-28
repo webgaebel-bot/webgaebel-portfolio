@@ -29,30 +29,6 @@ const principles = [
   },
 ];
 
-const teamMembers = [
-  {
-    name: 'Hunain Haider',
-    role: 'Full-Stack Developer',
-    image: '/team/hunain-haider.png',
-    bio:
-      'Full-stack engineer focused on .NET, MERN, AI integrations, and scalable backend systems. Hunain leads delivery with a strong focus on practical architecture and long-term maintainability.',
-  },
-  {
-    name: 'Taqi Mehdi',
-    role: 'Digital Marketing & E-Commerce Specialist',
-    image: '/team/taqi-mehdi.jpeg',
-    bio:
-      'Digital marketing and Shopify specialist focused on online stores, campaign execution, client acquisition, and lead generation. Taqi helps brands improve visibility and turn traffic into sales.',
-  },
-  {
-    name: 'Ali Ashad',
-    role: 'Digital Growth & Shopify Specialist',
-    image: '/team/Ali-ashad.jpeg',
-    bio:
-      'Digital growth and Shopify specialist supporting store operations, client hunting, and lead generation. Ali focuses on practical execution that helps brands scale with consistency.',
-  },
-];
-
 export default function AboutPage({ onNavigateToServices, onNavigateToContact }: AboutPageProps) {
   return (
     <main className="min-h-screen pt-28">
@@ -105,49 +81,6 @@ export default function AboutPage({ onNavigateToServices, onNavigateToContact }:
         </div>
       </section>
 
-      <section className="py-16 md:py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-6xl">
-            <div className="mx-auto max-w-3xl text-center">
-              <span className="theme-badge">Team Intro</span>
-              <h2 className="theme-heading mt-6 text-3xl font-bold text-slate-900 sm:text-4xl">
-                Meet the team behind WebGaebel
-              </h2>
-              <p className="mt-4 text-base leading-7 text-slate-600">
-                A small, focused team covering engineering, digital marketing, Shopify, and data.
-              </p>
-            </div>
-
-            <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-              {teamMembers.map((member, index) => (
-                <motion.article
-                  key={member.name}
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.08 }}
-                  className="overflow-hidden rounded-[22px] border border-[rgba(11,61,102,0.08)] bg-white shadow-[0_12px_24px_rgba(11,61,102,0.08)]"
-                >
-                  <div className="relative aspect-[1/1.08] overflow-hidden bg-slate-100">
-                    <img
-                      src={member.image}
-                      alt={`${member.name} - ${member.role}`}
-                      className="h-full w-full object-cover object-top"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="p-4 sm:p-5">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-teal)]">
-                      {member.role}
-                    </p>
-                    <h3 className="theme-heading mt-2 text-lg font-bold text-slate-900">{member.name}</h3>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">{member.bio}</p>
-                  </div>
-                </motion.article>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }

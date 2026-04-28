@@ -122,56 +122,157 @@ export default function Testimonials() {
   };
 
   return (
-    <section id="testimonials" className="bg-gray-50 py-20 md:py-32" ref={ref}>
+    <section id="testimonials" className="section-wash py-18 md:py-24" ref={ref}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }} className="mb-16 text-center">
-          <span className="text-sm font-semibold uppercase tracking-wider text-blue-600">Testimonials</span>
-          <h2 className="mt-3 mb-4 text-3xl font-bold text-gray-900 sm:text-4xl md:text-5xl">What Our Clients Say</h2>
-          <p className="mx-auto max-w-2xl text-lg text-gray-600">Real feedback from businesses we&apos;ve helped grow</p>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="mb-12 text-center"
+        >
+          <span className="theme-badge">Testimonials</span>
+          <h2 className="theme-heading mt-5 text-3xl font-bold text-slate-900 sm:text-4xl md:text-5xl">
+            What Our Clients Say
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
+            Real feedback from businesses we&apos;ve helped grow
+          </p>
         </motion.div>
 
         {testimonials.length > 0 && (
-          <div className="mx-auto max-w-4xl">
-            <div className="relative overflow-hidden rounded-3xl bg-white p-6 shadow-2xl sm:p-8 md:p-12">
-              <div className="absolute left-5 top-5 text-blue-600/10 sm:left-8 sm:top-8"><Quote size={64} className="sm:h-20 sm:w-20" /></div>
+          <div className="mx-auto max-w-5xl">
+            <div className="theme-panel relative overflow-hidden p-6 sm:p-8 md:p-10">
+              <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(73,197,211,0.75),transparent)]" />
+              <div className="absolute left-5 top-5 text-[var(--color-cyan)]/10 sm:left-8 sm:top-8">
+                <Quote size={56} className="sm:h-16 sm:w-16" />
+              </div>
               <AnimatePresence mode="wait">
-                <motion.div key={testimonials[currentIndex].id} initial={{ opacity: 0, x: 100 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -100 }} transition={{ duration: 0.5 }} className="relative z-10">
-                  <div className="mb-6 flex justify-center gap-1">
+                <motion.div
+                  key={testimonials[currentIndex].id}
+                  initial={{ opacity: 0, x: 60 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -60 }}
+                  transition={{ duration: 0.45 }}
+                  className="relative z-10"
+                >
+                  <div className="mb-5 flex justify-center gap-1">
                     {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                      <Star key={i} size={24} className="fill-yellow-400 text-yellow-400" />
+                      <Star key={i} size={20} className="fill-amber-400 text-amber-400" />
                     ))}
                   </div>
-                  <p className="mb-8 text-center text-lg leading-relaxed text-gray-700 italic sm:text-xl md:text-2xl">"{testimonials[currentIndex].content}"</p>
-                  <div className="text-center">
-                    <div className="text-xl font-bold text-gray-900">{testimonials[currentIndex].name}</div>
-                    <div className="font-medium text-blue-600">{testimonials[currentIndex].role}</div>
+                  <p className="mx-auto mb-7 max-w-3xl text-center text-base leading-8 text-slate-700 sm:text-xl sm:leading-9">
+                    &ldquo;{testimonials[currentIndex].content}&rdquo;
+                  </p>
+                  <div className="rounded-[24px] border border-[rgba(11,61,102,0.08)] bg-[rgba(244,251,253,0.9)] px-5 py-4 text-center sm:mx-auto sm:max-w-md">
+                    <div className="theme-heading text-lg font-bold text-slate-900 sm:text-xl">
+                      {testimonials[currentIndex].name}
+                    </div>
+                    <div className="mt-1 text-sm font-medium text-[var(--color-teal)]">
+                      {testimonials[currentIndex].role}
+                    </div>
                   </div>
                 </motion.div>
               </AnimatePresence>
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-                <button onClick={prevTestimonial} className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-700 transition-all duration-300 hover:scale-110 hover:bg-blue-600 hover:text-white sm:h-12 sm:w-12"><ChevronLeft size={22} /></button>
+                <button
+                  onClick={prevTestimonial}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(11,61,102,0.1)] bg-white text-slate-700 transition-all duration-300 hover:scale-105 hover:border-[var(--color-teal)] hover:bg-[var(--color-corporate-blue)] hover:text-white sm:h-11 sm:w-11"
+                >
+                  <ChevronLeft size={20} />
+                </button>
                 <div className="flex gap-2">
                   {testimonials.map((item, index) => (
-                    <button key={item.id} onClick={() => setCurrentIndex(index)} className={`h-2 rounded-full transition-all duration-300 ${index === currentIndex ? 'w-8 bg-blue-600' : 'w-2 bg-gray-300'}`} />
+                    <button
+                      key={item.id}
+                      onClick={() => setCurrentIndex(index)}
+                      className={`h-2 rounded-full transition-all duration-300 ${
+                        index === currentIndex ? 'w-8 bg-[var(--color-corporate-blue)]' : 'w-2 bg-slate-300'
+                      }`}
+                    />
                   ))}
                 </div>
-                <button onClick={nextTestimonial} className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-700 transition-all duration-300 hover:scale-110 hover:bg-blue-600 hover:text-white sm:h-12 sm:w-12"><ChevronRight size={22} /></button>
+                <button
+                  onClick={nextTestimonial}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(11,61,102,0.1)] bg-white text-slate-700 transition-all duration-300 hover:scale-105 hover:border-[var(--color-teal)] hover:bg-[var(--color-corporate-blue)] hover:text-white sm:h-11 sm:w-11"
+                >
+                  <ChevronRight size={20} />
+                </button>
               </div>
             </div>
           </div>
         )}
 
-        <div className="mx-auto mt-16 max-w-3xl">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 }} className="rounded-3xl bg-white p-6 shadow-xl sm:p-8">
-            <h3 className="mb-2 text-2xl font-bold text-gray-900">Leave Your Feedback</h3>
-            <p className="mb-6 text-gray-600">Your feedback will be stored in the database and reviewed by our team.</p>
+        <div className="mx-auto mt-12 max-w-3xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="theme-panel rounded-[28px] p-6 sm:p-8"
+          >
+            <h3 className="theme-heading mb-2 text-2xl font-bold text-slate-900">Leave Your Feedback</h3>
+            <p className="mb-6 text-sm leading-7 text-slate-600 sm:text-base">
+              Your feedback will be stored in the database and reviewed by our team.
+            </p>
             <form onSubmit={handleSubmit} className="space-y-5">
-              <div><label className="mb-2 block text-sm font-medium text-gray-700">Your Name</label><input type="text" required value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none transition-all focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20" placeholder="Client name" /></div>
-              <div><label className="mb-2 block text-sm font-medium text-gray-700">Role / Company</label><input type="text" required value={formData.role} onChange={(e) => setFormData({ ...formData, role: e.target.value })} className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none transition-all focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20" placeholder="Founder, Company Name" /></div>
-              <div><label className="mb-2 block text-sm font-medium text-gray-700">Rating</label><div className="flex gap-2">{[1, 2, 3, 4, 5].map((star) => (<button key={star} type="button" onClick={() => setFormData({ ...formData, rating: star })} className="transition-transform hover:scale-110"><Star size={28} className={star <= formData.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'} /></button>))}</div></div>
-              <div><label className="mb-2 block text-sm font-medium text-gray-700">Feedback</label><textarea required rows={5} value={formData.content} onChange={(e) => setFormData({ ...formData, content: e.target.value })} className="w-full resize-none rounded-lg border border-gray-300 px-4 py-3 outline-none transition-all focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20" placeholder="Share your experience with WEBGAEBEL..." /></div>
-              {statusMessage && <p className="text-sm font-medium text-blue-600">{statusMessage}</p>}
-              <button type="submit" disabled={isSubmitting || !isSupabaseConfigured} className="rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-blue-700 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70">{isSubmitting ? 'Saving...' : isSupabaseConfigured ? 'Save Feedback' : 'Feedback Unavailable'}</button>
+              <div>
+                <label className="mb-2 block text-sm font-medium text-slate-700">Your Name</label>
+                <input
+                  type="text"
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="w-full rounded-2xl border border-[rgba(11,61,102,0.12)] bg-white px-4 py-3 outline-none transition-all focus:border-[var(--color-teal)] focus:ring-2 focus:ring-[rgba(73,197,211,0.18)]"
+                  placeholder="Client name"
+                />
+              </div>
+              <div>
+                <label className="mb-2 block text-sm font-medium text-slate-700">Role / Company</label>
+                <input
+                  type="text"
+                  required
+                  value={formData.role}
+                  onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                  className="w-full rounded-2xl border border-[rgba(11,61,102,0.12)] bg-white px-4 py-3 outline-none transition-all focus:border-[var(--color-teal)] focus:ring-2 focus:ring-[rgba(73,197,211,0.18)]"
+                  placeholder="Founder, Company Name"
+                />
+              </div>
+              <div>
+                <label className="mb-2 block text-sm font-medium text-slate-700">Rating</label>
+                <div className="flex gap-2">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <button
+                      key={star}
+                      type="button"
+                      onClick={() => setFormData({ ...formData, rating: star })}
+                      className="transition-transform hover:scale-105"
+                    >
+                      <Star
+                        size={26}
+                        className={star <= formData.rating ? 'fill-amber-400 text-amber-400' : 'text-slate-300'}
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <label className="mb-2 block text-sm font-medium text-slate-700">Feedback</label>
+                <textarea
+                  required
+                  rows={5}
+                  value={formData.content}
+                  onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+                  className="w-full resize-none rounded-2xl border border-[rgba(11,61,102,0.12)] bg-white px-4 py-3 outline-none transition-all focus:border-[var(--color-teal)] focus:ring-2 focus:ring-[rgba(73,197,211,0.18)]"
+                  placeholder="Share your experience with WEBGAEBEL..."
+                />
+              </div>
+              {statusMessage && <p className="text-sm font-medium text-[var(--color-corporate-blue)]">{statusMessage}</p>}
+              <button
+                type="submit"
+                disabled={isSubmitting || !isSupabaseConfigured}
+                className="theme-button-primary disabled:cursor-not-allowed disabled:opacity-70"
+              >
+                {isSubmitting ? 'Saving...' : isSupabaseConfigured ? 'Save Feedback' : 'Feedback Unavailable'}
+              </button>
             </form>
           </motion.div>
         </div>

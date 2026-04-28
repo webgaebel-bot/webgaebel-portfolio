@@ -71,7 +71,7 @@ export default function ProjectsPage({ onOpenProject }: ProjectsPageProps) {
             />
           </div>
 
-          <div className="mt-20 grid gap-6 lg:grid-cols-2">
+          <div className="mt-16 grid gap-6 lg:grid-cols-2">
             <motion.article
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -122,7 +122,7 @@ export default function ProjectsPage({ onOpenProject }: ProjectsPageProps) {
                 If you already have live URLs, screenshots, or Loom / MP4 clips, those can be
                 assigned to individual projects without changing the page layout.
               </p>
-              <button onClick={() => onOpenProject('luxe-fashion')} className="theme-button-secondary mt-8 gap-2 !bg-white">
+              <button onClick={() => onOpenProject('ai-content-generator')} className="theme-button-secondary mt-8 gap-2 !bg-white">
                 Open a sample project
                 <ArrowRight size={18} />
               </button>

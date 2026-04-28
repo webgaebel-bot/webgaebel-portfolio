@@ -45,7 +45,7 @@ export default function ServicesPage({ onOpenService }: ServicesPageProps) {
             </p>
           </motion.div>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {services.map((service, index) => (
               <motion.article
                 key={service.slug}
@@ -53,30 +53,32 @@ export default function ServicesPage({ onOpenService }: ServicesPageProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: 0.06 * index }}
                 whileHover={{ y: -10 }}
-                className="theme-panel group p-8"
+                className="theme-panel group p-6"
               >
-                <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,var(--color-corporate-blue),var(--color-teal),var(--color-cyan))] text-white shadow-[0_16px_34px_rgba(11,61,102,0.18)]">
-                  <service.icon className="h-7 w-7" />
+                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-[18px] bg-[linear-gradient(135deg,var(--color-corporate-blue),var(--color-teal),var(--color-cyan))] text-white shadow-[0_14px_30px_rgba(11,61,102,0.18)]">
+                  <service.icon className="h-6 w-6" />
                 </div>
-                <h2 className="theme-heading text-2xl font-bold text-slate-900">{service.title}</h2>
-                <p className="mt-4 leading-7 text-slate-600">{service.description}</p>
+                <h2 className="theme-heading text-xl font-bold text-slate-900 sm:text-[1.35rem]">{service.title}</h2>
+                <p className="mt-3 text-sm leading-6 text-slate-600 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:4] overflow-hidden">
+                  {service.description}
+                </p>
 
-                <ul className="mt-6 space-y-3 text-sm text-slate-700">
-                  {service.points.map((point) => (
-                    <li key={point} className="flex items-center gap-3">
-                      <span className="h-2.5 w-2.5 rounded-full bg-[var(--color-cyan)] shadow-[0_0_0_5px_rgba(73,197,211,0.14)]" />
+                <ul className="mt-5 space-y-2.5 text-sm text-slate-700">
+                  {service.points.slice(0, 3).map((point) => (
+                    <li key={point} className="flex items-start gap-3 leading-6">
+                      <span className="mt-2 h-2 w-2 rounded-full bg-[var(--color-cyan)] shadow-[0_0_0_5px_rgba(73,197,211,0.14)]" />
                       {point}
                     </li>
                   ))}
                 </ul>
 
-                <div className="mt-6 rounded-2xl bg-[rgba(244,251,253,0.95)] p-4 text-sm leading-7 text-[var(--color-corporate-blue)]">
+                <div className="mt-5 rounded-2xl bg-[rgba(244,251,253,0.95)] p-4 text-sm leading-6 text-[var(--color-corporate-blue)]">
                   {service.outcomes}
                 </div>
 
                 <button
                   onClick={() => onOpenService(service.slug)}
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-corporate-blue)] transition-soft group-hover:translate-x-1 group-hover:text-[var(--color-teal)]"
+                  className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-corporate-blue)] transition-soft group-hover:translate-x-1 group-hover:text-[var(--color-teal)]"
                 >
                   Read full service details
                   <ArrowRight className="h-4 w-4" />
