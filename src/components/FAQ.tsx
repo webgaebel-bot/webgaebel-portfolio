@@ -2,10 +2,6 @@ import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Minus, Plus } from 'lucide-react';
 
-type FAQProps = {
-  onNavigateToContact: () => void;
-};
-
 const faqs = [
   {
     question: 'How long does a website development project usually take?',
@@ -64,7 +60,7 @@ const faqs = [
   },
 ];
 
-export default function FAQ({ onNavigateToContact }: FAQProps) {
+export default function FAQ() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [openIndex, setOpenIndex] = useState<number>(0);
@@ -79,7 +75,8 @@ export default function FAQ({ onNavigateToContact }: FAQProps) {
           className="mx-auto max-w-4xl"
         >
           <div className="border-b border-[rgba(11,61,102,0.10)] pb-6 text-center">
-            <div className="theme-heading text-2xl font-bold uppercase tracking-[0.02em] text-slate-900 sm:text-3xl md:text-4xl">
+            <div className="theme-badge">FAQ</div>
+            <div className="theme-heading mt-5 text-2xl font-bold uppercase tracking-[0.02em] text-slate-900 sm:text-3xl md:text-4xl">
               Frequently Asked Questions
             </div>
             <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-slate-600">
@@ -88,24 +85,39 @@ export default function FAQ({ onNavigateToContact }: FAQProps) {
             </p>
           </div>
 
-          <div className="mt-2">
+          <div className="mt-6 space-y-3">
             {faqs.map((faq, index) => {
               const isOpen = openIndex === index;
 
               return (
-                <div key={faq.question} className="border-b border-[rgba(11,61,102,0.10)]">
+                <div
+                  key={faq.question}
+                  className={`rounded-[24px] border px-5 transition-soft sm:px-6 ${
+                    isOpen
+                      ? 'border-[rgba(47,178,177,0.26)] bg-[rgba(244,251,253,0.9)] shadow-[0_18px_36px_rgba(11,61,102,0.08)]'
+                      : 'border-transparent bg-transparent hover:border-[rgba(11,61,102,0.08)]'
+                  }`}
+                >
                   <button
                     onClick={() => setOpenIndex(isOpen ? -1 : index)}
                     className="flex w-full items-center justify-between gap-4 py-6 text-left transition-soft hover:text-[var(--color-corporate-blue)]"
                   >
-                    <span className="pr-4 text-left text-sm font-medium leading-7 text-slate-800 md:text-base">
+                    <span className={`pr-4 text-left text-sm font-medium leading-7 md:text-base ${isOpen ? 'text-[var(--color-corporate-blue)]' : 'text-slate-800'}`}>
                       {faq.question}
                     </span>
-                    {isOpen ? (
-                      <Minus className="h-5 w-5 flex-shrink-0 text-slate-900" />
-                    ) : (
-                      <Plus className="h-5 w-5 flex-shrink-0 text-slate-900" />
-                    )}
+                    <span
+                      className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full transition-soft ${
+                        isOpen
+                          ? 'bg-[linear-gradient(135deg,var(--color-corporate-blue),var(--color-teal),var(--color-cyan))] text-white shadow-[0_14px_30px_rgba(11,61,102,0.16)]'
+                          : 'bg-white text-slate-900'
+                      }`}
+                    >
+                      {isOpen ? (
+                        <Minus className="h-5 w-5" />
+                      ) : (
+                        <Plus className="h-5 w-5" />
+                      )}
+                    </span>
                   </button>
 
                   <motion.div
@@ -114,7 +126,7 @@ export default function FAQ({ onNavigateToContact }: FAQProps) {
                       height: isOpen ? 'auto' : 0,
                       opacity: isOpen ? 1 : 0,
                     }}
-                    transition={{ duration: 0.28 }}
+                    transition={{ duration: 0.32, ease: 'easeOut' }}
                     className="overflow-hidden"
                   >
                     <div className="pb-6 pr-10 text-sm leading-8 text-slate-600 md:text-base">{faq.answer}</div>
@@ -126,11 +138,8 @@ export default function FAQ({ onNavigateToContact }: FAQProps) {
 
           <div className="pt-8 text-center">
             <p className="text-base leading-8 text-slate-600">
-              Still have questions? Contact us and we&apos;ll help shape the page plan and keyword map.
+              Still have questions? Reach out and we&apos;ll help you choose the right system, scope, and delivery plan.
             </p>
-            <button onClick={onNavigateToContact} className="theme-button-secondary mt-5">
-              Get Started
-            </button>
           </div>
         </motion.div>
       </div>

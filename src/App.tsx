@@ -12,6 +12,7 @@ import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfServicePage from './pages/TermsOfServicePage';
 import ProcessPage from './pages/ProcessPage';
 import ContactPage from './pages/ContactPage';
+import FeedbackPage from './pages/FeedbackPage';
 import { projects } from './data/projects';
 import { services } from './data/services';
 import {
@@ -28,6 +29,7 @@ export type RoutePath =
   | '/projects'
   | '/process'
   | '/contact'
+  | '/feedback'
   | '/privacy-policy'
   | '/terms-of-service'
   | '/mobile-app-development'
@@ -57,6 +59,7 @@ const getRouteFromPath = (pathname: string): RoutePath => {
   if (pathname === '/services/data-solutions') return '/data-solutions';
   if (pathname === '/process') return '/process';
   if (pathname === '/contact') return '/contact';
+  if (pathname === '/feedback') return '/feedback';
   if (pathname === '/privacy-policy') return '/privacy-policy';
   if (pathname === '/terms-of-service') return '/terms-of-service';
   if (pathname.startsWith('/services/')) return pathname as `/services/${string}`;
@@ -235,6 +238,20 @@ const buildSeoPayload = (route: RoutePath, activeService: (typeof services)[numb
         '@type': 'ContactPage',
         name: 'Contact WEBGAEBEL',
         description: 'Contact page for project inquiries and agency communication.',
+      },
+    };
+  }
+
+  if (route === '/feedback') {
+    return {
+      title: `Feedback | ${SITE_NAME}`,
+      description: 'Share your experience with WEBGAEBEL and submit client feedback through our dedicated review form.',
+      keywords: 'client feedback form, agency testimonial form, submit review',
+      schema: {
+        '@context': 'https://schema.org',
+        '@type': 'ContactPage',
+        name: 'WEBGAEBEL Feedback',
+        description: 'Dedicated page for client feedback and testimonial submissions.',
       },
     };
   }
@@ -492,6 +509,8 @@ function App() {
             <ProcessPage />
           ) : route === '/contact' ? (
             <ContactPage />
+          ) : route === '/feedback' ? (
+            <FeedbackPage />
           ) : route === '/privacy-policy' ? (
             <PrivacyPolicyPage />
           ) : route === '/terms-of-service' ? (
@@ -502,6 +521,8 @@ function App() {
             <HomePage
               onNavigateToServices={() => navigateTo('/services')}
               onOpenService={(slug) => navigateTo(getServicePathBySlug(slug))}
+              onNavigateToProjects={() => navigateTo('/projects')}
+              onOpenProject={(slug) => navigateTo(`/projects/${slug}`)}
               onNavigateToContact={() => navigateTo('/contact')}
             />
           )}

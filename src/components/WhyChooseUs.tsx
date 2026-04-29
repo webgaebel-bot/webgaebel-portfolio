@@ -1,102 +1,71 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { CheckCircle, Headphones, LineChart, Palette, Target, Zap } from 'lucide-react';
+import { Cpu, Headphones, LineChart, ShieldCheck } from 'lucide-react';
 
-type WhyChooseUsProps = {
-  onNavigateToContact: () => void;
-};
+const reasons = [
+  {
+    icon: ShieldCheck,
+    title: 'Proven Expertise',
+    description: 'We combine product thinking, technical execution, and polished UX across web, mobile, and AI delivery.',
+  },
+  {
+    icon: Cpu,
+    title: 'Modern Tech Stack',
+    description: 'Our builds use scalable frameworks, clean frontend systems, practical integrations, and production-ready foundations.',
+  },
+  {
+    icon: Headphones,
+    title: 'Dedicated Support',
+    description: 'You get clear communication, structured delivery, and dependable post-launch help when the product evolves.',
+  },
+  {
+    icon: LineChart,
+    title: 'Business-Focused Results',
+    description: 'We optimize for conversion, efficiency, and measurable business value instead of surface-level visuals alone.',
+  },
+];
 
-export default function WhyChooseUs({ onNavigateToContact }: WhyChooseUsProps) {
+export default function WhyChooseUs() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
-  const reasons = [
-    {
-      icon: Target,
-      title: 'Conversion-Focused Design',
-      description: 'Every section is planned to guide users clearly toward inquiry, booking, or action.',
-    },
-    {
-      icon: Zap,
-      title: 'Fast Delivery',
-      description: 'We move efficiently with structure, milestones, and clear communication throughout delivery.',
-    },
-    {
-      icon: Palette,
-      title: 'Clean UI/UX',
-      description: 'Interfaces are designed to feel premium, readable, and reliable across devices.',
-    },
-    {
-      icon: LineChart,
-      title: 'ROI-Driven Strategy',
-      description: 'Design and development choices are tied back to trust, growth, and measurable outcomes.',
-    },
-    {
-      icon: Headphones,
-      title: 'Long-Term Support',
-      description: 'We stay available for updates, improvements, and practical post-launch support.',
-    },
-    {
-      icon: CheckCircle,
-      title: 'SEO-Friendly Structure',
-      description: 'We plan content, headings, and page flow so search engines and users both understand the offer quickly.',
-    },
-  ];
-
   return (
-    <section className="py-20 md:py-32" ref={ref}>
+    <section className="py-16 md:py-24" ref={ref}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          className="mx-auto max-w-3xl text-center"
         >
           <span className="theme-badge">Why Choose Us</span>
           <h2 className="theme-heading mt-5 text-3xl font-bold text-slate-900 sm:text-4xl md:text-5xl">
-            A stronger blend of design taste, technical structure, and search-friendly content.
+            Built to feel premium, perform reliably, and support real business outcomes.
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">
-            We combine visual polish, development discipline, and keyword-aware content planning so
-            the website works hard, not just looks good.
+          <p className="mt-5 text-lg leading-8 text-slate-600">
+            We bring together strategy, UI polish, and scalable engineering so your digital product
+            works as a growth asset, not just a launch deliverable.
           </p>
         </motion.div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {reasons.map((reason, index) => (
-            <motion.div
+            <motion.article
               key={reason.title}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 28 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.08 }}
-              whileHover={{ y: -5 }}
-              className="theme-panel group p-8"
+              transition={{ duration: 0.55, delay: index * 0.07 }}
+              whileHover={{ y: -8 }}
+              className="theme-panel group h-full p-6"
             >
-              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[rgba(11,61,102,0.08)] transition-soft group-hover:bg-[var(--color-corporate-blue)]">
-                <reason.icon className="h-7 w-7 text-[var(--color-corporate-blue)] transition-soft group-hover:text-white" />
+              <div className="inline-flex h-14 w-14 items-center justify-center rounded-[20px] bg-[linear-gradient(135deg,var(--color-corporate-blue),var(--color-teal),var(--color-cyan))] text-white shadow-[0_16px_34px_rgba(11,61,102,0.14)] transition-soft group-hover:scale-105">
+                <reason.icon className="h-7 w-7" />
               </div>
-              <h3 className="theme-heading mb-3 text-xl font-bold text-slate-900">{reason.title}</h3>
-              <p className="leading-7 text-slate-600">{reason.description}</p>
-            </motion.div>
+              <h3 className="theme-heading mt-6 text-xl font-bold text-slate-900">{reason.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">{reason.description}</p>
+            </motion.article>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-16 text-center"
-        >
-          <div className="rounded-[32px] bg-[linear-gradient(135deg,var(--color-deep-navy),var(--color-corporate-blue),var(--color-teal))] p-8 text-white shadow-[0_26px_56px_rgba(11,61,102,0.18)] md:p-12">
-            <h3 className="theme-heading text-2xl font-bold md:text-3xl">Ready to improve your search visibility?</h3>
-            <p className="mx-auto mt-4 mb-8 max-w-2xl text-white/80">
-              Let&apos;s build a clearer website structure, stronger service pages, and cleaner content that supports discovery.
-            </p>
-            <button onClick={onNavigateToContact} className="theme-button-secondary !bg-white">
-              Start Your Project Today
-            </button>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

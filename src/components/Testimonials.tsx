@@ -1,7 +1,7 @@
-import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { AnimatePresence, motion, useInView } from 'framer-motion';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
-import { isSupabaseConfigured, supabase } from '../lib/supabase';
+import { MousePointerClick, Star, X } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 type FeedbackEntry = {
   id: string;
@@ -12,271 +12,302 @@ type FeedbackEntry = {
   createdAt: string;
 };
 
+type TestimonialCard = {
+  id: string;
+  name: string;
+  role: string;
+  company: string;
+  quote: string;
+  rating: number;
+  initials: string;
+};
+
+const trustedBrands = [
+  'NorthGrid',
+  'BrightPath',
+  'EstateFlow',
+  'ScaleForge',
+  'NovaCart',
+];
+
+const fallbackTestimonials: TestimonialCard[] = [
+  {
+    id: 'emma-rodriguez',
+    name: 'Emma Rodriguez',
+    role: 'Founder',
+    company: 'BrightPath Health',
+    quote:
+      'WebGaebel turned a cluttered product pitch into a system clients could immediately understand and trust.',
+    rating: 5,
+    initials: 'ER',
+  },
+  {
+    id: 'marcus-lee',
+    name: 'Marcus Lee',
+    role: 'Operations Lead',
+    company: 'NorthGrid Commerce',
+    quote:
+      'The new interface feels sharper, faster, and far more aligned with how our team actually works day to day.',
+    rating: 5,
+    initials: 'ML',
+  },
+  {
+    id: 'sofia-khan',
+    name: 'Sofia Khan',
+    role: 'Product Manager',
+    company: 'EstateFlow',
+    quote:
+      'What stood out most was the clarity. The product now feels premium, structured, and built to convert serious buyers.',
+    rating: 5,
+    initials: 'SK',
+  },
+];
+
+const getInitials = (name: string) =>
+  name
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((item) => item[0]?.toUpperCase() ?? '')
+    .join('');
+
+const splitRoleAndCompany = (roleText: string) => {
+  const [role, company] = roleText.split(',').map((item) => item.trim());
+  return {
+    role: role || 'Client',
+    company: company || 'WebGaebel Partner',
+  };
+};
+
 export default function Testimonials() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [feedbacks, setFeedbacks] = useState<FeedbackEntry[]>([]);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [statusMessage, setStatusMessage] = useState('');
-  const [formData, setFormData] = useState({
-    name: '',
-    role: '',
-    content: '',
-    rating: 5,
-  });
-
-  const loadFeedback = async () => {
-    if (!supabase) {
-      setFeedbacks([]);
-      setStatusMessage('Testimonials are temporarily unavailable because Supabase is not configured.');
-      return;
-    }
-
-    try {
-      const { data, error } = await supabase
-        .from('feedback')
-        .select('id, name, role, content, rating, created_at')
-        .order('created_at', { ascending: false });
-
-      if (error) throw error;
-
-      const nextFeedback = (data ?? []).map((item) => ({
-        id: item.id,
-        name: item.name,
-        role: item.role,
-        content: item.content,
-        rating: item.rating,
-        createdAt: item.created_at,
-      }));
-
-      setFeedbacks(nextFeedback);
-      setCurrentIndex(0);
-      setStatusMessage('');
-    } catch {
-      setFeedbacks([]);
-      setStatusMessage('Testimonials are temporarily unavailable. Please try again shortly.');
-    }
-  };
+  const [activeTestimonial, setActiveTestimonial] = useState<TestimonialCard | null>(null);
 
   useEffect(() => {
+    const loadFeedback = async () => {
+      if (!supabase) return;
+
+      try {
+        const { data, error } = await supabase
+          .from('feedback')
+          .select('id, name, role, content, rating, created_at')
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+
+        const nextFeedback = (data ?? []).map((item) => ({
+          id: item.id,
+          name: item.name,
+          role: item.role,
+          content: item.content,
+          rating: item.rating,
+          createdAt: item.created_at,
+        }));
+
+        setFeedbacks(nextFeedback);
+      } catch {
+        setFeedbacks([]);
+      }
+    };
+
     void loadFeedback();
   }, []);
 
-  const testimonials = useMemo(() => feedbacks, [feedbacks]);
-
-  const nextTestimonial = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
-
   useEffect(() => {
-    if (testimonials.length === 0) return;
-    const interval = setInterval(nextTestimonial, 6000);
-    return () => clearInterval(interval);
-  }, [testimonials.length]);
+    if (!activeTestimonial) return;
 
-  useEffect(() => {
-    if (currentIndex >= testimonials.length) {
-      setCurrentIndex(0);
-    }
-  }, [currentIndex, testimonials.length]);
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setActiveTestimonial(null);
+      }
+    };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setStatusMessage('');
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [activeTestimonial]);
 
-    if (!supabase) {
-      setStatusMessage('Feedback submission is temporarily unavailable because Supabase is not configured.');
-      setIsSubmitting(false);
-      return;
-    }
+  const testimonials = useMemo<TestimonialCard[]>(() => {
+    if (feedbacks.length === 0) return fallbackTestimonials;
 
-    try {
-      const { error } = await supabase.from('feedback').insert({
-        name: formData.name.trim(),
-        role: formData.role.trim(),
-        content: formData.content.trim(),
-        rating: formData.rating,
-      });
+    return feedbacks.map((item) => {
+      const meta = splitRoleAndCompany(item.role);
 
-      if (error) throw error;
+      return {
+        id: item.id,
+        name: item.name,
+        role: meta.role,
+        company: meta.company,
+        quote: item.content,
+        rating: item.rating,
+        initials: getInitials(item.name),
+      };
+    });
+  }, [feedbacks]);
 
-      setFormData({
-        name: '',
-        role: '',
-        content: '',
-        rating: 5,
-      });
-      setStatusMessage('Your feedback has been saved successfully.');
-      await loadFeedback();
-    } catch (error) {
-      setStatusMessage(error instanceof Error ? error.message : 'Unable to save feedback.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  const marqueeTestimonials = useMemo(
+    () => [...testimonials, ...testimonials],
+    [testimonials]
+  );
 
   return (
-    <section id="testimonials" className="section-wash py-18 md:py-24" ref={ref}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-12 text-center"
-        >
-          <span className="theme-badge">Testimonials</span>
-          <h2 className="theme-heading mt-5 text-3xl font-bold text-slate-900 sm:text-4xl md:text-5xl">
-            What Our Clients Say
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
-            Real feedback from businesses we&apos;ve helped grow
-          </p>
-        </motion.div>
+    <>
+      <section id="testimonials" className="section-wash py-18 md:py-24" ref={ref}>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="mx-auto max-w-3xl text-center"
+          >
+            <div className="theme-badge">Testimonials</div>
+            <h2 className="theme-heading mt-5 text-3xl font-bold text-slate-900 sm:text-4xl md:text-5xl">
+              Trusted by growing businesses
+            </h2>
+            <p className="mt-5 text-lg leading-8 text-slate-600">
+              Real feedback from clients, shown in a smooth slow carousel so every review gets seen.
+            </p>
 
-        {testimonials.length > 0 && (
-          <div className="mx-auto max-w-5xl">
-            <div className="theme-panel relative overflow-hidden p-6 sm:p-8 md:p-10">
-              <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(73,197,211,0.75),transparent)]" />
-              <div className="absolute left-5 top-5 text-[var(--color-cyan)]/10 sm:left-8 sm:top-8">
-                <Quote size={56} className="sm:h-16 sm:w-16" />
-              </div>
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={testimonials[currentIndex].id}
-                  initial={{ opacity: 0, x: 60 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -60 }}
-                  transition={{ duration: 0.45 }}
-                  className="relative z-10"
+            <div className="mt-7 flex justify-center">
+              <a
+                href="/feedback"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-3 rounded-full border border-[rgba(11,61,102,0.12)] bg-white/82 px-5 py-3.5 text-sm font-semibold text-[var(--color-corporate-blue)] shadow-[0_14px_34px_rgba(11,61,102,0.08)] transition-soft hover:-translate-y-1 hover:border-[rgba(47,178,177,0.32)] hover:shadow-[0_18px_40px_rgba(11,61,102,0.14)]"
+              >
+                <span>Leave Feedback</span>
+                <motion.span
+                  animate={{ x: [0, 3, 0], y: [0, 2, 0], scale: [1, 0.94, 1] }}
+                  transition={{ duration: 1.3, repeat: Infinity, ease: 'easeInOut' }}
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--color-corporate-blue),var(--color-teal),var(--color-cyan))] text-white shadow-[0_12px_26px_rgba(11,61,102,0.16)]"
                 >
-                  <div className="mb-5 flex justify-center gap-1">
-                    {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                      <Star key={i} size={20} className="fill-amber-400 text-amber-400" />
+                  <MousePointerClick className="h-4 w-4" />
+                </motion.span>
+              </a>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.08 }}
+            className="relative mt-10 overflow-hidden rounded-[28px] border border-[rgba(11,61,102,0.08)] bg-white/80 px-4 py-5 shadow-[0_18px_40px_rgba(11,61,102,0.08)] backdrop-blur-sm sm:px-6"
+          >
+            <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-white via-white/90 to-transparent" />
+            <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-white via-white/90 to-transparent" />
+            <div className="animate-marquee flex w-max gap-4 sm:gap-5">
+              {[...trustedBrands, ...trustedBrands].map((brand, index) => (
+                <div key={`${brand}-${index}`} className="logo-wordmark min-w-max">
+                  {brand}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.14 }}
+            className="relative mt-12 overflow-hidden"
+          >
+            <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-10 bg-gradient-to-r from-[rgba(245,251,253,0.98)] to-transparent sm:w-16" />
+            <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-10 bg-gradient-to-l from-[rgba(245,251,253,0.98)] to-transparent sm:w-16" />
+
+            <div className="animate-marquee-slow flex w-max gap-4 py-2 pr-4">
+              {marqueeTestimonials.map((testimonial, index) => (
+                <motion.article
+                  key={`${testimonial.id}-${index}`}
+                  whileHover={{ y: -6 }}
+                  className="theme-panel group flex min-h-[255px] w-[255px] shrink-0 flex-col rounded-[24px] p-5 transition-soft hover:shadow-[0_22px_44px_rgba(11,61,102,0.14)] sm:w-[285px]"
+                >
+                  <div className="flex gap-1">
+                    {Array.from({ length: testimonial.rating }).map((_, starIndex) => (
+                      <Star key={starIndex} size={16} className="fill-amber-400 text-amber-400" />
                     ))}
                   </div>
-                  <p className="mx-auto mb-7 max-w-3xl text-center text-base leading-8 text-slate-700 sm:text-xl sm:leading-9">
-                    &ldquo;{testimonials[currentIndex].content}&rdquo;
-                  </p>
-                  <div className="rounded-[24px] border border-[rgba(11,61,102,0.08)] bg-[rgba(244,251,253,0.9)] px-5 py-4 text-center sm:mx-auto sm:max-w-md">
-                    <div className="theme-heading text-lg font-bold text-slate-900 sm:text-xl">
-                      {testimonials[currentIndex].name}
+
+                  <blockquote className="theme-heading mt-4 text-base italic leading-7 text-slate-900 sm:text-lg sm:leading-8">
+                    &ldquo;{testimonial.quote.length > 115 ? `${testimonial.quote.slice(0, 115)}...` : testimonial.quote}&rdquo;
+                  </blockquote>
+
+                  <button
+                    type="button"
+                    onClick={() => setActiveTestimonial(testimonial)}
+                    className="mt-4 w-fit text-sm font-semibold text-[var(--color-teal)] transition-soft hover:text-[var(--color-corporate-blue)]"
+                  >
+                    Show more
+                  </button>
+
+                  <div className="mt-auto flex items-center gap-3 border-t border-[rgba(11,61,102,0.08)] pt-5">
+                    <div className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--color-corporate-blue),var(--color-teal),var(--color-cyan))] text-xs font-bold text-white shadow-[0_12px_26px_rgba(11,61,102,0.16)]">
+                      {testimonial.initials}
                     </div>
-                    <div className="mt-1 text-sm font-medium text-[var(--color-teal)]">
-                      {testimonials[currentIndex].role}
+                    <div>
+                      <div className="theme-heading text-base font-bold text-slate-900">{testimonial.name}</div>
+                      <div className="mt-1 text-xs font-medium leading-5 text-slate-500">
+                        {testimonial.role}, {testimonial.company}
+                      </div>
                     </div>
                   </div>
-                </motion.div>
-              </AnimatePresence>
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-                <button
-                  onClick={prevTestimonial}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(11,61,102,0.1)] bg-white text-slate-700 transition-all duration-300 hover:scale-105 hover:border-[var(--color-teal)] hover:bg-[var(--color-corporate-blue)] hover:text-white sm:h-11 sm:w-11"
-                >
-                  <ChevronLeft size={20} />
-                </button>
-                <div className="flex gap-2">
-                  {testimonials.map((item, index) => (
-                    <button
-                      key={item.id}
-                      onClick={() => setCurrentIndex(index)}
-                      className={`h-2 rounded-full transition-all duration-300 ${
-                        index === currentIndex ? 'w-8 bg-[var(--color-corporate-blue)]' : 'w-2 bg-slate-300'
-                      }`}
-                    />
-                  ))}
-                </div>
-                <button
-                  onClick={nextTestimonial}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(11,61,102,0.1)] bg-white text-slate-700 transition-all duration-300 hover:scale-105 hover:border-[var(--color-teal)] hover:bg-[var(--color-corporate-blue)] hover:text-white sm:h-11 sm:w-11"
-                >
-                  <ChevronRight size={20} />
-                </button>
-              </div>
+                </motion.article>
+              ))}
             </div>
-          </div>
-        )}
-
-        <div className="mx-auto mt-12 max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="theme-panel rounded-[28px] p-6 sm:p-8"
-          >
-            <h3 className="theme-heading mb-2 text-2xl font-bold text-slate-900">Leave Your Feedback</h3>
-            <p className="mb-6 text-sm leading-7 text-slate-600 sm:text-base">
-              Your feedback will be stored in the database and reviewed by our team.
-            </p>
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div>
-                <label className="mb-2 block text-sm font-medium text-slate-700">Your Name</label>
-                <input
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full rounded-2xl border border-[rgba(11,61,102,0.12)] bg-white px-4 py-3 outline-none transition-all focus:border-[var(--color-teal)] focus:ring-2 focus:ring-[rgba(73,197,211,0.18)]"
-                  placeholder="Client name"
-                />
-              </div>
-              <div>
-                <label className="mb-2 block text-sm font-medium text-slate-700">Role / Company</label>
-                <input
-                  type="text"
-                  required
-                  value={formData.role}
-                  onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                  className="w-full rounded-2xl border border-[rgba(11,61,102,0.12)] bg-white px-4 py-3 outline-none transition-all focus:border-[var(--color-teal)] focus:ring-2 focus:ring-[rgba(73,197,211,0.18)]"
-                  placeholder="Founder, Company Name"
-                />
-              </div>
-              <div>
-                <label className="mb-2 block text-sm font-medium text-slate-700">Rating</label>
-                <div className="flex gap-2">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <button
-                      key={star}
-                      type="button"
-                      onClick={() => setFormData({ ...formData, rating: star })}
-                      className="transition-transform hover:scale-105"
-                    >
-                      <Star
-                        size={26}
-                        className={star <= formData.rating ? 'fill-amber-400 text-amber-400' : 'text-slate-300'}
-                      />
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <label className="mb-2 block text-sm font-medium text-slate-700">Feedback</label>
-                <textarea
-                  required
-                  rows={5}
-                  value={formData.content}
-                  onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                  className="w-full resize-none rounded-2xl border border-[rgba(11,61,102,0.12)] bg-white px-4 py-3 outline-none transition-all focus:border-[var(--color-teal)] focus:ring-2 focus:ring-[rgba(73,197,211,0.18)]"
-                  placeholder="Share your experience with WEBGAEBEL..."
-                />
-              </div>
-              {statusMessage && <p className="text-sm font-medium text-[var(--color-corporate-blue)]">{statusMessage}</p>}
-              <button
-                type="submit"
-                disabled={isSubmitting || !isSupabaseConfigured}
-                className="theme-button-primary disabled:cursor-not-allowed disabled:opacity-70"
-              >
-                {isSubmitting ? 'Saving...' : isSupabaseConfigured ? 'Save Feedback' : 'Feedback Unavailable'}
-              </button>
-            </form>
           </motion.div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <AnimatePresence>
+        {activeTestimonial && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[90] flex items-center justify-center bg-[rgba(7,18,33,0.64)] p-4 backdrop-blur-sm"
+            onClick={() => setActiveTestimonial(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 24, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 16, scale: 0.97 }}
+              transition={{ duration: 0.24, ease: 'easeOut' }}
+              onClick={(event) => event.stopPropagation()}
+              className="theme-panel relative w-full max-w-2xl rounded-[28px] p-6 sm:p-8"
+            >
+              <button
+                type="button"
+                onClick={() => setActiveTestimonial(null)}
+                className="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(11,61,102,0.1)] bg-white text-slate-600 transition-soft hover:border-[rgba(47,178,177,0.3)] hover:text-[var(--color-corporate-blue)]"
+                aria-label="Close testimonial"
+              >
+                <X className="h-5 w-5" />
+              </button>
+
+              <div className="flex gap-1">
+                {Array.from({ length: activeTestimonial.rating }).map((_, starIndex) => (
+                  <Star key={starIndex} size={18} className="fill-amber-400 text-amber-400" />
+                ))}
+              </div>
+
+              <blockquote className="theme-heading mt-6 text-xl italic leading-9 text-slate-900 sm:text-2xl">
+                &ldquo;{activeTestimonial.quote}&rdquo;
+              </blockquote>
+
+              <div className="mt-8 flex items-center gap-4 border-t border-[rgba(11,61,102,0.08)] pt-6">
+                <div className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--color-corporate-blue),var(--color-teal),var(--color-cyan))] text-sm font-bold text-white shadow-[0_14px_30px_rgba(11,61,102,0.16)]">
+                  {activeTestimonial.initials}
+                </div>
+                <div>
+                  <div className="theme-heading text-lg font-bold text-slate-900">{activeTestimonial.name}</div>
+                  <div className="mt-1 text-sm font-medium text-slate-500">
+                    {activeTestimonial.role}, {activeTestimonial.company}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { ArrowRight, BrainCircuit, Database, Smartphone } from 'lucide-react';
+import { ArrowRight, BrainCircuit, CheckCircle2, Database, Smartphone } from 'lucide-react';
 
 type ServicesProps = {
   onNavigateToServices: () => void;
@@ -14,6 +14,7 @@ export default function Services({ onNavigateToServices, onOpenService }: Servic
     {
       slug: 'custom-web-app-development-services',
       title: 'Custom Web App Development Services',
+      label: 'Web',
       description:
         'Architected for high-growth businesses that require resilient web platforms, our MERN solutions combine MongoDB flexibility, Express-powered APIs, React performance optimization, and maintainable Node.js services. We design modular application layers, streamline state and rendering performance, and build delivery pipelines that support scale without compromising user experience.',
       points: [
@@ -26,6 +27,7 @@ export default function Services({ onNavigateToServices, onOpenService }: Servic
     {
       slug: 'mobile-app-development',
       title: 'Mobile App Development',
+      label: 'Mobile',
       description:
         'Our mobile app development work is built for organizations that want a polished iOS and Android presence, a clear user journey, and a practical path from idea to launch. We plan the screens, flows, and integrations that support business goals without overcomplicating the product.',
       points: [
@@ -38,6 +40,7 @@ export default function Services({ onNavigateToServices, onOpenService }: Servic
     {
       slug: 'ai-development-services',
       title: 'AI Development Services',
+      label: 'AI',
       description:
         'We help forward-looking companies operationalize AI through custom NLP pipelines, computer vision workflows, and OpenAI-powered product features. From intelligent document processing to conversational interfaces and predictive automation, our AI implementations are grounded in measurable business outcomes, practical deployment strategy, and secure integration with your existing technology stack.',
       points: [
@@ -60,12 +63,11 @@ export default function Services({ onNavigateToServices, onOpenService }: Servic
         >
           <span className="theme-badge">Our Services</span>
           <h2 className="theme-heading mt-5 text-3xl font-bold text-slate-900 sm:text-4xl md:text-5xl">
-            Web development services, mobile app development, and AI delivery for modern businesses.
+            Outcome-Based Services for High-Performance Digital Systems
           </h2>
           <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-            We help companies shape clearer digital experiences, stronger search visibility, and
-            practical software systems across web development services, SaaS development, mobile apps,
-            and automation.
+            We build the frontend, backend, mobile, and AI layers businesses need to launch faster,
+            operate more efficiently, and grow on a stronger technical foundation.
           </p>
         </motion.div>
 
@@ -95,6 +97,12 @@ export default function Services({ onNavigateToServices, onOpenService }: Servic
                 <service.icon className="h-6 w-6" />
               </motion.div>
 
+              <div className="mb-3">
+                <span className="rounded-full bg-[rgba(73,197,211,0.12)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-corporate-blue)]">
+                  {service.label}
+                </span>
+              </div>
+
               <h3 className="theme-heading text-xl font-bold text-slate-900 sm:text-[1.35rem]">{service.title}</h3>
               <p className="mt-3 text-sm leading-6 text-slate-600 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:5] overflow-hidden">
                 {service.description}
@@ -103,7 +111,7 @@ export default function Services({ onNavigateToServices, onOpenService }: Servic
               <ul className="mt-5 space-y-2.5">
                 {service.points.slice(0, 3).map((feature) => (
                   <li key={feature} className="flex items-start gap-3 text-sm font-medium leading-6 text-slate-700">
-                    <span className="mt-2 h-2 w-2 rounded-full bg-[var(--color-cyan)] shadow-[0_0_0_5px_rgba(73,197,211,0.12)]" />
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-teal)]" />
                     {feature}
                   </li>
                 ))}
@@ -113,7 +121,7 @@ export default function Services({ onNavigateToServices, onOpenService }: Servic
                 onClick={() => onOpenService(service.slug)}
                 className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-corporate-blue)] transition-soft group-hover:translate-x-1 group-hover:text-[var(--color-teal)]"
               >
-                Discuss this capability
+                View service details
                 <motion.span
                   className="inline-flex"
                   whileHover={{ x: 4 }}
@@ -128,7 +136,7 @@ export default function Services({ onNavigateToServices, onOpenService }: Servic
 
         <div className="mt-10 text-center">
           <button onClick={onNavigateToServices} className="theme-button-secondary">
-            Explore the Full Service Portfolio
+            View All Services
           </button>
         </div>
       </div>

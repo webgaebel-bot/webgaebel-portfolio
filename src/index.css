@@ -67,8 +67,17 @@
     box-shadow: var(--shadow-card);
   }
 
+  .glass-panel {
+    @apply rounded-[28px] border backdrop-blur-xl;
+    border-color: rgba(255, 255, 255, 0.28);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.54));
+    box-shadow:
+      0 26px 60px rgba(11, 61, 102, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.54);
+  }
+
   .theme-button-primary {
-    @apply inline-flex items-center justify-center rounded-full px-6 py-3.5 font-semibold text-white transition-all duration-500;
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3.5 font-semibold text-white transition-all duration-300;
     background: linear-gradient(135deg, var(--color-corporate-blue), var(--color-teal), var(--color-cyan));
     box-shadow: 0 16px 36px rgba(11, 61, 102, 0.22);
   }
@@ -79,7 +88,7 @@
   }
 
   .theme-button-secondary {
-    @apply inline-flex items-center justify-center rounded-full px-6 py-3.5 font-semibold transition-all duration-500;
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3.5 font-semibold transition-all duration-300;
     color: var(--color-corporate-blue);
     border: 1px solid rgba(14, 61, 89, 0.12);
     background: rgba(255, 255, 255, 0.78);
@@ -96,6 +105,22 @@
     background:
       radial-gradient(circle at top right, rgba(73, 197, 211, 0.18), transparent 25%),
       linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 251, 253, 0.96));
+  }
+
+  .logo-wordmark {
+    @apply inline-flex items-center rounded-full border px-5 py-3 text-sm font-semibold uppercase tracking-[0.18em] transition-soft;
+    color: rgba(8, 38, 63, 0.58);
+    border-color: rgba(11, 61, 102, 0.1);
+    background: rgba(255, 255, 255, 0.78);
+    filter: grayscale(1);
+  }
+
+  .logo-wordmark:hover {
+    color: var(--color-corporate-blue);
+    border-color: rgba(47, 178, 177, 0.32);
+    filter: grayscale(0);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 36px rgba(11, 61, 102, 0.1);
   }
 }
 
@@ -120,11 +145,68 @@
 
   .transition-soft {
     transition:
-      color 0.35s ease,
-      background-color 0.35s ease,
-      border-color 0.35s ease,
-      transform 0.45s ease,
-      box-shadow 0.45s ease,
-      opacity 0.35s ease;
+      color 0.3s ease,
+      background-color 0.3s ease,
+      border-color 0.3s ease,
+      transform 0.3s ease,
+      box-shadow 0.3s ease,
+      opacity 0.3s ease;
+  }
+
+  .animate-gradient-flow {
+    animation: gradient-flow 14s ease-in-out infinite;
+    background-size: 180% 180%;
+  }
+
+  .animate-float-slow {
+    animation: float-slow 6s ease-in-out infinite;
+  }
+
+  .animate-marquee {
+    animation: marquee-scroll 28s linear infinite;
+  }
+
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+
+  .animate-marquee-slow {
+    animation: marquee-scroll 52s linear infinite;
+  }
+
+  .animate-marquee-slow:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes gradient-flow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
   }
 }
