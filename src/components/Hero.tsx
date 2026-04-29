@@ -128,7 +128,7 @@ export default function Hero({ onNavigateToContact, onNavigateToProjects }: Hero
             initial={{ opacity: 0, x: 40, scale: 0.96 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative mx-auto w-full max-w-[620px] lg:ml-auto"
+            className="relative mx-auto hidden w-full max-w-[620px] sm:block lg:ml-auto"
           >
             <motion.div
               animate={{ y: [0, -10, 0] }}
