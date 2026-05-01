@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Facebook, Instagram, Linkedin, Mail, MapPinned, MessageSquare, Send, Twitter } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Mail, MapPinned, MessageSquare, Phone, Send, Twitter } from 'lucide-react';
 import { isSupabaseConfigured, supabase } from '../lib/supabase';
 
 export default function Contact() {
@@ -173,21 +173,33 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="mb-1 font-semibold text-slate-900">Email Us</div>
-                    <a href="mailto:webgaebel@gmail.com" className="text-[var(--color-corporate-blue)] transition-soft hover:text-[var(--color-teal)]">
-                      webgaebel@gmail.com
+                    <a href="mailto:contact@webgaebel.com" className="text-[var(--color-corporate-blue)] transition-soft hover:text-[var(--color-teal)]">
+                      contact@webgaebel.com
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[rgba(47,178,177,0.14)]">
-                    <MessageSquare className="h-6 w-6 text-[var(--color-teal)]" />
+                    <Phone className="h-6 w-6 text-[var(--color-teal)]" />
+                  </div>
+                  <div>
+                    <div className="mb-1 font-semibold text-slate-900">Call Us</div>
+                    <a href="tel:+17402522078" className="text-[var(--color-corporate-blue)] transition-soft hover:text-[var(--color-teal)]">
+                      +1 740 252 2078
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[rgba(73,197,211,0.14)]">
+                    <MessageSquare className="h-6 w-6 text-[var(--color-cyan)]" />
                   </div>
                   <div>
                     <div className="mb-1 font-semibold text-slate-900">WhatsApp</div>
                     <p className="mb-2 text-sm text-slate-600">Get a quick reply for project discussion and quotations.</p>
                     <a
-                      href="https://wa.me/1234567890"
+                      href="https://wa.me/17402522078"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 rounded-full bg-[var(--color-teal)] px-5 py-3 text-sm font-semibold text-white transition-soft hover:bg-[var(--color-corporate-blue)]"

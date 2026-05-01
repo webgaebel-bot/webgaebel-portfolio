@@ -31,7 +31,7 @@ const sections = [
   },
   {
     heading: 'Contact',
-    body: 'If you have questions regarding these terms or would like clarification before starting a project, contact WEBGAEBEL at webgaebel@gmail.com.',
+    body: 'If you have questions regarding these terms or would like clarification before starting a project, contact WEBGAEBEL at contact@webgaebel.com.',
   },
 ];
 

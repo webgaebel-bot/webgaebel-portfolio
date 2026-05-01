@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Linkedin, Mail, MapPinned, Twitter } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Mail, MapPinned, Phone, Twitter } from 'lucide-react';
 import type { RoutePath } from '../App';
 
 type FooterProps = {
@@ -48,9 +48,13 @@ export default function Footer({ currentPath, onNavigate }: FooterProps) {
           <div>
             <h3 className="theme-heading mb-4 text-lg font-bold">Contact</h3>
             <div className="space-y-4 text-white/76">
-              <a href="mailto:webgaebel@gmail.com" className="flex items-start gap-3 transition-soft hover:text-[var(--color-cyan)]">
+              <a href="mailto:contact@webgaebel.com" className="flex items-start gap-3 transition-soft hover:text-[var(--color-cyan)]">
                 <Mail className="mt-1 h-5 w-5 text-[var(--color-cyan)]" />
-                <span>webgaebel@gmail.com</span>
+                <span>contact@webgaebel.com</span>
+              </a>
+              <a href="tel:+17402522078" className="flex items-start gap-3 transition-soft hover:text-[var(--color-cyan)]">
+                <Phone className="mt-1 h-5 w-5 text-[var(--color-teal)]" />
+                <span>+1 740 252 2078</span>
               </a>
               <div className="flex items-start gap-3">
                 <MapPinned className="mt-1 h-5 w-5 text-[var(--color-teal)]" />

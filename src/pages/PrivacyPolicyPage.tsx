@@ -35,7 +35,7 @@ const sections = [
   },
   {
     heading: 'Contact Us',
-    body: 'For questions about this policy or your submitted data, you can contact WEBGAEBEL at webgaebel@gmail.com and we will guide you through the next steps.',
+    body: 'For questions about this policy or your submitted data, you can contact WEBGAEBEL at contact@webgaebel.com and we will guide you through the next steps.',
   },
 ];
 
