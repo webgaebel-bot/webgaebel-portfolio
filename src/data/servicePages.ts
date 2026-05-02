@@ -3,7 +3,8 @@ export type ServicePageRoute =
   | '/web-development-services'
   | '/ai-development-services'
   | '/custom-software-development'
-  | '/data-solutions';
+  | '/data-solutions'
+  | '/video-editing-services';
 
 export type ServicePageContent = {
   route: ServicePageRoute;
@@ -32,6 +33,7 @@ export const servicePathBySlug: Record<string, ServicePageRoute> = {
   'automation-solutions': '/ai-development-services',
   'custom-web-apps': '/custom-software-development',
   'data-solutions': '/data-solutions',
+  'video-editing-services': '/video-editing-services',
 };
 
 export const serviceSlugByRoute: Record<ServicePageRoute, string> = {
@@ -40,6 +42,7 @@ export const serviceSlugByRoute: Record<ServicePageRoute, string> = {
   '/ai-development-services': 'automation-solutions',
   '/custom-software-development': 'custom-web-apps',
   '/data-solutions': 'data-solutions',
+  '/video-editing-services': 'video-editing-services',
 };
 
 export const servicePageContentByRoute: Record<ServicePageRoute, ServicePageContent> = {
@@ -670,6 +673,132 @@ export const servicePageContentByRoute: Record<ServicePageRoute, ServicePageCont
     relatedLinks: [
       { label: 'AI Development Services', path: '/ai-development-services' },
       { label: 'Custom Software Development', path: '/custom-software-development' },
+      { label: 'Web Development Services', path: '/web-development-services' },
+    ],
+  },
+  '/video-editing-services': {
+    route: '/video-editing-services',
+    serviceSlug: 'video-editing-services',
+    metaTitle: 'Video Editing Services | WEBGAEBEL',
+    metaDescription:
+      'Professional video editing for reels, ads, social content, and branded videos that capture attention and drive engagement with WEBGAEBEL video editing services.',
+    h1: 'Video Editing Services',
+    primaryKeyword: 'video editing services',
+    secondaryKeywords: [
+      'reels editing',
+      'tiktok video editing',
+      'ad video production',
+      'social media video editing',
+      'color grading',
+      'motion graphics',
+      'short form content',
+      'branded video content',
+    ],
+    subheading:
+      'Transform raw footage into compelling, platform-optimized videos that capture attention and drive engagement.',
+    introParagraphs: [
+      'Video editing services are essential for any business or creator that wants to stand out in a content-saturated world. Raw footage alone rarely tells a compelling story. It needs pacing, color correction, sound design, and platform-specific formatting to perform well. Good video editing turns scattered clips into a cohesive narrative that holds viewer attention and communicates a clear message.',
+      'WEBGAEBEL provides professional video editing services focused on short-form content, advertisements, and branded videos. We understand the nuances of different platforms, from TikTok and Instagram Reels to YouTube and promotional ads. Every edit is crafted with the target platform in mind, ensuring optimal engagement and performance.',
+    ],
+    processSteps: [
+      {
+        title: '1. Footage review and creative direction',
+        detail:
+          'We begin by reviewing your raw footage, understanding your brand voice, and establishing the creative direction for the final edit. This includes identifying key moments, pacing preferences, and visual style.',
+      },
+      {
+        title: '2. Rough cut and pacing edit',
+        detail:
+          'The initial edit focuses on structure and pacing. We arrange clips in a logical sequence, trim unnecessary content, and establish the rhythm that will carry the viewer through the story.',
+      },
+      {
+        title: '3. Refined edit with graphics and effects',
+        detail:
+          'We add motion graphics, text overlays, transitions, and visual effects that enhance the message without overwhelming the content. This step brings polish and professional flair to the video.',
+      },
+      {
+        title: '4. Color grading and sound design',
+        detail:
+          'Color correction ensures visual consistency and mood alignment. Sound design includes audio mixing, background music selection, and noise reduction for professional audio quality.',
+      },
+      {
+        title: '5. Platform optimization and delivery',
+        detail:
+          'We export videos in platform-specific formats and aspect ratios, ensuring optimal playback quality and performance on each channel where the content will be published.',
+      },
+    ],
+    features: [
+      {
+        title: 'Short-form content editing',
+        detail:
+          'Optimized editing for Reels, TikTok, and Shorts with fast-paced cuts, engaging hooks, and attention-retaining techniques.',
+      },
+      {
+        title: 'Ad and promotional videos',
+        detail:
+          'Conversion-focused editing for advertisements with clear calls-to-action, professional polish, and brand consistency.',
+      },
+      {
+        title: 'Color correction and grading',
+        detail:
+          'Professional color work that ensures visual consistency, mood alignment, and cinematic quality across all footage.',
+      },
+      {
+        title: 'Sound design and audio mixing',
+        detail:
+          'Clean, professional audio with noise reduction, background music integration, and balanced sound levels.',
+      },
+      {
+        title: 'Motion graphics and text overlays',
+        detail:
+          'Animated text, lower thirds, logo reveals, and graphic elements that enhance visual communication.',
+      },
+    ],
+    benefits: [
+      {
+        title: 'Higher engagement rates',
+        detail:
+          'Professional editing increases watch time, shares, and overall engagement by delivering content that flows naturally.',
+      },
+      {
+        title: 'Platform-optimized performance',
+        detail:
+          'Videos formatted and paced for specific platforms perform better in algorithms and reach wider audiences.',
+      },
+      {
+        title: 'Stronger brand perception',
+        detail:
+          'Polished, professional video content builds trust and positions your brand as credible and high-quality.',
+      },
+      {
+        title: 'Time savings',
+        detail:
+          'Outsourcing editing frees up your time to focus on content creation, strategy, and business growth.',
+      },
+    ],
+    technologies: [
+      { group: 'Editing software', items: ['Adobe Premiere Pro', 'DaVinci Resolve', 'Final Cut Pro', 'After Effects'] },
+      { group: 'Graphics', items: ['Motion graphics', 'Text animation', 'Logo animations', 'Transitions'] },
+      { group: 'Audio', items: ['Adobe Audition', 'Noise reduction', 'Audio mixing', 'Music licensing'] },
+      { group: 'Export formats', items: ['4K delivery', 'Vertical video', 'Square format', 'Web optimization'] },
+    ],
+    whyChooseUsParagraphs: [
+      'Video editing is both technical and creative. Our approach combines technical proficiency with storytelling instinct to deliver videos that not only look professional but also connect with viewers emotionally. We understand the unique requirements of different platforms and edit accordingly, ensuring your content performs its best wherever it is posted.',
+      'We also prioritize efficiency and communication. Clear feedback loops, revision rounds, and timely delivery mean you get the final product when you need it, without the back-and-forth that often slows creative projects.',
+    ],
+    whyChooseUsPoints: [
+      'Platform-specific editing expertise',
+      'Fast turnaround with quality consistency',
+      'Collaborative revision process',
+    ],
+    ctaTitle: 'Ready to elevate your video content?',
+    ctaParagraphs: [
+      'Whether you have raw footage waiting to be edited or need ongoing video editing support for your content strategy, we can help transform your videos into polished, engaging content.',
+      'Reach out through the contact page to discuss your video editing needs and get started.',
+    ],
+    relatedLinks: [
+      { label: 'Graphic Design Services', path: '/graphic-design-services' },
+      { label: 'Digital Marketing Services', path: '/digital-marketing-services' },
       { label: 'Web Development Services', path: '/web-development-services' },
     ],
   },
