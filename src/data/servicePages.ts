@@ -4,7 +4,8 @@ export type ServicePageRoute =
   | '/ai-development-services'
   | '/custom-software-development'
   | '/data-solutions'
-  | '/video-editing-services';
+  | '/video-editing-services'
+  | '/ecommerce-business-startup';
 
 export type ServicePageContent = {
   route: ServicePageRoute;
@@ -34,6 +35,7 @@ export const servicePathBySlug: Record<string, ServicePageRoute> = {
   'custom-web-apps': '/custom-software-development',
   'data-solutions': '/data-solutions',
   'video-editing-services': '/video-editing-services',
+  'ecommerce-business-startup': '/ecommerce-business-startup',
 };
 
 export const serviceSlugByRoute: Record<ServicePageRoute, string> = {
@@ -43,6 +45,7 @@ export const serviceSlugByRoute: Record<ServicePageRoute, string> = {
   '/custom-software-development': 'custom-web-apps',
   '/data-solutions': 'data-solutions',
   '/video-editing-services': 'video-editing-services',
+  '/ecommerce-business-startup': 'ecommerce-business-startup',
 };
 
 export const servicePageContentByRoute: Record<ServicePageRoute, ServicePageContent> = {
@@ -800,6 +803,137 @@ export const servicePageContentByRoute: Record<ServicePageRoute, ServicePageCont
       { label: 'Graphic Design Services', path: '/graphic-design-services' },
       { label: 'Digital Marketing Services', path: '/digital-marketing-services' },
       { label: 'Web Development Services', path: '/web-development-services' },
+    ],
+  },
+  '/ecommerce-business-startup': {
+    route: '/ecommerce-business-startup',
+    serviceSlug: 'ecommerce-business-startup',
+    metaTitle: 'E-Commerce Business Startup Services | WEBGAEBEL',
+    metaDescription:
+      'Launch your online store with WEBGAEBEL e-commerce startup services. We handle store setup, product listings, payments, branding, and launch marketing.',
+    h1: 'E-Commerce Business Startup',
+    primaryKeyword: 'e-commerce business startup',
+    secondaryKeywords: [
+      'online store setup',
+      'shopify startup',
+      'ecommerce launch',
+      'product listing services',
+      'payment gateway setup',
+      'ecommerce branding',
+      'dropshipping setup',
+      'online business launch',
+    ],
+    subheading:
+      'Turn your product idea into a live, selling online store with end-to-end launch support from platform selection to first sales.',
+    introParagraphs: [
+      'Starting an e-commerce business involves more than just building a website. It requires choosing the right platform, structuring product catalogs, configuring payments and shipping, designing a trustworthy brand, and creating a launch strategy that attracts early customers. Many entrepreneurs get stuck at one of these stages and never reach the point of making their first sale.',
+      'WEBGAEBEL provides complete e-commerce business startup services that guide you through every step of the journey. From selecting the best platform for your product type to setting up professional product listings, integrating secure payment gateways, and planning your launch marketing, we handle the technical and strategic work so you can focus on sourcing products and growing your brand.',
+    ],
+    processSteps: [
+      {
+        title: '1. Business model and product strategy',
+        detail:
+          'We start by understanding your product type, target audience, and business model. Whether you are dropshipping, holding inventory, or selling digital products, the right foundation determines everything that follows.',
+      },
+      {
+        title: '2. Platform selection and store setup',
+        detail:
+          'Based on your needs, we recommend and configure the best platform, whether Shopify, WooCommerce, or another solution. The store is set up with proper navigation, policies, and essential pages.',
+      },
+      {
+        title: '3. Product catalog and listing build',
+        detail:
+          'We create professional product listings with optimized descriptions, structured variants, pricing strategy, and high-quality imagery guidance to make your catalog conversion-ready.',
+      },
+      {
+        title: '4. Payment, shipping, and policy configuration',
+        detail:
+          'Secure payment gateways, shipping rules, tax settings, and return policies are configured properly to build customer trust and ensure smooth order fulfillment.',
+      },
+      {
+        title: '5. Brand design and launch marketing',
+        detail:
+          'We design a cohesive brand identity for your store including logo, colors, and packaging direction, then create a launch marketing plan to drive your first sales.',
+      },
+      {
+        title: '6. Testing, soft launch, and optimization',
+        detail:
+          'Before the public launch, we test the full purchase flow, fix any issues, and optimize page speed and mobile experience so customers have a smooth shopping journey.',
+      },
+    ],
+    features: [
+      {
+        title: 'Platform setup and configuration',
+        detail:
+          'Complete store setup on Shopify, WooCommerce, or other platforms with proper themes, navigation, and essential pages configured from day one.',
+      },
+      {
+        title: 'Professional product listings',
+        detail:
+          'SEO-friendly product descriptions, organized collections, variant management, and pricing strategy that makes browsing and buying easy.',
+      },
+      {
+        title: 'Payment and shipping integration',
+        detail:
+          'Secure checkout with trusted payment providers, automated shipping calculations, and clear delivery policies that reduce cart abandonment.',
+      },
+      {
+        title: 'Brand identity design',
+        detail:
+          'Logo, color palette, typography, and packaging direction that gives your store a professional and memorable visual identity.',
+      },
+      {
+        title: 'Launch marketing strategy',
+        detail:
+          'A practical marketing plan for your store launch including social media setup, email collection, and initial campaign ideas to generate first sales.',
+      },
+    ],
+    benefits: [
+      {
+        title: 'Faster time to first sale',
+        detail:
+          'With expert guidance handling the technical setup, you can focus on products and marketing while moving toward revenue faster.',
+      },
+      {
+        title: 'Fewer costly mistakes',
+        detail:
+          'Avoid common startup errors like poor platform choice, weak product pages, and missing policies that hurt trust and conversions.',
+      },
+      {
+        title: 'Professional store appearance',
+        detail:
+          'A well-designed store with strong branding and clean listings builds immediate credibility with potential customers.',
+      },
+      {
+        title: 'Clear growth foundation',
+        detail:
+          'The store is built with scalability in mind, making it easier to add products, expand marketing, and optimize performance over time.',
+      },
+    ],
+    technologies: [
+      { group: 'Platforms', items: ['Shopify', 'WooCommerce', 'BigCommerce', 'Squarespace'] },
+      { group: 'Payments', items: ['Stripe', 'PayPal', 'Razorpay', 'Bank transfers'] },
+      { group: 'Shipping', items: ['ShipRocket', 'Easyship', 'Local couriers', 'Dropshipping tools'] },
+      { group: 'Marketing', items: ['Google Analytics', 'Meta Pixel', 'Email tools', 'Social media setup'] },
+    ],
+    whyChooseUsParagraphs: [
+      'We understand that starting an e-commerce business is overwhelming when you are doing it alone. Our service breaks the process into clear steps and handles the technical complexity so you never feel stuck. We have helped entrepreneurs across different product categories launch stores that look professional and are ready to sell from day one.',
+      'Beyond just building the store, we think about the customer journey. Every product page, checkout step, and policy is designed to build trust and make buying feel easy. That attention to detail is what turns visitors into customers and one-time buyers into repeat purchasers.',
+    ],
+    whyChooseUsPoints: [
+      'End-to-end launch support from idea to first sale',
+      'Platform-agnostic recommendations based on your needs',
+      'Focus on conversion and customer trust from day one',
+    ],
+    ctaTitle: 'Ready to launch your online store?',
+    ctaParagraphs: [
+      'Whether you have a product idea, existing inventory, or just the ambition to build an online business, we can help you launch a professional e-commerce store that is ready to sell.',
+      'Contact us today and let us turn your product idea into a live, revenue-generating online business.',
+    ],
+    relatedLinks: [
+      { label: 'Shopify Development Services', path: '/shopify-development-services' },
+      { label: 'Digital Marketing Services', path: '/digital-marketing-services' },
+      { label: 'Graphic Design Services', path: '/graphic-design-services' },
     ],
   },
 };

@@ -11,6 +11,7 @@ import {
   ShieldCheck,
   ShoppingBag,
   Smartphone,
+  Store,
   Workflow,
 } from 'lucide-react';
 
@@ -196,6 +197,19 @@ export const services: ServiceItem[] = [
     deliverables: ['Custom dashboard modules', 'Role-based access systems', 'Reports and analytics views', 'Workflow-specific operations tools', 'Deployment and support'],
     process: ['Requirement and user-role analysis', 'System planning and architecture', 'Agile development and testing', 'Deployment and iterative improvement'],
     industries: ['Education', 'Healthcare', 'Agencies', 'Operations teams'],
+  },
+  {
+    slug: 'ecommerce-business-startup',
+    icon: Store,
+    title: 'E-Commerce Business Startup',
+    description: 'End-to-end e-commerce launch support from store setup and product sourcing to branding, marketing, and first sales.',
+    points: ['Store setup and platform selection', 'Product listing and catalog management', 'Payment gateway and logistics integration', 'Branding and launch marketing'],
+    outcomes: 'Perfect for entrepreneurs and brands ready to launch and grow an online store with professional guidance.',
+    overview:
+      'Our E-Commerce Business Startup service helps entrepreneurs turn product ideas into live, selling online stores. We guide you through platform selection, store configuration, product presentation, payment setup, and initial marketing so you can start generating revenue faster with fewer mistakes.',
+    deliverables: ['E-commerce platform setup', 'Product catalog and listing creation', 'Payment gateway configuration', 'Shipping and logistics integration', 'Brand identity for the store', 'Launch marketing plan', 'Basic SEO and analytics setup'],
+    process: ['Business model and product strategy', 'Platform selection and store setup', 'Product listing and catalog build', 'Payment, shipping, and policy configuration', 'Brand design and launch marketing', 'Testing, soft launch, and optimization'],
+    industries: ['New entrepreneurs', 'Product brands', 'Dropshipping startups', 'Local businesses going online'],
   },
   {
     slug: 'website-maintenance-support',
