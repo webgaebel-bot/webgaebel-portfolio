@@ -64,28 +64,27 @@ export default function Contact() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          className="mb-10 text-center"
         >
-          <span className="theme-badge">Contact Us</span>
+          <span className="theme-badge">Let&apos;s Talk</span>
           <h2 className="theme-heading mt-5 text-3xl font-bold text-slate-900 sm:text-4xl md:text-5xl">
-            Let&apos;s plan your next website, app, or automation system.
+            Plan the next step with clarity.
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">
-            Share your goals and we will turn them into a clean roadmap, sharp interface, and
-            reliable development process.
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
+            A short brief is enough to get started.
           </p>
         </motion.div>
 
-        <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8">
+        <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:gap-8">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="theme-panel p-5 sm:p-8"
+            className="theme-panel h-full p-5 sm:p-6"
           >
-              <h3 className="theme-heading mb-6 text-xl font-bold text-slate-900 sm:text-2xl">Send Us a Message</h3>
+              <h3 className="theme-heading mb-5 text-xl font-bold text-slate-900 sm:text-2xl">Send Us a Message</h3>
 
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="flex h-full flex-col space-y-4">
               <div>
                 <label htmlFor="name" className="mb-2 block text-sm font-semibold text-slate-700">
                   Your Name
@@ -97,7 +96,7 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full rounded-2xl border border-[rgba(11,61,102,0.12)] bg-white px-4 py-3.5 outline-none transition-soft focus:border-[var(--color-teal)] focus:shadow-[0_0_0_4px_rgba(73,197,211,0.14)]"
+                  className="w-full rounded-2xl border border-[rgba(11,61,102,0.12)] bg-white px-4 py-3 outline-none transition-soft focus:border-[var(--color-teal)] focus:shadow-[0_0_0_4px_rgba(73,197,211,0.14)]"
                   placeholder="John Doe"
                 />
               </div>
@@ -113,7 +112,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full rounded-2xl border border-[rgba(11,61,102,0.12)] bg-white px-4 py-3.5 outline-none transition-soft focus:border-[var(--color-teal)] focus:shadow-[0_0_0_4px_rgba(73,197,211,0.14)]"
+                  className="w-full rounded-2xl border border-[rgba(11,61,102,0.12)] bg-white px-4 py-3 outline-none transition-soft focus:border-[var(--color-teal)] focus:shadow-[0_0_0_4px_rgba(73,197,211,0.14)]"
                   placeholder="john@example.com"
                 />
               </div>
@@ -128,8 +127,8 @@ export default function Contact() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full rounded-2xl border border-[rgba(11,61,102,0.12)] bg-white px-4 py-3.5 outline-none transition-soft focus:border-[var(--color-teal)] focus:shadow-[0_0_0_4px_rgba(73,197,211,0.14)]"
-                  placeholder="+92 300 0000000"
+                  className="w-full rounded-2xl border border-[rgba(11,61,102,0.12)] bg-white px-4 py-3 outline-none transition-soft focus:border-[var(--color-teal)] focus:shadow-[0_0_0_4px_rgba(73,197,211,0.14)]"
+                  placeholder="+1 740 252 2078"
                 />
               </div>
 
@@ -143,8 +142,8 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows={5}
-                  className="w-full resize-none rounded-2xl border border-[rgba(11,61,102,0.12)] bg-white px-4 py-3.5 outline-none transition-soft focus:border-[var(--color-teal)] focus:shadow-[0_0_0_4px_rgba(73,197,211,0.14)]"
+                  rows={3}
+                  className="w-full resize-none rounded-2xl border border-[rgba(11,61,102,0.12)] bg-white px-4 py-3 outline-none transition-soft focus:border-[var(--color-teal)] focus:shadow-[0_0_0_4px_rgba(73,197,211,0.14)]"
                   placeholder="Tell us about your project..."
                 />
               </div>
@@ -163,7 +162,7 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            <div className="theme-panel p-5 sm:p-8">
+            <div className="theme-panel h-full p-5 sm:p-8">
               <h3 className="theme-heading mb-6 text-xl font-bold text-slate-900 sm:text-2xl">Contact Information</h3>
 
               <div className="space-y-6">
@@ -215,10 +214,10 @@ export default function Contact() {
                     <MapPinned className="h-6 w-6 text-[var(--color-cyan)]" />
                   </div>
                   <div>
-                    <div className="mb-1 font-semibold text-slate-900">Location Coverage</div>
+                    <div className="mb-1 font-semibold text-slate-900">Service Area</div>
                     <p className="text-sm leading-7 text-slate-600">
-                      We work with local and international clients on websites, applications, and
-                      complete digital systems.
+                      Serving clients across the United States and international markets for
+                      websites, applications, and digital systems.
                     </p>
                   </div>
                 </div>
@@ -271,23 +270,28 @@ export default function Contact() {
                 </div>
               </div>
             </div>
+          </motion.div>
 
-            <div className="overflow-hidden rounded-[24px] border border-[rgba(11,61,102,0.12)] bg-white shadow-[var(--shadow-card)] sm:rounded-[28px]">
-              <div className="bg-[linear-gradient(135deg,var(--color-deep-navy),var(--color-corporate-blue),var(--color-teal))] px-5 py-5 text-white sm:px-6">
-                <h3 className="theme-heading text-xl font-bold sm:text-2xl">Find Us on the Map</h3>
-                <p className="mt-2 text-sm text-white/80">
-                  Contact section me map bhi add kar diya gaya hai for a more complete company presence.
-                </p>
-              </div>
-              <div className="h-[260px] sm:h-[320px]">
-                <iframe
-                  title="Webgaebel location map"
-                  src="https://www.google.com/maps?q=Pakistan&z=5&output=embed"
-                  className="h-full w-full border-0"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </div>
+          <motion.div
+            initial={{ opacity: 0, y: 32 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="overflow-hidden rounded-[24px] border border-[rgba(11,61,102,0.12)] bg-white shadow-[var(--shadow-card)] lg:col-span-2 sm:rounded-[28px]"
+          >
+            <div className="bg-[linear-gradient(135deg,var(--color-deep-navy),var(--color-corporate-blue),var(--color-teal))] px-5 py-5 text-white sm:px-6">
+              <h3 className="theme-heading text-xl font-bold sm:text-2xl">Find Us on the Map</h3>
+              <p className="mt-2 text-sm text-white/80">
+                A dedicated map view adds clearer location context for prospective clients.
+              </p>
+            </div>
+            <div className="h-[420px] sm:h-[520px]">
+              <iframe
+                title="Webgaebel location map"
+                src="https://www.google.com/maps?q=Columbus,+Ohio,+USA&z=10&output=embed"
+                className="h-full w-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </motion.div>
         </div>

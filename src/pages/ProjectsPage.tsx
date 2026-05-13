@@ -30,12 +30,8 @@ export default function ProjectsPage({ onOpenProject }: ProjectsPageProps) {
               Projects that show real design, real links, and real proof.
             </h1>
             <p className="mt-6 text-lg leading-8 text-slate-600">
-              This portfolio section is built to make trust easier. Visitors can scan the previews,
-              open detailed project pages, and review the structure behind each build.
-            </p>
-            <p className="mt-4 text-base leading-8 text-slate-600">
-              The layout also supports image thumbnails and video walkthrough slots, so each project
-              can be expanded with live evidence instead of only text.
+              Scan selected work, open live previews where available, and review each build through a
+              cleaner, more consistent portfolio layout.
             </p>
           </motion.div>
 
@@ -66,6 +62,8 @@ export default function ProjectsPage({ onOpenProject }: ProjectsPageProps) {
 
           <div className="mt-16">
             <Portfolio
+              showHeader={false}
+              collapsible
               onNavigateToProjects={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               onOpenProject={onOpenProject}
             />
@@ -81,14 +79,8 @@ export default function ProjectsPage({ onOpenProject }: ProjectsPageProps) {
             >
               <h2 className="theme-heading text-3xl font-bold text-slate-900">Why the project section matters</h2>
               <p className="mt-5 leading-8 text-slate-600">
-                A project section is one of the clearest ways to show how the agency thinks. It
-                gives people proof of layout decisions, content structure, and execution quality
-                without forcing them to guess what kind of work gets delivered.
-              </p>
-              <p className="mt-5 leading-8 text-slate-600">
-                For software and AI clients, that matters even more. They usually want to see how
-                pages are structured, how the design feels on mobile, and whether there is a simple
-                path from preview to deeper project detail.
+                A strong portfolio gives clients quick proof of design quality, structure, and
+                delivery range without making them dig for context.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 {trustPoints.map((item) => (
@@ -114,13 +106,8 @@ export default function ProjectsPage({ onOpenProject }: ProjectsPageProps) {
               </div>
               <h2 className="theme-heading mt-6 text-3xl font-bold">Ready for images, links, and video</h2>
               <p className="mt-5 leading-8 text-white/80">
-                The project cards now support preview images and clickable detail pages. A video
-                slot is also available per project, so if you have walkthrough footage or client
-                demos, we can plug them straight into the portfolio structure.
-              </p>
-              <p className="mt-5 leading-8 text-white/80">
-                If you already have live URLs, screenshots, or Loom / MP4 clips, those can be
-                assigned to individual projects without changing the page layout.
+                Project cards now support preview images, live links, and video-ready slots while
+                keeping the layout cleaner and more consistent.
               </p>
               <button onClick={() => onOpenProject('ai-content-generator')} className="theme-button-secondary mt-8 gap-2 !bg-white">
                 Open a sample project

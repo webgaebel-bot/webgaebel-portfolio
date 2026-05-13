@@ -18,7 +18,7 @@ export default function ReviewsPage() {
               Testimonials and client feedback now have their own focused page.
             </h1>
             <p className="mt-6 text-lg leading-8 text-slate-600">
-              Is se home page overloaded nahi lagta aur trust-building content bhi apni dedicated space me zyada effective nazar aata hai.
+              This keeps the home page cleaner while giving trust-building content its own dedicated space.
             </p>
           </motion.div>
         </div>

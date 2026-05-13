@@ -46,8 +46,8 @@ export default function AboutPage({ onNavigateToServices, onNavigateToContact }:
               Software and AI development agency built by specialists who keep delivery practical.
             </h1>
             <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600">
-              WEBGAEBEL helps businesses build better websites, stronger service pages, mobile apps, and
-              AI-enabled systems with a focus on SEO structure, usability, and long-term maintainability.
+              WEBGAEBEL builds websites, apps, and AI systems with a clear process, sharp execution,
+              and maintainable delivery.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <button onClick={onNavigateToServices} className="theme-button-secondary gap-2">

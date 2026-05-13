@@ -113,15 +113,6 @@ export default function Navbar({ currentPath, onNavigate }: NavbarProps) {
               })}
             </div>
 
-            <motion.button
-              initial={{ opacity: 0, y: -16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              onClick={() => handleNavigation('/contact')}
-              className="theme-button-primary text-sm"
-            >
-              Start Project
-            </motion.button>
           </div>
 
           <button
@@ -173,9 +164,6 @@ export default function Navbar({ currentPath, onNavigate }: NavbarProps) {
                   );
                 })}
 
-                <button onClick={() => handleNavigation('/contact')} className="theme-button-primary mt-2 w-full text-sm">
-                  Start Project
-                </button>
               </div>
             </motion.div>
           </>

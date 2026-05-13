@@ -15,8 +15,8 @@ const sdlcSteps = [
     number: '1',
     title: 'Brainstorming & Setting Goals',
     short: 'Vision, priorities, and business outcomes',
-    color: 'from-sky-300 to-sky-500',
-    ring: 'border-sky-300',
+    color: 'from-[#0b3d66] to-[#1f6ea1]',
+    ring: 'border-[#7cb9d8]',
     icon: Lightbulb,
     angle: -75,
   },
@@ -24,8 +24,8 @@ const sdlcSteps = [
     number: '2',
     title: 'Requirements Analysis & Plan',
     short: 'Scope mapping, timelines, and features',
-    color: 'from-orange-200 to-orange-400',
-    ring: 'border-orange-300',
+    color: 'from-[#155e75] to-[#2fb2b1]',
+    ring: 'border-[#8ed7d3]',
     icon: Search,
     angle: -45,
   },
@@ -33,8 +33,8 @@ const sdlcSteps = [
     number: '3',
     title: 'Design & Architecture',
     short: 'Wireframes, UI flow, and technical structure',
-    color: 'from-slate-400 to-slate-600',
-    ring: 'border-slate-400',
+    color: 'from-[#1e3a5f] to-[#356f9f]',
+    ring: 'border-[#9eb8d2]',
     icon: Brush,
     angle: -15,
   },
@@ -42,8 +42,8 @@ const sdlcSteps = [
     number: '4',
     title: 'Coding & Implementation',
     short: 'Frontend, backend, integrations, and content',
-    color: 'from-orange-500 to-orange-600',
-    ring: 'border-orange-500',
+    color: 'from-[#0d9488] to-[#14b8a6]',
+    ring: 'border-[#8be2d7]',
     icon: Code2,
     angle: 15,
   },
@@ -51,8 +51,8 @@ const sdlcSteps = [
     number: '5',
     title: 'Testing & QA',
     short: 'Cross-device QA, fixes, and validation',
-    color: 'from-amber-400 to-amber-500',
-    ring: 'border-amber-400',
+    color: 'from-[#164e63] to-[#0891b2]',
+    ring: 'border-[#8fc6d4]',
     icon: CheckCircle2,
     angle: 45,
   },
@@ -60,8 +60,8 @@ const sdlcSteps = [
     number: '6',
     title: 'Deployment',
     short: 'Launch, handover, and production checks',
-    color: 'from-pink-500 to-fuchsia-500',
-    ring: 'border-pink-400',
+    color: 'from-[#0f766e] to-[#2fb2b1]',
+    ring: 'border-[#91ddd2]',
     icon: Rocket,
     angle: 75,
   },
@@ -69,8 +69,8 @@ const sdlcSteps = [
     number: '7',
     title: 'Maintenance & Feedback',
     short: 'Support, updates, and continuous improvement',
-    color: 'from-teal-300 to-teal-500',
-    ring: 'border-teal-300',
+    color: 'from-[#102f4a] to-[#0b3d66]',
+    ring: 'border-[#7ba9c8]',
     icon: Settings2,
     angle: 105,
   },
@@ -117,12 +117,8 @@ export default function ProcessPage() {
               Web development project timeline guide with a clear SDLC flow.
             </h1>
             <p className="mt-6 text-lg leading-8 text-slate-600">
-              This page explains how a service or product build moves from discovery to design,
-              development, QA, launch, and post-launch support.
-            </p>
-            <p className="mt-4 text-base leading-8 text-slate-600">
-              It is written to support search intent around project timelines, development planning,
-              and the practical steps that shape a well-scoped website or application build.
+              See how each project moves from discovery to launch through a cleaner, easier-to-scan
+              delivery framework.
             </p>
           </motion.div>
 
@@ -143,7 +139,7 @@ export default function ProcessPage() {
                   className="relative flex h-[300px] w-[300px] items-center justify-center rounded-full border border-[rgba(11,61,102,0.08)] bg-[radial-gradient(circle,rgba(244,251,253,1),rgba(255,255,255,0.94))] text-center shadow-[0_24px_54px_rgba(11,61,102,0.10)]"
                 >
                   <div>
-                    <div className="theme-heading text-5xl font-bold text-[#5c43cb]">SDLC</div>
+                    <div className="theme-heading text-5xl font-bold text-[var(--color-corporate-blue)]">SDLC</div>
                     <div className="mt-3 text-2xl font-semibold text-[var(--color-corporate-blue)]">
                       Software
                     </div>
@@ -223,7 +219,7 @@ export default function ProcessPage() {
               viewport={{ once: true, amount: 0.2 }}
             >
               <div className="rounded-[24px] bg-[radial-gradient(circle,rgba(244,251,253,1),rgba(255,255,255,0.94))] px-5 py-8 text-center shadow-[0_18px_42px_rgba(11,61,102,0.08)]">
-                <div className="theme-heading text-4xl font-bold text-[#5c43cb] sm:text-5xl">SDLC</div>
+                <div className="theme-heading text-4xl font-bold text-[var(--color-corporate-blue)] sm:text-5xl">SDLC</div>
                 <div className="mt-3 text-lg font-semibold text-[var(--color-corporate-blue)] sm:text-xl">
                   Software Development Life Cycle
                 </div>

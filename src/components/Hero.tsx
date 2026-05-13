@@ -18,6 +18,11 @@ const kpiCards = [
   { label: 'Built for long-term scale', value: 'Future Ready' },
 ];
 
+const dashboardHighlights = [
+  { label: 'Lead volume', value: '+41%', note: 'after UX refinement' },
+  { label: 'Client ops', value: '3.2x', note: 'faster response workflows' },
+];
+
 export default function Hero({ onNavigateToContact, onNavigateToProjects }: HeroProps) {
   return (
     <section
@@ -150,6 +155,23 @@ export default function Hero({ onNavigateToContact, onNavigateToProjects }: Hero
                 </div>
               </div>
 
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                {dashboardHighlights.map((item) => (
+                  <div
+                    key={item.label}
+                    className="rounded-[20px] border border-white/40 bg-white/72 px-4 py-4 shadow-[0_16px_34px_rgba(11,61,102,0.08)] backdrop-blur-sm"
+                  >
+                    <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">
+                      {item.label}
+                    </div>
+                    <div className="theme-heading mt-2 text-3xl font-bold text-[var(--color-corporate-blue)]">
+                      {item.value}
+                    </div>
+                    <div className="mt-1 text-sm text-slate-600">{item.note}</div>
+                  </div>
+                ))}
+              </div>
+
               <div className="mt-6 grid gap-4 sm:grid-cols-[1.15fr_0.85fr]">
                 <div className="rounded-[24px] border border-white/40 bg-white/72 p-5 shadow-[0_18px_38px_rgba(11,61,102,0.1)]">
                   <div className="flex items-center justify-between">
@@ -202,26 +224,6 @@ export default function Hero({ onNavigateToContact, onNavigateToProjects }: Hero
                   </div>
                 </div>
               </div>
-            </motion.div>
-
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 6.4, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -left-3 top-10 hidden rounded-[22px] border border-white/35 bg-white/78 px-4 py-4 shadow-[0_18px_36px_rgba(11,61,102,0.12)] backdrop-blur-xl sm:block"
-            >
-              <div className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">Lead volume</div>
-              <div className="theme-heading mt-2 text-2xl font-bold text-[var(--color-corporate-blue)]">+41%</div>
-              <div className="mt-1 text-sm text-slate-600">after UX refinement</div>
-            </motion.div>
-
-            <motion.div
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 5.8, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -right-2 bottom-8 hidden rounded-[22px] border border-white/35 bg-[rgba(8,38,63,0.92)] px-4 py-4 text-white shadow-[0_18px_36px_rgba(11,61,102,0.16)] backdrop-blur-xl sm:block"
-            >
-              <div className="text-xs font-semibold uppercase tracking-[0.22em] text-white/60">Client ops</div>
-              <div className="theme-heading mt-2 text-2xl font-bold">3.2x</div>
-              <div className="mt-1 text-sm text-white/72">faster response workflows</div>
             </motion.div>
           </motion.div>
         </div>

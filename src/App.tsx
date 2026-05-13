@@ -332,7 +332,13 @@ const buildSeoPayload = (route: RoutePath, activeService: (typeof services)[numb
 
 function App() {
   const [route, setRoute] = useState<RoutePath>(getRouteFromPath(window.location.pathname));
+  const [isSplashVisible, setIsSplashVisible] = useState(true);
   const [isLoaderVisible, setIsLoaderVisible] = useState(false);
+
+  useEffect(() => {
+    const splashTimer = window.setTimeout(() => setIsSplashVisible(false), 1200);
+    return () => window.clearTimeout(splashTimer);
+  }, []);
 
   useEffect(() => {
     if (window.location.pathname !== route) {
@@ -373,17 +379,15 @@ function App() {
   };
 
   const navigateTo = (path: RoutePath, sectionId?: string) => {
-    const isDetailNavigation =
-      path.startsWith('/projects/') ||
-      path.startsWith('/services/') ||
-      (servicePageRoutes as readonly string[]).includes(path);
+    const isSamePathNavigation = route === path;
+    const shouldUseLoader = !isSamePathNavigation;
 
-    if (isDetailNavigation) {
+    if (shouldUseLoader) {
       setIsLoaderVisible(true);
       window.setTimeout(() => {
         completeNavigation(path, sectionId);
-        window.setTimeout(() => setIsLoaderVisible(false), 220);
-      }, 900);
+        window.setTimeout(() => setIsLoaderVisible(false), 180);
+      }, 420);
       return;
     }
 
@@ -434,8 +438,29 @@ function App() {
     setStructuredData(seo.schema);
   }, [route, activeService]);
 
+  const logoLoader = (
+    <div className="flex items-center justify-center">
+      <img src="/favicon.png" alt="Webgaebel logo" className="logo-twist-in h-28 w-28 object-contain sm:h-36 sm:w-36" />
+    </div>
+  );
+
   return (
     <div className="site-shell">
+      <AnimatePresence>
+        {isSplashVisible && (
+          <motion.div
+            key="initial-splash"
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-white/96 backdrop-blur-xl"
+          >
+            {logoLoader}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <Navbar currentPath={route} onNavigate={navigateTo} />
 
       <AnimatePresence>
@@ -445,32 +470,9 @@ function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[80] flex items-center justify-center bg-[#190607]/95 backdrop-blur-sm"
+            className="fixed inset-0 z-[80] flex items-center justify-center bg-white/92 backdrop-blur-xl"
           >
-            <div className="relative flex h-[230px] w-[230px] items-center justify-center">
-              <motion.div
-                className="absolute inset-0 rounded-full border-[10px] border-transparent"
-                style={{
-                  borderTopColor: '#18a9da',
-                  borderRightColor: '#1dd6d0',
-                  borderBottomColor: '#2fb2b1',
-                }}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 1.5, ease: 'linear', repeat: Infinity }}
-              />
-              <motion.div
-                className="absolute inset-[22px] rounded-full border border-white/10"
-                animate={{ scale: [0.98, 1.02, 0.98] }}
-                transition={{ duration: 1.8, repeat: Infinity }}
-              />
-              <motion.div
-                animate={{ opacity: [0.75, 1, 0.75] }}
-                transition={{ duration: 1.4, repeat: Infinity }}
-                className="text-center font-['Space_Grotesk'] text-3xl font-semibold text-white"
-              >
-                Loading...
-              </motion.div>
-            </div>
+            {logoLoader}
           </motion.div>
         )}
       </AnimatePresence>

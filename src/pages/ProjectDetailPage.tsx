@@ -27,6 +27,26 @@ export default function ProjectDetailPage({
   onBackToProjects,
 }: ProjectDetailPageProps) {
   const highlights = getProjectHighlights(project);
+  const hasVideo = Boolean(project.videoUrl);
+  const heroMedia = hasVideo ? (
+    <video
+      key={project.videoUrl}
+      controls
+      preload="metadata"
+      playsInline
+      className="h-full w-full bg-[#04131f] object-cover"
+      poster={project.preview}
+    >
+      <source src={project.videoUrl} type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  ) : (
+    <img
+      src={project.preview}
+      alt={`${project.title} preview`}
+      className="h-full w-full object-cover"
+    />
+  );
 
   return (
     <main className="min-h-screen pt-28">
@@ -102,32 +122,32 @@ export default function ProjectDetailPage({
               className="overflow-hidden rounded-[28px] border border-[rgba(11,61,102,0.08)] bg-white shadow-[0_28px_56px_rgba(11,61,102,0.18)] sm:rounded-[34px]"
             >
               <div className="relative">
-                <img
-                  src={project.preview}
-                  alt={`${project.title} preview`}
-                  className="h-full w-full object-cover"
-                />
-                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20`} />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(7,18,33,0.58))]" />
-                <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/12 px-4 py-2 text-sm font-semibold text-white backdrop-blur-sm">
-                  <Link2 className="h-4 w-4" />
-                  Project preview
+                <div className={`${hasVideo ? 'aspect-video' : 'aspect-[16/11]'} bg-[linear-gradient(180deg,#eff7fb,#dfeef5)]`}>
+                  {heroMedia}
                 </div>
-                <div className="absolute inset-x-6 bottom-6 grid gap-3 sm:grid-cols-2">
-                  <div className="rounded-[22px] border border-white/14 bg-white/12 p-4 text-white backdrop-blur-md">
-                    <div className="text-xs font-semibold uppercase tracking-[0.2em] text-white/64">
+                {!hasVideo && <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20`} />}
+                {!hasVideo && <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(7,18,33,0.58))]" />}
+                <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-[rgba(8,38,63,0.72)] px-4 py-2 text-sm font-semibold text-white backdrop-blur-sm">
+                  {hasVideo ? <PlayCircle className="h-4 w-4" /> : <Link2 className="h-4 w-4" />}
+                  {hasVideo ? 'Watch project video' : 'Project preview'}
+                </div>
+                <div className="grid gap-4 p-6 sm:grid-cols-2">
+                  <div className="rounded-[22px] border border-[rgba(11,61,102,0.08)] bg-[rgba(244,251,253,0.92)] p-4 text-[var(--color-corporate-blue)]">
+                    <div className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
                       Delivery focus
                     </div>
-                    <div className="mt-2 theme-heading text-xl font-bold">
-                      Structured, conversion-aware build
+                    <div className="mt-2 theme-heading text-xl font-bold text-slate-900">
+                      Structured, presentation-ready execution
                     </div>
                   </div>
-                  <div className="rounded-[22px] border border-white/14 bg-[rgba(8,38,63,0.72)] p-4 text-white backdrop-blur-md">
+                  <div className="rounded-[22px] border border-[rgba(11,61,102,0.08)] bg-[linear-gradient(135deg,var(--color-ink),var(--color-deep-navy),var(--color-corporate-blue))] p-4 text-white">
                     <div className="text-xs font-semibold uppercase tracking-[0.2em] text-white/64">
                       Included
                     </div>
                     <div className="mt-2 text-sm leading-7 text-white/84">
-                      Preview, outcomes, deliverables, and walkthrough-ready presentation.
+                      {hasVideo
+                        ? 'Top-level video walkthrough, outcomes, deliverables, and a polished case-study layout.'
+                        : 'Preview, outcomes, deliverables, and a polished project presentation.'}
                     </div>
                   </div>
                 </div>
@@ -208,15 +228,15 @@ export default function ProjectDetailPage({
                 <div className="flex items-center gap-3">
                   <PlayCircle className="h-6 w-6 text-[var(--color-cyan)]" />
                   <h3 className="theme-heading text-xl font-bold">
-                    {project.videoUrl ? 'Project walkthrough' : 'Video walkthrough slot'}
+                    {hasVideo ? 'Walkthrough support' : 'Video walkthrough slot'}
                   </h3>
                 </div>
                 <p className="mt-4 text-sm leading-7 text-white/80">
-                  {project.videoUrl
-                    ? 'This walkthrough helps visitors see the product flow, UI quality, and interaction logic in a more realistic way.'
+                  {hasVideo
+                    ? 'The main hero now carries the project video so clients can spot and play it immediately.'
                     : 'If you have a Loom, MP4, or YouTube walkthrough for this project, it can live here as a trust-building video preview.'}
                 </p>
-                {project.videoUrl ? (
+                {hasVideo ? (
                   <video
                     key={project.videoUrl}
                     controls

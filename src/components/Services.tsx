@@ -79,7 +79,7 @@ export default function Services({ onNavigateToServices, onOpenService }: Servic
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.08 }}
               whileHover={{ y: -10, scale: 1.01 }}
-              className="theme-panel group relative overflow-hidden p-6 transition-soft hover:border-[rgba(47,178,177,0.35)]"
+              className="theme-panel group relative flex h-full flex-col overflow-hidden p-6 transition-soft hover:border-[rgba(47,178,177,0.35)]"
             >
               <motion.div
                 initial={{ opacity: 0.32, x: '-18%' }}
@@ -119,9 +119,9 @@ export default function Services({ onNavigateToServices, onOpenService }: Servic
 
               <button
                 onClick={() => onOpenService(service.slug)}
-                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-corporate-blue)] transition-soft group-hover:translate-x-1 group-hover:text-[var(--color-teal)]"
+                className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-semibold text-[var(--color-corporate-blue)] transition-soft group-hover:translate-x-1 group-hover:text-[var(--color-teal)]"
               >
-                View service details
+                <span className="whitespace-nowrap">View service details</span>
                 <motion.span
                   className="inline-flex"
                   whileHover={{ x: 4 }}
