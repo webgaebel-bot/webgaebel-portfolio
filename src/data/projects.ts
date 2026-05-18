@@ -356,4 +356,11 @@ const projectSeeds = [
 export const projects: ProjectItem[] = projectSeeds.map(({ gradientA, gradientB, previewImage, ...project }) => ({
   ...project,
   preview: previewImage ?? makePreview(project.title, project.category, gradientA, gradientB),
-}));
+})).sort((a, b) => {
+  const aHasMedia = projectSeeds.find((item) => item.slug === a.slug)?.previewImage || a.videoUrl;
+  const bHasMedia = projectSeeds.find((item) => item.slug === b.slug)?.previewImage || b.videoUrl;
+
+  if (aHasMedia && !bHasMedia) return -1;
+  if (!aHasMedia && bHasMedia) return 1;
+  return 0;
+});

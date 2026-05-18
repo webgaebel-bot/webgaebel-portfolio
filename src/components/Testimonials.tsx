@@ -22,14 +22,6 @@ type TestimonialCard = {
   initials: string;
 };
 
-const trustedBrands = [
-  'NorthGrid',
-  'BrightPath',
-  'EstateFlow',
-  'ScaleForge',
-  'NovaCart',
-];
-
 const fallbackTestimonials: TestimonialCard[] = [
   {
     id: 'emma-rodriguez',
@@ -191,23 +183,6 @@ export default function Testimonials() {
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.08 }}
-            className="relative mt-10 overflow-hidden rounded-[28px] border border-[rgba(11,61,102,0.08)] bg-white/80 px-4 py-5 shadow-[0_18px_40px_rgba(11,61,102,0.08)] backdrop-blur-sm sm:px-6"
-          >
-            <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-white via-white/90 to-transparent" />
-            <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-white via-white/90 to-transparent" />
-            <div className="animate-marquee flex w-max gap-4 sm:gap-5">
-              {[...trustedBrands, ...trustedBrands].map((brand, index) => (
-                <div key={`${brand}-${index}`} className="logo-wordmark min-w-max">
-                  {brand}
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.14 }}
             className="relative mt-12 overflow-hidden"
           >
@@ -236,7 +211,7 @@ export default function Testimonials() {
                     onClick={() => setActiveTestimonial(testimonial)}
                     className="mt-4 w-fit text-sm font-semibold text-[var(--color-teal)] transition-soft hover:text-[var(--color-corporate-blue)]"
                   >
-                    Show more
+                    View Details
                   </button>
 
                   <div className="mt-auto flex items-center gap-3 border-t border-[rgba(11,61,102,0.08)] pt-5">

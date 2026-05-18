@@ -13,32 +13,32 @@ const trustedBrands = [
 const capabilities = [
   {
     title: 'Frontend Systems',
-    description: 'React, Next.js, Tailwind, and conversion-focused UX patterns.',
+    description: 'React, Next.js, Tailwind, and polished UX patterns built for faster, clearer frontend delivery.',
     icon: Layers3,
   },
   {
     title: 'Backend Delivery',
-    description: 'Robust APIs, database design, integrations, and automation workflows.',
+    description: 'Robust APIs, structured databases, integrations, and automation workflows built for operational stability.',
     icon: ServerCog,
   },
   {
     title: 'AI Implementation',
-    description: 'OpenAI-enabled products, assistants, internal tools, and workflow automation.',
+    description: 'OpenAI-powered assistants, internal tools, and automation flows designed for practical business use.',
     icon: BrainCircuit,
   },
   {
     title: 'Mobile Experiences',
-    description: 'Cross-platform product flows built for real users and fast iteration.',
+    description: 'Cross-platform product flows shaped for real users, smooth adoption, and efficient iteration.',
     icon: Smartphone,
   },
   {
     title: 'Performance Focus',
-    description: 'Speed, reliability, and scalable architecture considered from day one.',
+    description: 'Speed, reliability, and scalable architecture prioritized early so products stay stable as they grow.',
     icon: Zap,
   },
   {
     title: 'Secure Delivery',
-    description: 'Practical auth, access control, and production-minded implementation.',
+    description: 'Practical authentication, access control, and production-minded safeguards applied throughout delivery.',
     icon: ShieldCheck,
   },
 ];
@@ -58,11 +58,11 @@ export default function TechStack() {
         >
           <span className="theme-badge">Trusted by growing businesses</span>
           <h2 className="theme-heading mt-5 text-3xl font-bold text-slate-900 sm:text-4xl">
-            Trusted delivery for teams that need modern execution, stronger UX, and scalable systems.
+            Trusted delivery for teams that need modern execution, stronger UX, and scalable systems
           </h2>
           <p className="mt-5 text-lg leading-8 text-slate-600">
             We help founders and operators move from scattered tools and unclear messaging to
-            cleaner products, better conversion paths, and dependable technical delivery.
+            cleaner products, better conversion paths, and dependable technical delivery
           </p>
         </motion.div>
 
@@ -100,8 +100,8 @@ export default function TechStack() {
                   <item.icon className="h-6 w-6" />
                 </div>
                 <div>
-                  <h3 className="theme-heading text-xl font-bold text-slate-900">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-7 text-slate-600 sm:text-base">{item.description}</p>
+                  <h3 className="theme-heading min-h-[3.5rem] text-xl font-bold text-slate-900">{item.title}</h3>
+                  <p className="mt-2 min-h-[5.75rem] text-sm leading-7 text-slate-600 sm:text-base">{item.description}</p>
                 </div>
               </div>
             </motion.article>

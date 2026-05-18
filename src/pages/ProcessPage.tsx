@@ -101,8 +101,8 @@ const stepVariants = {
 
 export default function ProcessPage() {
   return (
-    <main className="min-h-screen pt-28">
-      <section className="relative overflow-hidden py-16 md:py-24">
+    <main className="min-h-screen pt-20">
+      <section className="relative overflow-hidden py-8 md:py-14">
         <div className="absolute inset-0 bg-grid-pattern opacity-15" />
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -113,7 +113,7 @@ export default function ProcessPage() {
             className="mx-auto max-w-4xl text-center"
           >
             <span className="theme-badge">Process & SDLC</span>
-            <h1 className="theme-heading mt-6 text-4xl font-bold text-slate-900 sm:text-5xl md:text-6xl">
+            <h1 className="theme-heading mt-6 text-[2.2rem] font-bold text-slate-900 sm:text-[2.7rem] md:text-[3.2rem]">
               Web development project timeline guide with a clear SDLC flow.
             </h1>
             <p className="mt-6 text-lg leading-8 text-slate-600">
@@ -122,7 +122,7 @@ export default function ProcessPage() {
             </p>
           </motion.div>
 
-          <div className="mt-16 rounded-[26px] border border-[rgba(11,61,102,0.08)] bg-white/90 p-4 shadow-[var(--shadow-card)] sm:p-6 md:rounded-[34px] md:p-10">
+          <div className="mt-10 rounded-[26px] border border-[rgba(11,61,102,0.08)] bg-white/90 p-4 shadow-[var(--shadow-card)] sm:p-6 md:rounded-[34px] md:p-10">
             <motion.div
               className="hidden gap-10 xl:grid xl:grid-cols-[0.95fr_1.05fr] xl:items-center"
               variants={containerVariants}

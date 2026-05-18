@@ -33,7 +33,7 @@ export const services: ServiceItem[] = [
     slug: 'mobile-app-development',
     icon: Smartphone,
     title: 'Mobile App Development',
-    description: 'Mobile and business apps designed around usability, speed, and long-term scale.',
+    description: 'Mobile and business apps designed for usability, speed, and long-term scale.',
     points: ['Android and iOS-ready builds', 'Admin panel and CMS support', 'API, payment, and CRM integrations'],
     outcomes: 'Best for startups, internal systems, booking flows, and service-based businesses.',
     overview:
@@ -46,7 +46,7 @@ export const services: ServiceItem[] = [
     slug: 'web-development-services',
     icon: Globe,
     title: 'Web Development Services',
-    description: 'Corporate websites, product sites, and landing pages that help brands look credible and convert better.',
+    description: 'Corporate websites, product sites, and landing pages for credibility and conversion.',
     points: ['Responsive layouts', 'Search Engine Optimization (SEO)-ready architecture', 'Performance optimization'],
     outcomes: 'Ideal for company profiles, campaigns, service businesses, and local authority building.',
     overview:
@@ -59,7 +59,7 @@ export const services: ServiceItem[] = [
     slug: 'shopify-development-services',
     icon: ShoppingBag,
     title: 'Shopify Development Services',
-    description: 'Custom Shopify stores built to look premium, improve trust, and increase e-commerce sales.',
+    description: 'Custom Shopify stores built for premium design, trust, and increased sales.',
     points: ['Custom storefront design', 'Product and collection setup', 'Conversion-focused checkout improvements'],
     outcomes: 'Perfect for product brands that want a polished online store and stronger conversion performance.',
     overview:
@@ -72,7 +72,7 @@ export const services: ServiceItem[] = [
     slug: 'graphic-design-services',
     icon: Image,
     title: 'Graphic Design Services',
-    description: 'Brand visuals, marketing creatives, and polished design assets created to strengthen recognition and presentation.',
+    description: 'Brand visuals, marketing creatives, and polished design assets for stronger recognition.',
     points: ['Social media creatives', 'Brand support visuals', 'Marketing and promotional design', 'Presentation and promotional assets'],
     outcomes: 'Ideal for brands that need stronger visual identity, cleaner campaign creatives, and more professional communication.',
     overview:
@@ -85,7 +85,7 @@ export const services: ServiceItem[] = [
     slug: 'video-editing-services',
     icon: Clapperboard,
     title: 'Video Editing Services',
-    description: 'Professional video editing for reels, ads, social content, and branded videos that capture attention and drive engagement.',
+    description: 'Professional video editing for reels, ads, social content, and branded videos.',
     points: ['Short-form content editing', 'Ad and promotional videos', 'Reels and TikTok editing', 'Color grading and sound design'],
     outcomes: 'Perfect for creators, brands, and businesses that want polished video content that performs better on social media and advertising channels.',
     overview:
@@ -98,7 +98,7 @@ export const services: ServiceItem[] = [
     slug: 'digital-marketing-services',
     icon: BarChart3,
     title: 'Digital Marketing Services',
-    description: 'Campaign strategy and digital growth support designed to generate traffic, leads, and measurable results.',
+    description: 'Campaign strategy and digital growth support for traffic, leads, and results.',
     points: ['Campaign planning', 'Lead generation strategy', 'Performance reporting and optimization'],
     outcomes: 'Best for businesses that need stronger visibility, more inquiries, and clearer digital growth planning.',
     overview:
@@ -111,7 +111,7 @@ export const services: ServiceItem[] = [
     slug: 'data-solutions',
     icon: BarChart3,
     title: 'Data Solutions',
-    description: 'Data annotation, labelling, analysis, and interpretation support for AI and business workflows.',
+    description: 'Data annotation, labelling, analysis, and interpretation for AI and business workflows.',
     points: ['Data annotation and label preparation', 'Data analysis and interpretation', 'Structured datasets for AI training'],
     outcomes: 'Best for teams that need cleaner datasets, better insights, and organised data work for AI or operations.',
     overview:
@@ -124,7 +124,7 @@ export const services: ServiceItem[] = [
     slug: 'seo-services-for-new-websites',
     icon: SearchCheck,
     title: 'SEO Services for New Websites',
-    description: 'Search Engine Optimization (SEO) services that improve visibility, rankings, and organic search performance.',
+    description: 'Search Engine Optimization (SEO) services for visibility, rankings, and organic search.',
     points: ['On-page SEO structure', 'Technical optimization', 'Keyword and content alignment'],
     outcomes: 'Ideal for businesses that want stronger Google visibility and long-term organic traffic growth.',
     overview:
@@ -137,7 +137,7 @@ export const services: ServiceItem[] = [
     slug: 'saas-development-services',
     icon: Workflow,
     title: 'SaaS Development Services',
-    description: 'Product-facing pages and SaaS platforms built for clearer onboarding, stronger positioning, and better sign-up flow.',
+    description: 'Product-facing pages and SaaS platforms for onboarding, positioning, and sign-up flow.',
     points: ['SaaS landing pages', 'Dashboard interface systems', 'Trial and demo conversion journeys'],
     outcomes: 'Great for software products that need sharper messaging, cleaner interfaces, and scalable delivery.',
     overview:
@@ -150,7 +150,7 @@ export const services: ServiceItem[] = [
     slug: 'wordpress-development-services',
     icon: Code2,
     title: 'WordPress Development Services',
-    description: 'Flexible WordPress websites built for easy content management, performance, and professional presentation.',
+    description: 'Flexible WordPress websites for content management, performance, and presentation.',
     points: ['Custom theme development', 'Plugin and CMS configuration', 'Content-friendly page structure'],
     outcomes: 'Best for businesses that need an editable website with strong design and dependable performance.',
     overview:
@@ -163,7 +163,7 @@ export const services: ServiceItem[] = [
     slug: 'ai-development-services',
     icon: Bot,
     title: 'AI Development Services',
-    description: 'AI systems that connect tools, remove manual work, and keep leads or operations moving without friction.',
+    description: 'AI systems that connect tools, remove manual work, and keep operations moving.',
     points: ['Lead capture pipelines', 'WhatsApp and email workflows', 'Business process automations'],
     outcomes: 'Great for inquiry handling, follow-ups, internal operations, and repetitive task reduction.',
     overview:
@@ -176,7 +176,7 @@ export const services: ServiceItem[] = [
     slug: 'ui-ux-design-services',
     icon: Layers3,
     title: 'UI/UX Design Services',
-    description: 'Visual systems and interaction design that make products feel modern, structured, and easy to trust.',
+    description: 'Visual systems and interaction design for modern, structured, and trusted products.',
     points: ['Wireframes and prototypes', 'Design systems', 'Conversion-focused page flow'],
     outcomes: 'Perfect when your product needs stronger clarity, better polish, or a more premium identity.',
     overview:
@@ -189,7 +189,7 @@ export const services: ServiceItem[] = [
     slug: 'custom-web-app-development-services',
     icon: Workflow,
     title: 'Custom Web App Development Services',
-    description: 'Bespoke portals, dashboards, and operation systems built around your exact workflow instead of generic templates.',
+    description: 'Bespoke portals, dashboards, and operation systems built around your exact workflow.',
     points: ['Role-based access', 'Custom modules', 'Data dashboards and reporting'],
     outcomes: 'Useful for schools, agencies, logistics, healthcare, and internal business management.',
     overview:
@@ -202,7 +202,7 @@ export const services: ServiceItem[] = [
     slug: 'ecommerce-business-startup',
     icon: Store,
     title: 'E-Commerce Business Startup',
-    description: 'End-to-end e-commerce launch support from store setup and product sourcing to branding, marketing, and first sales.',
+    description: 'End-to-end e-commerce launch support from setup and sourcing to branding and sales.',
     points: ['Store setup and platform selection', 'Product listing and catalog management', 'Payment gateway and logistics integration', 'Branding and launch marketing'],
     outcomes: 'Perfect for entrepreneurs and brands ready to launch and grow an online store with professional guidance.',
     overview:
@@ -215,7 +215,7 @@ export const services: ServiceItem[] = [
     slug: 'website-maintenance-support',
     icon: ShieldCheck,
     title: 'Website Maintenance and Support',
-    description: 'Post-launch care for fixes, updates, content changes, optimization, and new feature iterations.',
+    description: 'Post-launch care for fixes, updates, content changes, optimization, and iterations.',
     points: ['Bug fixing support', 'Monitoring and improvements', 'Ongoing enhancement roadmap'],
     outcomes: 'Helps keep your system healthy, current, and growing after launch.',
     overview:

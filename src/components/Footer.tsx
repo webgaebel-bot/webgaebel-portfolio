@@ -1,5 +1,6 @@
-import { Facebook, Instagram, Linkedin, Mail, Phone, Twitter } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Mail, Phone } from 'lucide-react';
 import type { RoutePath } from '../App';
+import XLogo from './icons/XLogo';
 
 type FooterProps = {
   currentPath: RoutePath;
@@ -118,7 +119,7 @@ export default function Footer({ currentPath, onNavigate }: FooterProps) {
                     aria-label="X"
                     className="flex h-10 w-10 items-center justify-center rounded-full border border-white/16 bg-white/8 transition-soft hover:border-[var(--color-cyan)] hover:text-[var(--color-cyan)]"
                   >
-                    <Twitter className="h-4 w-4" />
+                    <XLogo className="h-4 w-4" />
                   </a>
                 </div>
               </div>

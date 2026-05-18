@@ -1,7 +1,17 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Facebook, Instagram, Linkedin, Mail, MapPinned, MessageSquare, Phone, Send, Twitter } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Mail, MapPinned, MessageSquare, Phone, Send } from 'lucide-react';
 import { isSupabaseConfigured, supabase } from '../lib/supabase';
+import XLogo from './icons/XLogo';
+
+const serviceOptions = [
+  'Web Development',
+  'Custom Software',
+  'Mobile Apps',
+  'AI Solutions',
+  'UI/UX Design',
+  'E-Commerce',
+];
 
 export default function Contact() {
   const ref = useRef(null);
@@ -10,6 +20,7 @@ export default function Contact() {
     name: '',
     email: '',
     phone: '',
+    services: [] as string[],
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,11 +38,15 @@ export default function Contact() {
     }
 
     try {
+      const selectedServices = formData.services.length > 0
+        ? `Selected services: ${formData.services.join(', ')}\n\n`
+        : '';
+
       const { error } = await supabase.from('contact_submissions').insert({
         name: formData.name.trim(),
         email: formData.email.trim(),
         phone: formData.phone.trim() || null,
-        message: formData.message.trim(),
+        message: `${selectedServices}${formData.message.trim()}`,
       });
 
       if (error) throw error;
@@ -40,6 +55,7 @@ export default function Contact() {
         name: '',
         email: '',
         phone: '',
+        services: [],
         message: '',
       });
       setStatusMessage('Your inquiry has been submitted successfully. Our team will contact you shortly.');
@@ -57,21 +73,30 @@ export default function Contact() {
     });
   };
 
+  const handleServiceToggle = (service: string) => {
+    setFormData((current) => ({
+      ...current,
+      services: current.services.includes(service)
+        ? current.services.filter((item) => item !== service)
+        : [...current.services, service],
+    }));
+  };
+
   return (
-    <section id="contact" className="section-wash py-20 md:py-32" ref={ref}>
+    <section id="contact" className="section-wash py-12 md:py-18" ref={ref}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-10 text-center"
+          className="mb-8 text-center"
         >
           <span className="theme-badge">Let&apos;s Talk</span>
-          <h2 className="theme-heading mt-5 text-3xl font-bold text-slate-900 sm:text-4xl md:text-5xl">
-            Plan the next step with clarity.
+          <h2 className="theme-heading mt-5 text-[2rem] font-bold text-slate-900 sm:text-[2.35rem] md:text-[2.8rem]">
+            Plan the next step with clarity
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
-            A short brief is enough to get started.
+            Turn your ideas into a clear, action-ready roadmap we can execute with confidence.
           </p>
         </motion.div>
 
@@ -133,6 +158,39 @@ export default function Contact() {
               </div>
 
               <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">
+                  Services
+                </label>
+                <p className="mb-3 text-sm leading-6 text-slate-600">
+                  Select the services that best match your project requirements so we can tailor the solution accordingly.
+                </p>
+                <div className="grid gap-2 sm:grid-cols-2">
+                  {serviceOptions.map((service) => {
+                    const isSelected = formData.services.includes(service);
+
+                    return (
+                      <label
+                        key={service}
+                        className={`flex cursor-pointer items-center gap-3 rounded-2xl border px-4 py-3 text-sm font-medium transition-soft ${
+                          isSelected
+                            ? 'border-[var(--color-teal)] bg-[rgba(73,197,211,0.1)] text-[var(--color-corporate-blue)]'
+                            : 'border-[rgba(11,61,102,0.12)] bg-white text-slate-700 hover:border-[var(--color-cyan)]'
+                        }`}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={isSelected}
+                          onChange={() => handleServiceToggle(service)}
+                          className="h-4 w-4 rounded border-[rgba(11,61,102,0.18)] text-[var(--color-teal)] focus:ring-[var(--color-cyan)]"
+                        />
+                        <span>{service}</span>
+                      </label>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div>
                 <label htmlFor="message" className="mb-2 block text-sm font-semibold text-slate-700">
                   Your Message
                 </label>
@@ -164,6 +222,9 @@ export default function Contact() {
           >
             <div className="theme-panel h-full p-5 sm:p-8">
               <h3 className="theme-heading mb-6 text-xl font-bold text-slate-900 sm:text-2xl">Contact Information</h3>
+              <p className="mb-6 text-sm leading-7 text-slate-600 sm:text-base">
+                Reach out with your project scope, current challenges, or launch timeline and we will help shape the right direction, delivery plan, and technical path.
+              </p>
 
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
@@ -262,10 +323,28 @@ export default function Contact() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 rounded-full border border-[rgba(11,61,102,0.12)] px-4 py-2 text-sm font-medium text-slate-700 transition-soft hover:border-[var(--color-cyan)] hover:text-[var(--color-corporate-blue)]"
                       >
-                        <Twitter className="h-4 w-4" />
+                        <XLogo className="h-4 w-4" />
                         X
                       </a>
                     </div>
+                  </div>
+                </div>
+
+                <div className="grid gap-3 sm:grid-cols-3">
+                  <div className="rounded-2xl border border-[rgba(11,61,102,0.08)] bg-[rgba(244,251,253,0.92)] p-4">
+                    <div className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-teal)]">Response</div>
+                    <div className="mt-2 font-semibold text-slate-900">Fast follow-up</div>
+                    <p className="mt-1 text-sm leading-6 text-slate-600">Quick replies for consultations, estimates, and project fit discussions.</p>
+                  </div>
+                  <div className="rounded-2xl border border-[rgba(11,61,102,0.08)] bg-[rgba(244,251,253,0.92)] p-4">
+                    <div className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-teal)]">Project Fit</div>
+                    <div className="mt-2 font-semibold text-slate-900">Business-focused scope</div>
+                    <p className="mt-1 text-sm leading-6 text-slate-600">Websites, internal tools, apps, automation systems, and product improvement work.</p>
+                  </div>
+                  <div className="rounded-2xl border border-[rgba(11,61,102,0.08)] bg-[rgba(244,251,253,0.92)] p-4">
+                    <div className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-teal)]">Availability</div>
+                    <div className="mt-2 font-semibold text-slate-900">Flexible engagement</div>
+                    <p className="mt-1 text-sm leading-6 text-slate-600">From focused landing pages to full product builds and ongoing support retainers.</p>
                   </div>
                 </div>
               </div>

@@ -5,7 +5,6 @@ import WhyChooseUs from '../components/WhyChooseUs';
 import SuccessStories from '../components/SuccessStories';
 import Testimonials from '../components/Testimonials';
 import FAQ from '../components/FAQ';
-import ScaleCTA from '../components/ScaleCTA';
 
 type HomePageProps = {
   onNavigateToServices: () => void;
@@ -31,7 +30,6 @@ export default function HomePage({
       <SuccessStories onNavigateToProjects={onNavigateToProjects} onOpenProject={onOpenProject} />
       <Testimonials />
       <FAQ />
-      <ScaleCTA onNavigateToContact={onNavigateToContact} />
     </>
   );
 }

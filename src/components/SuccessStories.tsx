@@ -44,19 +44,17 @@ export default function SuccessStories({
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
+          className="mx-auto max-w-3xl text-center"
         >
-          <div className="max-w-3xl">
-            <span className="theme-badge">Case Studies</span>
-            <h2 className="theme-heading mt-5 text-3xl font-bold text-slate-900 sm:text-4xl md:text-5xl">
-              Success Stories That Speak for Themselves
-            </h2>
-            <p className="mt-5 text-lg leading-8 text-slate-600">
-              A few selected builds that show how better systems, stronger UX, and clearer product
-              structure translate into measurable business results.
-            </p>
-          </div>
-          <div>
+          <span className="theme-badge">Case Studies</span>
+          <h2 className="theme-heading mt-5 text-[2rem] font-bold text-slate-900 sm:text-[2.35rem] md:text-[2.8rem]">
+            Success Stories That Speak for Themselves
+          </h2>
+          <p className="mt-5 text-lg leading-8 text-slate-600">
+            A few selected builds that show how better systems, stronger UX, and clearer product
+            structure translate into measurable business results.
+          </p>
+          <div className="mt-6">
             <button onClick={onNavigateToProjects} className="theme-button-secondary">
               View All Projects
             </button>
@@ -71,7 +69,7 @@ export default function SuccessStories({
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.55, delay: index * 0.08 }}
               whileHover={{ y: -8 }}
-              className="theme-panel group overflow-hidden"
+              className="theme-panel group flex h-full flex-col overflow-hidden"
             >
               <div className="relative h-60 overflow-hidden bg-[linear-gradient(180deg,#eff7fb,#dfeef5)]">
                 <img
@@ -86,17 +84,17 @@ export default function SuccessStories({
                 </div>
               </div>
 
-              <div className="p-6">
+              <div className="flex flex-1 flex-col p-6">
                 <h3 className="theme-heading text-2xl font-bold text-slate-900">{project.title}</h3>
                 <p className="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-teal)]">
                   {project.category}
                 </p>
-                <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">{project.storyResult}</p>
+                <p className="mt-3 min-h-[5.5rem] text-sm leading-7 text-slate-600 sm:text-base">{project.storyResult}</p>
                 <button
                   onClick={() => onOpenProject(project.slug)}
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-corporate-blue)] transition-soft group-hover:translate-x-1 group-hover:text-[var(--color-teal)]"
+                  className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-semibold text-[var(--color-corporate-blue)] transition-soft group-hover:translate-x-1 group-hover:text-[var(--color-teal)]"
                 >
-                  View Case Study
+                  View Details
                   <ArrowRight size={18} />
                 </button>
               </div>

@@ -60,7 +60,7 @@ export default function Stats() {
           <h2 className="theme-heading mt-3 text-3xl font-bold text-white sm:text-4xl">
             Numbers That Speak
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-white/78 sm:text-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-white sm:text-lg">
             Trusted by growing businesses to deliver design clarity, stronger systems, and real performance improvements.
           </p>
         </motion.div>

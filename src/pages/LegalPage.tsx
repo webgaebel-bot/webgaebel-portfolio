@@ -12,8 +12,8 @@ export default function LegalPage({ title, intro, sections }: LegalPageProps) {
   const [openIndex, setOpenIndex] = useState<number>(sections.length - 1);
 
   return (
-    <main className="min-h-screen pt-28">
-      <section className="relative overflow-hidden py-16 md:py-24">
+    <main className="min-h-screen pt-20">
+      <section className="relative overflow-hidden py-10 md:py-16">
         <div className="absolute inset-0 bg-grid-pattern opacity-15" />
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div

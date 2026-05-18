@@ -11,22 +11,6 @@ type ServiceDetailPageProps = {
   onNavigateToRelated: (path: string) => void;
 };
 
-const splitOutcome = (value: string) =>
-  value.length > 84 ? `${value.slice(0, 84)}...` : value;
-
-const SummaryCard = ({
-  label,
-  value,
-}: {
-  label: string;
-  value: string;
-}) => (
-  <div className="rounded-[24px] border border-[rgba(11,61,102,0.08)] bg-white/84 px-5 py-5 shadow-[0_18px_34px_rgba(11,61,102,0.08)] backdrop-blur-sm">
-    <div className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">{label}</div>
-    <div className="theme-heading mt-3 text-lg font-bold text-[var(--color-corporate-blue)]">{value}</div>
-  </div>
-);
-
 const HeroNote = ({
   label,
   text,
@@ -77,19 +61,10 @@ export default function ServiceDetailPage({
   onNavigateToContact,
   onNavigateToRelated,
 }: ServiceDetailPageProps) {
-  const summaryItems = [
-    { label: 'Service type', value: pageContent?.primaryKeyword ?? service.title },
-    { label: 'Best fit', value: splitOutcome(service.outcomes) },
-    {
-      label: 'Delivery scope',
-      value: `${service.deliverables.length} deliverables`,
-    },
-  ];
-
   if (pageContent) {
     return (
-      <main className="min-h-screen pt-28">
-        <section className="relative overflow-hidden py-16 md:py-24">
+      <main className="min-h-screen pt-20">
+        <section className="relative overflow-hidden py-10 md:py-16">
           <div className="absolute inset-0 bg-grid-pattern opacity-15" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(73,197,211,0.16),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(47,178,177,0.12),transparent_28%)]" />
 
@@ -112,7 +87,7 @@ export default function ServiceDetailPage({
                   <Sparkles size={14} />
                   {pageContent.primaryKeyword}
                 </span>
-                <h1 className="theme-heading mt-6 max-w-4xl text-3xl font-bold text-slate-900 sm:text-5xl md:text-6xl">
+                <h1 className="theme-heading mt-6 max-w-4xl text-[2.15rem] font-bold text-slate-900 sm:text-[2.7rem] md:text-[3.15rem]">
                   {pageContent.h1}
                 </h1>
                 <p className="mt-6 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg">
@@ -127,12 +102,6 @@ export default function ServiceDetailPage({
                     >
                       {keyword}
                     </span>
-                  ))}
-                </div>
-
-                <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                  {summaryItems.map((item) => (
-                    <SummaryCard key={item.label} label={item.label} value={item.value} />
                   ))}
                 </div>
 
@@ -396,8 +365,8 @@ export default function ServiceDetailPage({
   }
 
   return (
-    <main className="min-h-screen pt-28">
-      <section className="relative overflow-hidden py-16 md:py-24">
+    <main className="min-h-screen pt-20">
+      <section className="relative overflow-hidden py-10 md:py-16">
         <div className="absolute inset-0 bg-grid-pattern opacity-15" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(73,197,211,0.16),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(47,178,177,0.12),transparent_28%)]" />
 
@@ -420,16 +389,10 @@ export default function ServiceDetailPage({
                 <Sparkles size={14} />
                 WEBGAEBEL Service
               </span>
-              <h1 className="theme-heading mt-6 max-w-4xl text-3xl font-bold text-slate-900 sm:text-5xl md:text-6xl">
+              <h1 className="theme-heading mt-6 max-w-4xl text-[2.15rem] font-bold text-slate-900 sm:text-[2.7rem] md:text-[3.15rem]">
                 {service.title}
               </h1>
               <p className="mt-6 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg">{service.overview}</p>
-
-              <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                <SummaryCard label="Service type" value={service.title} />
-                <SummaryCard label="Best fit" value={splitOutcome(service.outcomes)} />
-                <SummaryCard label="Delivery scope" value={`${service.deliverables.length} deliverables`} />
-              </div>
 
               <div className="mt-8 inline-flex max-w-full flex-col items-start gap-2 rounded-[24px] bg-[var(--color-ink)] px-5 py-4 text-white shadow-[0_22px_44px_rgba(11,61,102,0.18)] sm:flex-row sm:items-center sm:gap-3 sm:px-6">
                 <span className="text-sm uppercase tracking-[0.24em] text-[var(--color-cyan)]">Outcome</span>

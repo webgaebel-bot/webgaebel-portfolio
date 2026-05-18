@@ -61,7 +61,7 @@ export default function Hero({ onNavigateToContact, onNavigateToProjects }: Hero
               initial={{ opacity: 0, y: 26 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="theme-heading mt-7 max-w-3xl text-4xl font-bold leading-[0.96] tracking-[-0.05em] text-slate-900 sm:text-5xl lg:text-6xl"
+              className="theme-heading mt-7 max-w-3xl text-[2.5rem] font-bold leading-[0.98] tracking-[-0.04em] text-slate-900 sm:text-[3.15rem] lg:text-[4rem]"
             >
               High-Performance Digital Systems Built for Business Growth
             </motion.h1>

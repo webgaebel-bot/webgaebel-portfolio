@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import FloatingContactWidget from './components/FloatingContactWidget';
 import HomePage from './pages/HomePage';
 import ServicesPage from './pages/ServicesPage';
 import AboutPage from './pages/AboutPage';
@@ -531,6 +532,7 @@ function App() {
         </motion.div>
       </AnimatePresence>
 
+      <FloatingContactWidget />
       <Footer currentPath={route} onNavigate={navigateTo} />
     </div>
   );

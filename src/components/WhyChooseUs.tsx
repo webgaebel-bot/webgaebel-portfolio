@@ -6,22 +6,22 @@ const reasons = [
   {
     icon: ShieldCheck,
     title: 'Proven Expertise',
-    description: 'We combine product thinking, technical execution, and polished UX across web, mobile, and AI delivery.',
+    description: 'We combine product strategy, polished UX, and dependable engineering across web, mobile, and AI delivery.',
   },
   {
     icon: Cpu,
     title: 'Modern Tech Stack',
-    description: 'Our builds use scalable frameworks, clean frontend systems, practical integrations, and production-ready foundations.',
+    description: 'Our builds use scalable frameworks, clean frontend systems, practical integrations, and production-ready delivery.',
   },
   {
     icon: Headphones,
     title: 'Dedicated Support',
-    description: 'You get clear communication, structured delivery, and dependable post-launch help when the product evolves.',
+    description: 'You get clear communication, structured delivery, and reliable post-launch support as your product evolves.',
   },
   {
     icon: LineChart,
     title: 'Business-Focused Results',
-    description: 'We optimize for conversion, efficiency, and measurable business value instead of surface-level visuals alone.',
+    description: 'We optimize for conversion, efficiency, and measurable business value instead of surface-level output alone.',
   },
 ];
 
@@ -40,7 +40,7 @@ export default function WhyChooseUs() {
         >
           <span className="theme-badge">Why Choose Us</span>
           <h2 className="theme-heading mt-5 text-3xl font-bold text-slate-900 sm:text-4xl md:text-5xl">
-            Built to feel premium, perform reliably, and support real business outcomes.
+            Built to feel premium, perform reliably, and support real business outcomes
           </h2>
           <p className="mt-5 text-lg leading-8 text-slate-600">
             We bring together strategy, UI polish, and scalable engineering so your digital product
@@ -61,8 +61,8 @@ export default function WhyChooseUs() {
               <div className="inline-flex h-14 w-14 items-center justify-center rounded-[20px] bg-[linear-gradient(135deg,var(--color-corporate-blue),var(--color-teal),var(--color-cyan))] text-white shadow-[0_16px_34px_rgba(11,61,102,0.14)] transition-soft group-hover:scale-105">
                 <reason.icon className="h-7 w-7" />
               </div>
-              <h3 className="theme-heading mt-6 text-xl font-bold text-slate-900">{reason.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">{reason.description}</p>
+              <h3 className="theme-heading mt-6 min-h-[3.5rem] text-xl font-bold text-slate-900">{reason.title}</h3>
+              <p className="mt-3 min-h-[5.75rem] text-sm leading-7 text-slate-600 sm:text-base">{reason.description}</p>
             </motion.article>
           ))}
         </div>
