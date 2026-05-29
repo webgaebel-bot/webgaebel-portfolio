@@ -7,6 +7,8 @@ import HomePage from './pages/HomePage';
 import ServicesPage from './pages/ServicesPage';
 import AboutPage from './pages/AboutPage';
 import ServiceDetailPage from './pages/ServiceDetailPage';
+import ProgramsPage from './pages/ProgramsPage';
+import ProgramDetailPage from './pages/ProgramDetailPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ProjectDetailPage from './pages/ProjectDetailPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
@@ -16,6 +18,7 @@ import ContactPage from './pages/ContactPage';
 import FeedbackPage from './pages/FeedbackPage';
 import { projects } from './data/projects';
 import { services } from './data/services';
+import { getProgramBySlug, getProgramPathBySlug } from './data/programs';
 import {
   getServicePageContent,
   getServicePathBySlug,
@@ -33,6 +36,8 @@ export type RoutePath =
   | '/feedback'
   | '/privacy-policy'
   | '/terms-of-service'
+  | '/gaebel-talent-hub'
+  | `/gaebel-talent-hub/${string}`
   | '/mobile-app-development'
   | '/web-development-services'
   | '/ai-development-services'
@@ -49,6 +54,8 @@ const pageTransition = {
 
 const getRouteFromPath = (pathname: string): RoutePath => {
   if ((servicePageRoutes as readonly string[]).includes(pathname)) return pathname as RoutePath;
+  if (pathname === '/gaebel-talent-hub') return '/gaebel-talent-hub';
+  if (pathname.startsWith('/gaebel-talent-hub/')) return pathname as `/gaebel-talent-hub/${string}`;
   if (pathname === '/services') return '/services';
   if (pathname === '/about') return '/about';
   if (pathname === '/projects') return '/projects';
@@ -166,6 +173,22 @@ const buildSeoPayload = (route: RoutePath, activeService: (typeof services)[numb
         '@type': 'CollectionPage',
         name: 'WEBGAEBEL Services',
         description: 'Service catalog covering web development, mobile apps, SEO, AI, Shopify, and WordPress.',
+      },
+    };
+  }
+
+  if (route === '/gaebel-talent-hub') {
+    return {
+      title: `Gaebel Talent Hub | ${SITE_NAME}`,
+      description:
+        'Explore the Gaebel Talent Hub programs, including full-stack development, digital marketing, Shopify growth, AI freelancing, creative media, and Amazon private label training.',
+      keywords:
+        'Gaebel Talent Hub, training programs, developer program, digital marketing course, Shopify course, AI freelancing course, creative media program, Amazon private label',
+      schema: {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: 'Gaebel Talent Hub',
+        description: 'Training programs and course detail pages for WebGaebel.',
       },
     };
   }
@@ -292,6 +315,29 @@ const buildSeoPayload = (route: RoutePath, activeService: (typeof services)[numb
     };
   }
 
+  const activeProgram = route.startsWith('/gaebel-talent-hub/')
+    ? getProgramBySlug(route.replace('/gaebel-talent-hub/', ''))
+    : null;
+
+  if (activeProgram) {
+    return {
+      title: `${activeProgram.title} | Gaebel Talent Hub | ${SITE_NAME}`,
+      description: activeProgram.summary,
+      keywords: `${activeProgram.title}, Gaebel Talent Hub, training program, ${activeProgram.instructor}, ${SITE_NAME}`,
+      type: 'article',
+      schema: {
+        '@context': 'https://schema.org',
+        '@type': 'Course',
+        name: activeProgram.title,
+        description: activeProgram.summary,
+        provider: {
+          '@type': 'Organization',
+          name: SITE_NAME,
+        },
+      },
+    };
+  }
+
   const activeProject = route.startsWith('/projects/')
     ? projects.find((item) => item.slug === route.replace('/projects/', '')) ?? null
     : null;
@@ -406,6 +452,14 @@ function App() {
     [route]
   );
 
+  const activeProgram = useMemo(
+    () =>
+      route.startsWith('/gaebel-talent-hub/')
+        ? getProgramBySlug(route.replace('/gaebel-talent-hub/', ''))
+        : null,
+    [route]
+  );
+
   const activeProject = useMemo(
     () =>
       route.startsWith('/projects/')
@@ -508,6 +562,13 @@ function App() {
             />
           ) : activeProject ? (
             <ProjectDetailPage project={activeProject} onBackToProjects={() => navigateTo('/projects')} />
+          ) : route === '/gaebel-talent-hub' ? (
+            <ProgramsPage onOpenProgram={(slug) => navigateTo(getProgramPathBySlug(slug))} />
+          ) : activeProgram ? (
+            <ProgramDetailPage
+              program={activeProgram}
+              onBackToPrograms={() => navigateTo('/gaebel-talent-hub')}
+            />
           ) : route === '/process' ? (
             <ProcessPage />
           ) : route === '/contact' ? (
@@ -524,6 +585,8 @@ function App() {
             <HomePage
               onNavigateToServices={() => navigateTo('/services')}
               onOpenService={(slug) => navigateTo(getServicePathBySlug(slug))}
+              onNavigateToPrograms={() => navigateTo('/gaebel-talent-hub')}
+              onOpenProgram={(slug) => navigateTo(getProgramPathBySlug(slug))}
               onNavigateToProjects={() => navigateTo('/projects')}
               onOpenProject={(slug) => navigateTo(`/projects/${slug}`)}
               onNavigateToContact={() => navigateTo('/contact')}

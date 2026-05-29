@@ -79,7 +79,7 @@ export default function Services({ onNavigateToServices, onOpenService }: Servic
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.08 }}
               whileHover={{ y: -10, scale: 1.01 }}
-              className="theme-panel group relative flex h-full flex-col overflow-hidden p-6 transition-soft hover:border-[rgba(47,178,177,0.35)]"
+              className="theme-panel group relative flex h-full flex-col overflow-hidden p-5 sm:p-6 transition-soft hover:border-[rgba(47,178,177,0.35)]"
             >
               <motion.div
                 initial={{ opacity: 0.32, x: '-18%' }}
@@ -103,14 +103,14 @@ export default function Services({ onNavigateToServices, onOpenService }: Servic
                 </span>
               </div>
 
-              <h3 className="theme-heading min-h-[3.75rem] text-xl font-bold text-slate-900 sm:text-[1.35rem]">{service.title}</h3>
-              <p className="mt-3 min-h-[6rem] text-sm leading-6 text-slate-600">
+              <h3 className="theme-heading text-xl font-bold text-slate-900 sm:text-[1.35rem]">{service.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-slate-600">
                 {service.description}
               </p>
 
-              <ul className="mt-5 min-h-[6.75rem] space-y-2.5">
+              <ul className="mt-4 space-y-2">
                 {service.points.slice(0, 3).map((feature) => (
-                  <li key={feature} className="flex min-h-[2.25rem] items-start gap-3 text-sm font-medium leading-6 text-slate-700">
+                  <li key={feature} className="flex items-start gap-3 text-sm font-medium leading-6 text-slate-700">
                     <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-teal)]" />
                     <span>{feature}</span>
                   </li>
@@ -119,7 +119,7 @@ export default function Services({ onNavigateToServices, onOpenService }: Servic
 
               <button
                 onClick={() => onOpenService(service.slug)}
-                className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-semibold text-[var(--color-corporate-blue)] transition-soft group-hover:translate-x-1 group-hover:text-[var(--color-teal)]"
+                className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-corporate-blue)] transition-soft group-hover:translate-x-1 group-hover:text-[var(--color-teal)]"
               >
                 <span className="whitespace-nowrap">Explore service</span>
                 <motion.span

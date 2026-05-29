@@ -43,32 +43,32 @@ export default function ServicesPage({ onOpenService }: ServicesPageProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: 0.06 * index }}
                 whileHover={{ y: -10 }}
-                className="theme-panel group flex h-full flex-col p-6"
+              className="theme-panel group flex h-full flex-col p-5 sm:p-6"
               >
                 <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-[18px] bg-[linear-gradient(135deg,var(--color-corporate-blue),var(--color-teal),var(--color-cyan))] text-white shadow-[0_14px_30px_rgba(11,61,102,0.18)]">
                   <service.icon className="h-6 w-6" />
                 </div>
-                <h2 className="theme-heading min-h-[3.75rem] text-xl font-bold text-slate-900 sm:text-[1.35rem]">{service.title}</h2>
-                <p className="mt-3 min-h-[6rem] text-sm leading-6 text-slate-600">
+                <h2 className="theme-heading text-xl font-bold text-slate-900 sm:text-[1.35rem]">{service.title}</h2>
+                <p className="mt-3 text-sm leading-6 text-slate-600">
                   {service.description}
                 </p>
 
-                <ul className="mt-5 min-h-[6.75rem] space-y-2.5 text-sm text-slate-700">
+                <ul className="mt-4 space-y-2 text-sm text-slate-700">
                   {service.points.slice(0, 3).map((point) => (
-                    <li key={point} className="flex min-h-[2.25rem] items-start gap-3 leading-6">
+                    <li key={point} className="flex items-start gap-3 leading-6">
                       <span className="mt-2 h-2 w-2 rounded-full bg-[var(--color-cyan)] shadow-[0_0_0_5px_rgba(73,197,211,0.14)]" />
                       <span>{point}</span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="mt-5 min-h-[5.5rem] rounded-2xl bg-[rgba(244,251,253,0.95)] p-4 text-sm leading-6 text-[var(--color-corporate-blue)]">
+                <div className="mt-5 rounded-2xl bg-[rgba(244,251,253,0.95)] p-4 text-sm leading-6 text-[var(--color-corporate-blue)]">
                   {service.outcomes}
                 </div>
 
                 <button
                   onClick={() => onOpenService(service.slug)}
-                  className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-semibold text-[var(--color-corporate-blue)] transition-soft group-hover:translate-x-1 group-hover:text-[var(--color-teal)]"
+                  className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-corporate-blue)] transition-soft group-hover:translate-x-1 group-hover:text-[var(--color-teal)]"
                 >
                   <span className="whitespace-nowrap">Explore service</span>
                   <ArrowRight className="h-4 w-4" />
@@ -81,15 +81,15 @@ export default function ServicesPage({ onOpenService }: ServicesPageProps) {
             <div className="relative mt-5 overflow-hidden rounded-[30px]">
               <div className="pointer-events-none grid max-h-[220px] gap-5 overflow-hidden opacity-30 blur-[0.15px] md:grid-cols-2 xl:grid-cols-3">
                 {teaserServices.map((service) => (
-                  <article key={service.slug} className="theme-panel flex h-full flex-col p-6">
+                    <article key={service.slug} className="theme-panel flex h-full flex-col p-5 sm:p-6">
                     <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-[18px] bg-[linear-gradient(135deg,var(--color-corporate-blue),var(--color-teal),var(--color-cyan))] text-white shadow-[0_14px_30px_rgba(11,61,102,0.18)]">
                       <service.icon className="h-6 w-6" />
                     </div>
-                    <h2 className="theme-heading min-h-[3.75rem] text-xl font-bold text-slate-900 sm:text-[1.35rem]">{service.title}</h2>
-                    <p className="mt-3 min-h-[4.5rem] text-sm leading-6 text-slate-600 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] overflow-hidden">
-                      {service.description}
-                    </p>
-                  </article>
+                      <h2 className="theme-heading text-xl font-bold text-slate-900 sm:text-[1.35rem]">{service.title}</h2>
+                      <p className="mt-3 text-sm leading-6 text-slate-600 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] overflow-hidden">
+                        {service.description}
+                      </p>
+                    </article>
                 ))}
               </div>
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-[linear-gradient(180deg,rgba(255,255,255,0),rgba(247,250,252,0.96))]" />

@@ -26,6 +26,7 @@ export default function Navbar({ currentPath, onNavigate }: NavbarProps) {
   const navLinks = [
     { name: 'Home', path: '/' as RoutePath, id: 'hero' },
     { name: 'Services', path: '/services' as RoutePath },
+    { name: 'Programs', path: '/gaebel-talent-hub' as RoutePath },
     { name: 'About', path: '/about' as RoutePath },
     { name: 'Projects', path: '/projects' as RoutePath },
     { name: 'Process', path: '/process' as RoutePath },
@@ -34,6 +35,7 @@ export default function Navbar({ currentPath, onNavigate }: NavbarProps) {
 
   const isLinkActive = (path: RoutePath) => {
     if (path === '/services') return currentPath === '/services' || currentPath.startsWith('/services/');
+    if (path === '/gaebel-talent-hub') return currentPath === '/gaebel-talent-hub' || currentPath.startsWith('/gaebel-talent-hub/');
     if (path === '/projects') return currentPath === '/projects' || currentPath.startsWith('/projects/');
     return currentPath === path;
   };

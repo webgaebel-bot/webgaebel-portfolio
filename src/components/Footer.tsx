@@ -30,6 +30,7 @@ export default function Footer({ currentPath, onNavigate }: FooterProps) {
             <ul className="space-y-3 text-white/76">
               <li><button onClick={() => goTo('/')} className="transition-soft hover:text-[var(--color-cyan)]">Home</button></li>
               <li><button onClick={() => goTo('/services')} className="transition-soft hover:text-[var(--color-cyan)]">Services</button></li>
+              <li><button onClick={() => goTo('/gaebel-talent-hub')} className="transition-soft hover:text-[var(--color-cyan)]">Programs</button></li>
               <li><button onClick={() => goTo('/about')} className="transition-soft hover:text-[var(--color-cyan)]">About</button></li>
               <li><button onClick={() => goTo('/process')} className="transition-soft hover:text-[var(--color-cyan)]">Process + SDLC</button></li>
               <li><button onClick={() => goTo('/contact')} className="transition-soft hover:text-[var(--color-cyan)]">Contact</button></li>
