@@ -1,5 +1,6 @@
 import { Facebook, Instagram, Linkedin, Mail, Phone } from 'lucide-react';
 import type { RoutePath } from '../App';
+import { getServicePathBySlug } from '../data/servicePages';
 import XLogo from './icons/XLogo';
 
 type FooterProps = {
@@ -40,10 +41,26 @@ export default function Footer({ currentPath, onNavigate }: FooterProps) {
           <div>
             <h3 className="theme-heading mb-4 text-lg font-bold">Core Services</h3>
             <ul className="space-y-3 text-white/76">
-              <li><button onClick={() => goTo('/web-development-services')} className="transition-soft hover:text-[var(--color-cyan)]">Web Development Services</button></li>
-              <li><button onClick={() => goTo('/mobile-app-development')} className="transition-soft hover:text-[var(--color-cyan)]">Mobile App Development</button></li>
-              <li><button onClick={() => goTo('/ai-development-services')} className="transition-soft hover:text-[var(--color-cyan)]">AI Development Services</button></li>
-              <li><button onClick={() => goTo('/custom-software-development')} className="transition-soft hover:text-[var(--color-cyan)]">Custom Software</button></li>
+              <li>
+                <a href={getServicePathBySlug('website-development')} onClick={(e) => { e.preventDefault(); goTo(getServicePathBySlug('website-development')); }} className="transition-soft hover:text-[var(--color-cyan)]">
+                  Web Development Services
+                </a>
+              </li>
+              <li>
+                <a href={getServicePathBySlug('application-development')} onClick={(e) => { e.preventDefault(); goTo(getServicePathBySlug('application-development')); }} className="transition-soft hover:text-[var(--color-cyan)]">
+                  Mobile App Development
+                </a>
+              </li>
+              <li>
+                <a href={getServicePathBySlug('automation-solutions')} onClick={(e) => { e.preventDefault(); goTo(getServicePathBySlug('automation-solutions')); }} className="transition-soft hover:text-[var(--color-cyan)]">
+                  AI Development Services
+                </a>
+              </li>
+              <li>
+                <a href={getServicePathBySlug('custom-web-apps')} onClick={(e) => { e.preventDefault(); goTo(getServicePathBySlug('custom-web-apps')); }} className="transition-soft hover:text-[var(--color-cyan)]">
+                  Custom Software
+                </a>
+              </li>
             </ul>
           </div>
 

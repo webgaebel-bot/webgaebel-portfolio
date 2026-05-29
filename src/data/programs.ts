@@ -19,6 +19,15 @@ export type ProgramItem = {
   modules: ProgramModule[];
   imageUrl: string;
   cardImage: string;
+  pricing: ProgramPricing;
+};
+
+export type ProgramPricing = {
+  admissionFee: string;
+  monthlyInstallment: string;
+  installmentCount: string;
+  totalInstallmentCost: string;
+  fullPaymentDiscounted: string;
 };
 
 export const programs: ProgramItem[] = [
@@ -65,8 +74,15 @@ export const programs: ProgramItem[] = [
         highlights: ['Cross-stack integration', 'Capstone sprint', 'Live deployment'],
       },
     ],
-    imageUrl: '/program-images/program 1.png',
-    cardImage: '/program-images/program 1.png',
+    imageUrl: '/program-images/program 1.jpeg',
+    cardImage: '/program-images/program 1.jpeg',
+    pricing: {
+      admissionFee: 'PKR 5,000',
+      monthlyInstallment: 'PKR 4,000',
+      installmentCount: '5',
+      totalInstallmentCost: 'PKR 25,000',
+      fullPaymentDiscounted: 'PKR 20,000',
+    },
   },
   {
     slug: 'digital-marketing-high-level-performance-ads',
@@ -105,8 +121,15 @@ export const programs: ProgramItem[] = [
         highlights: ['Budget optimization', 'Conversion tracking', 'Account handling'],
       },
     ],
-    imageUrl: '/program-images/program 2.png',
-    cardImage: '/program-images/program 2.png',
+    imageUrl: '/program-images/program 2.jpeg',
+    cardImage: '/program-images/program 2.jpeg',
+    pricing: {
+      admissionFee: 'PKR 5,000',
+      monthlyInstallment: 'PKR 6,250',
+      installmentCount: '4',
+      totalInstallmentCost: 'PKR 25,000',
+      fullPaymentDiscounted: 'PKR 20,000',
+    },
   },
   {
     slug: 'shopify-and-ecommerce-growth-program',
@@ -133,8 +156,15 @@ export const programs: ProgramItem[] = [
         highlights: ['Funnels', 'AI copywriting', 'Ops automation'],
       },
     ],
-    imageUrl: '/program-images/program 3.png',
-    cardImage: '/program-images/program 3.png',
+    imageUrl: '/program-images/program 3.jpeg',
+    cardImage: '/program-images/program 3.jpeg',
+    pricing: {
+      admissionFee: 'PKR 5,000',
+      monthlyInstallment: 'PKR 7,500',
+      installmentCount: '2',
+      totalInstallmentCost: 'PKR 15,000',
+      fullPaymentDiscounted: 'PKR 12,000',
+    },
   },
   {
     slug: 'ai-foundations-and-premium-freelancing',
@@ -167,8 +197,15 @@ export const programs: ProgramItem[] = [
         highlights: ['B2B outreach', 'Cold email', 'Discovery closing'],
       },
     ],
-    imageUrl: '/program-images/program 4.png',
-    cardImage: '/program-images/program 4.png',
+    imageUrl: '/program-images/program 4.jpeg',
+    cardImage: '/program-images/program 4.jpeg',
+    pricing: {
+      admissionFee: 'PKR 5,000',
+      monthlyInstallment: 'PKR 6,666',
+      installmentCount: '3',
+      totalInstallmentCost: 'PKR 20,000',
+      fullPaymentDiscounted: 'PKR 15,000',
+    },
   },
   {
     slug: 'creative-media-program',
@@ -195,8 +232,15 @@ export const programs: ProgramItem[] = [
         highlights: ['Short-form video', 'Reels editing', 'Social content'],
       },
     ],
-    imageUrl: '/program-images/program 5.png',
-    cardImage: '/program-images/program 5.png',
+    imageUrl: '/program-images/program 5.jpeg',
+    cardImage: '/program-images/program 5.jpeg',
+    pricing: {
+      admissionFee: 'PKR 5,000',
+      monthlyInstallment: 'PKR 5,000',
+      installmentCount: '2',
+      totalInstallmentCost: 'PKR 10,000',
+      fullPaymentDiscounted: 'PKR 8,000',
+    },
   },
   {
     slug: 'amazon-private-label-and-agency-systems',
@@ -229,8 +273,15 @@ export const programs: ProgramItem[] = [
         highlights: ['Delegation', 'Reporting', 'Repeatable systems'],
       },
     ],
-    imageUrl: '/program-images/program 6.png',
-    cardImage: '/program-images/program 6.png',
+    imageUrl: '/program-images/program 6.jpeg',
+    cardImage: '/program-images/program 6.jpeg',
+    pricing: {
+      admissionFee: 'PKR 5,000',
+      monthlyInstallment: 'PKR 8,333',
+      installmentCount: '3',
+      totalInstallmentCost: 'PKR 25,000',
+      fullPaymentDiscounted: 'PKR 20,000',
+    },
   },
 ];
 

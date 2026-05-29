@@ -81,7 +81,7 @@ export default function Portfolio({
                       <img
                         src={project.preview}
                         alt={`${project.title} preview`}
-                        className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                        className="h-full w-full object-contain object-center bg-[linear-gradient(180deg,#eff7fb,#dfeef5)] p-1 transition-transform duration-500 group-hover:scale-[1.01]"
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(8,38,63,0.24))]" />
@@ -93,7 +93,7 @@ export default function Portfolio({
                       <img
                         src={project.preview}
                         alt={`${project.title} preview`}
-                        className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                        className="h-full w-full object-contain object-center bg-[linear-gradient(180deg,#eff7fb,#dfeef5)] p-1 transition-transform duration-500 group-hover:scale-[1.01]"
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(8,38,63,0.24))]" />
@@ -179,7 +179,7 @@ export default function Portfolio({
                     <img
                       src={project.preview}
                       alt={`${project.title} preview`}
-                      className="h-full w-full object-cover object-top"
+                      className="h-full w-full object-contain object-center bg-[linear-gradient(180deg,#eff7fb,#dfeef5)] p-1"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(8,38,63,0.24))]" />

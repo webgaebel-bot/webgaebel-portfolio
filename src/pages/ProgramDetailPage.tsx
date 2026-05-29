@@ -1,7 +1,30 @@
-import { ArrowLeft, ArrowRight, CalendarDays, CheckCircle2, ExternalLink, GraduationCap, Users, Clock, Award, Target, BookOpen, Sparkles, ChevronRight, Star, Briefcase, Shield, Zap } from 'lucide-react';
-import { motion } from 'framer-motion';
+import {
+  ArrowLeft,
+  ArrowRight,
+  Award,
+  BookOpen,
+  Briefcase,
+  CalendarDays,
+  CheckCircle2,
+  ChevronRight,
+  Clock,
+  ExternalLink,
+  GraduationCap,
+  MessageCircle,
+  Shield,
+  Sparkles,
+  Star,
+  Target,
+  Users,
+  Wallet,
+  X,
+  Zap,
+} from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { PROGRAM_REGISTRATION_URL, type ProgramItem } from '../data/programs';
+
+const TALENT_HUB_WHATSAPP = 'https://wa.me/923700822507';
 
 type ProgramDetailPageProps = {
   program: ProgramItem;
@@ -10,6 +33,8 @@ type ProgramDetailPageProps = {
 
 export default function ProgramDetailPage({ program, onBackToPrograms }: ProgramDetailPageProps) {
   const [navbarHeight, setNavbarHeight] = useState(80);
+  const [pricingOpen, setPricingOpen] = useState(false);
+  const quickHighlights = program.highlights.slice(0, 4);
   
   useEffect(() => {
     const navbar = document.querySelector('nav');
@@ -17,6 +42,22 @@ export default function ProgramDetailPage({ program, onBackToPrograms }: Program
       setNavbarHeight(navbar.offsetHeight);
     }
   }, []);
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setPricingOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    document.body.style.overflow = pricingOpen ? 'hidden' : '';
+
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [pricingOpen]);
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-cyan-50/30">
@@ -75,7 +116,7 @@ export default function ProgramDetailPage({ program, onBackToPrograms }: Program
                   rel="noreferrer noopener" 
                   className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-cyan-600 to-teal-600 text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-cyan-200 transition-all hover:-translate-y-0.5"
                 >
-                  Register Now
+                  Apply Now
                   <ExternalLink className="h-4 w-4" />
                 </a>
                 <button 
@@ -85,6 +126,14 @@ export default function ProgramDetailPage({ program, onBackToPrograms }: Program
                   View All Programs
                   <ArrowRight className="h-4 w-4" />
                 </button>
+                <button
+                  type="button"
+                  onClick={() => setPricingOpen(true)}
+                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-white bg-slate-900 hover:bg-slate-800 shadow-lg shadow-slate-200 transition-all hover:-translate-y-0.5"
+                >
+                  <Wallet className="h-4 w-4" />
+                  View Pricing
+                </button>
               </div>
             </div>
 
@@ -93,30 +142,20 @@ export default function ProgramDetailPage({ program, onBackToPrograms }: Program
               <div className="bg-gradient-to-br from-cyan-600 to-teal-600 rounded-2xl p-8 shadow-2xl">
                 <div className="flex items-center gap-3 mb-6">
                   <Shield className="h-8 w-8 text-white" />
-                  <h3 className="text-white font-bold text-2xl">Program Highlights</h3>
+                  <h3 className="text-white font-bold text-2xl">What You Will Learn</h3>
                 </div>
                 <div className="space-y-4">
-                  <div className="flex items-center gap-3 text-white/90">
-                    <Zap className="h-5 w-5" />
-                    <span className="text-base">Industry-recognized certification</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-white/90">
-                    <Zap className="h-5 w-5" />
-                    <span className="text-base">Hands-on projects & assignments</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-white/90">
-                    <Zap className="h-5 w-5" />
-                    <span className="text-base">Live interactive sessions</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-white/90">
-                    <Zap className="h-5 w-5" />
-                    <span className="text-base">Career support & guidance</span>
-                  </div>
+                  {program.highlights.slice(0, 4).map((highlight) => (
+                    <div key={highlight} className="flex items-start gap-3 text-white/90">
+                      <Zap className="mt-1 h-5 w-5 shrink-0" />
+                      <span className="text-base leading-7">{highlight}</span>
+                    </div>
+                  ))}
                 </div>
                 <div className="mt-8 pt-6 border-t border-white/20">
                   <div className="text-center">
-                    <div className="text-4xl font-bold text-white">Limited Seats</div>
-                    <p className="text-white/80 text-base mt-2">Enroll now to secure your spot</p>
+                    <div className="text-4xl font-bold text-white">{program.duration}</div>
+                    <p className="text-white/80 text-base mt-2">{program.schedule}</p>
                   </div>
                 </div>
               </div>
@@ -140,8 +179,8 @@ export default function ProgramDetailPage({ program, onBackToPrograms }: Program
                 <Sparkles className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h3 className="text-white font-bold text-lg">Limited Seats Available!</h3>
-                <p className="text-white/80 text-sm">Secure your spot in the upcoming batch</p>
+                <h3 className="text-white font-bold text-lg">Seats Filling Fast</h3>
+                <p className="text-white/80 text-sm">Reserve your spot for {program.title}</p>
               </div>
             </div>
             <a 
@@ -150,7 +189,7 @@ export default function ProgramDetailPage({ program, onBackToPrograms }: Program
               rel="noreferrer noopener" 
               className="inline-flex items-center gap-2 px-6 py-3 bg-white text-orange-600 rounded-xl font-semibold hover:shadow-lg transition-all whitespace-nowrap"
             >
-              Register Now
+              Apply Now
               <ExternalLink className="h-4 w-4" />
             </a>
           </div>
@@ -273,13 +312,15 @@ export default function ProgramDetailPage({ program, onBackToPrograms }: Program
               <div className="mt-6 pt-6 border-t border-white/20">
                 <div className="flex items-center gap-2 mb-3">
                   <Briefcase className="h-4 w-4 text-cyan-300" />
-                  <span className="text-sm font-semibold">What You'll Get</span>
+                  <span className="text-sm font-semibold">Program Focus</span>
                 </div>
                 <ul className="space-y-2 text-sm text-white/80">
-                  <li className="flex items-center gap-2">✓ Live interactive sessions</li>
-                  <li className="flex items-center gap-2">✓ Hands-on projects</li>
-                  <li className="flex items-center gap-2">✓ Industry-recognized certificate</li>
-                  <li className="flex items-center gap-2">✓ Lifetime access to materials</li>
+                  {quickHighlights.map((highlight) => (
+                    <li key={highlight} className="flex items-start gap-2">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-cyan-300" />
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
 
@@ -289,7 +330,7 @@ export default function ProgramDetailPage({ program, onBackToPrograms }: Program
                 rel="noreferrer noopener"
                 className="mt-6 w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-teal-500 text-white rounded-xl font-semibold hover:shadow-lg transition-all hover:-translate-y-0.5"
               >
-                Enroll Now
+                Start Application
                 <ExternalLink className="h-4 w-4" />
               </a>
             </motion.div>
@@ -356,7 +397,7 @@ export default function ProgramDetailPage({ program, onBackToPrograms }: Program
                 rel="noreferrer noopener"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-teal-500 text-white rounded-xl font-bold hover:shadow-xl transition-all hover:-translate-y-0.5"
               >
-                Enroll Now
+                Start Application
                 <ExternalLink className="h-5 w-5" />
               </a>
               <button
@@ -370,6 +411,137 @@ export default function ProgramDetailPage({ program, onBackToPrograms }: Program
           </div>
         </motion.div>
       </div>
+
+      <AnimatePresence>
+        {pricingOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 px-4 py-8 backdrop-blur-md"
+            onClick={() => setPricingOpen(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 30, scale: 0.96, rotateX: 10 }}
+              animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
+              exit={{ opacity: 0, y: 30, scale: 0.96 }}
+              transition={{ type: 'spring', stiffness: 180, damping: 18 }}
+              onClick={(event) => event.stopPropagation()}
+              className="relative w-full max-w-5xl overflow-hidden rounded-[1.75rem] border border-white/20 bg-gradient-to-br from-white via-cyan-50 to-slate-100 shadow-[0_24px_90px_rgba(2,132,199,0.3)]"
+            >
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.18),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(15,23,42,0.08),transparent_28%)]" />
+              <div className="relative grid lg:grid-cols-[1.2fr_0.8fr]">
+                <div className="p-5 sm:p-7 lg:p-8">
+                  <div className="mb-6 flex items-start justify-between gap-4">
+                    <div>
+                      <div className="inline-flex items-center gap-2 rounded-full bg-cyan-100 px-4 py-2 text-sm font-semibold text-cyan-800 shadow-sm">
+                        <Wallet className="h-4 w-4" />
+                        Pricing Details
+                      </div>
+                      <h3 className="mt-4 text-2xl sm:text-[2rem] font-bold text-slate-900">
+                        {program.title}
+                      </h3>
+                      <p className="mt-2 max-w-2xl text-sm text-slate-600">
+                        Clear fee structure, monthly plan, and discounted full-payment option for this course.
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setPricingOpen(false)}
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:bg-slate-50"
+                      aria-label="Close pricing modal"
+                    >
+                      <X className="h-5 w-5" />
+                    </button>
+                  </div>
+
+                  <div className="grid gap-3 sm:grid-cols-3">
+                    <div className="rounded-2xl bg-white/90 p-3.5 shadow-lg shadow-cyan-100/30 border border-cyan-100">
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">Admission Fee</p>
+                      <p className="mt-2 text-xl font-bold text-slate-900">{program.pricing.admissionFee}</p>
+                      <p className="mt-1 text-xs text-slate-500">One-time registration amount</p>
+                    </div>
+                    <div className="rounded-2xl bg-white/90 p-3.5 shadow-lg shadow-cyan-100/30 border border-cyan-100">
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">Monthly Plan</p>
+                      <p className="mt-2 text-xl font-bold text-slate-900">{program.pricing.monthlyInstallment}</p>
+                      <p className="mt-1 text-xs text-slate-500">x {program.pricing.installmentCount} months</p>
+                    </div>
+                    <div className="rounded-2xl bg-slate-900 p-3.5 shadow-xl shadow-slate-300/40">
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">Full Payment</p>
+                      <p className="mt-2 text-xl font-bold text-white">{program.pricing.fullPaymentDiscounted}</p>
+                      <p className="mt-1 text-xs text-white/70">Discounted one-time payment</p>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                    <div className="flex items-center gap-2 text-slate-900">
+                      <CheckCircle2 className="h-5 w-5 text-teal-500" />
+                      <h4 className="font-bold">Payment Summary</h4>
+                    </div>
+                    <div className="mt-3 flex items-center justify-between rounded-xl bg-slate-50 px-4 py-2.5">
+                      <span className="text-sm text-slate-600">Total installment plan</span>
+                      <span className="text-sm font-bold text-slate-900">{program.pricing.totalInstallmentCost}</span>
+                    </div>
+                  </div>
+
+                  <div className="mt-5 flex flex-col sm:flex-row gap-3">
+                    <a
+                      href={PROGRAM_REGISTRATION_URL}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-600 to-teal-600 px-5 py-3 font-semibold text-white shadow-lg shadow-cyan-200 transition hover:-translate-y-0.5"
+                    >
+                      Register Now
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+                    <a
+                      href={TALENT_HUB_WHATSAPP}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="inline-flex items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-5 py-3 font-semibold text-emerald-700 transition hover:bg-emerald-100"
+                    >
+                      <MessageCircle className="h-4 w-4" />
+                      Ask on WhatsApp
+                    </a>
+                  </div>
+                </div>
+
+                <div className="relative overflow-hidden bg-gradient-to-br from-cyan-700 via-teal-600 to-slate-900 p-5 sm:p-7 text-white">
+                  <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/10 blur-3xl" />
+                  <div className="absolute -bottom-16 -left-10 h-48 w-48 rounded-full bg-cyan-300/10 blur-3xl" />
+                  <div className="relative">
+                    <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">
+                      <Sparkles className="h-4 w-4" />
+                      Fee Snapshot
+                    </div>
+
+                    <div className="mt-5 space-y-3.5">
+                      <div className="rounded-2xl border border-white/10 bg-white/10 p-3.5 backdrop-blur-sm">
+                        <p className="text-xs uppercase tracking-[0.18em] text-cyan-100">Admission</p>
+                        <p className="mt-1 text-xl font-bold">{program.pricing.admissionFee}</p>
+                      </div>
+
+                      <div className="rounded-2xl border border-white/10 bg-white/10 p-3.5 backdrop-blur-sm">
+                        <p className="text-xs uppercase tracking-[0.18em] text-cyan-100">Installments</p>
+                        <p className="mt-1 text-xl font-bold">
+                          {program.pricing.monthlyInstallment}
+                        </p>
+                        <p className="mt-1 text-sm text-white/75">x {program.pricing.installmentCount} payments</p>
+                      </div>
+
+                      <div className="rounded-2xl border border-white/10 bg-white/10 p-3.5 backdrop-blur-sm">
+                        <p className="text-xs uppercase tracking-[0.18em] text-cyan-100">Discounted full pay</p>
+                        <p className="mt-1 text-xl font-bold">{program.pricing.fullPaymentDiscounted}</p>
+                        <p className="mt-1 text-sm text-white/75">One-time discounted option</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
