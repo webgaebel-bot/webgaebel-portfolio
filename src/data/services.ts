@@ -69,6 +69,19 @@ export const services: ServiceItem[] = [
     industries: ['Fashion', 'Beauty', 'Retail', 'Consumer products'],
   },
   {
+    slug: 'amazon-services',
+    icon: Store,
+    title: 'Amazon Services',
+    description: 'Amazon marketplace services for product hunting, sourcing, listings, SEO, PPC, and account management.',
+    points: ['Product hunting and validation', 'Product sourcing and supplier coordination', 'Listing creation and SEO', 'Launching, ranking, and PPC optimization'],
+    outcomes: 'Best for Amazon sellers who want a practical launch plan, stronger rankings, and structured account operations.',
+    overview:
+      'Our Amazon Services help sellers move through the marketplace workflow with less guesswork. We support product hunting, sourcing, listing creation, SEO, launch preparation, ranking, PPC, and ongoing account management so the store can grow with a clearer process.',
+    deliverables: ['Product research and opportunity review', 'Supplier sourcing support', 'Listing creation and optimization', 'Launch and ranking plan', 'PPC campaign setup and optimization', 'Full account management support'],
+    process: ['Product hunting and market validation', 'Sourcing and supplier coordination', 'Listing build and SEO optimization', 'Launch, ranking, PPC, and account management'],
+    industries: ['Amazon sellers', 'Private label brands', 'E-commerce teams', 'Marketplace operators'],
+  },
+  {
     slug: 'graphic-design-services',
     icon: Image,
     title: 'Graphic Design Services',

@@ -5,7 +5,8 @@ export type ServicePageRoute =
   | '/custom-software-development'
   | '/data-solutions'
   | '/video-editing-services'
-  | '/ecommerce-business-startup';
+  | '/ecommerce-business-startup'
+  | '/amazon-services';
 
 export type ServicePageContent = {
   route: ServicePageRoute;
@@ -36,6 +37,7 @@ export const servicePathBySlug: Record<string, ServicePageRoute> = {
   'data-solutions': '/data-solutions',
   'video-editing-services': '/video-editing-services',
   'ecommerce-business-startup': '/ecommerce-business-startup',
+  'amazon-services': '/amazon-services',
 };
 
 export const serviceSlugByRoute: Record<ServicePageRoute, string> = {
@@ -46,6 +48,7 @@ export const serviceSlugByRoute: Record<ServicePageRoute, string> = {
   '/data-solutions': 'data-solutions',
   '/video-editing-services': 'video-editing-services',
   '/ecommerce-business-startup': 'ecommerce-business-startup',
+  '/amazon-services': 'amazon-services',
 };
 
 export const servicePageContentByRoute: Record<ServicePageRoute, ServicePageContent> = {
@@ -934,6 +937,132 @@ export const servicePageContentByRoute: Record<ServicePageRoute, ServicePageCont
       { label: 'Shopify Development Services', path: '/shopify-development-services' },
       { label: 'Digital Marketing Services', path: '/digital-marketing-services' },
       { label: 'Graphic Design Services', path: '/graphic-design-services' },
+    ],
+  },
+  '/amazon-services': {
+    route: '/amazon-services',
+    serviceSlug: 'amazon-services',
+    metaTitle: 'Amazon Services | WEBGAEBEL',
+    metaDescription:
+      'Build and scale your Amazon store with product hunting, sourcing, listing creation, SEO, launching, ranking, PPC, and account management support.',
+    h1: 'Amazon Services',
+    primaryKeyword: 'Amazon services',
+    secondaryKeywords: [
+      'product hunting',
+      'product sourcing',
+      'listing creation',
+      'Amazon SEO',
+      'launching and ranking',
+      'PPC optimization',
+      'full account management',
+      'private label support',
+    ],
+    subheading:
+      'Launch and grow an Amazon business with structured marketplace execution, better product decisions, and practical account support.',
+    introParagraphs: [
+      'Amazon services are most effective when the work is treated like a complete marketplace system instead of a set of disconnected tasks. Product hunting, sourcing, listing creation, SEO, ranking, and PPC all affect each other, which is why the workflow needs to stay coordinated from the beginning. A strong Amazon strategy should help a seller choose better products, build stronger listings, and understand what needs to happen after launch to keep the account moving in the right direction.',
+      'At WEBGAEBEL, Amazon services are built around practical execution. We help sellers move through the launch process with more clarity, from product selection and supplier coordination through listing optimization, campaign setup, and ongoing account management. The goal is not only to get products live, but to make the marketplace operation easier to manage and easier to improve over time.',
+    ],
+    processSteps: [
+      {
+        title: '1. Product hunting and validation',
+        detail:
+          'We start by reviewing product opportunities, market demand, competition, and margin potential so the launch plan is based on stronger data.',
+      },
+      {
+        title: '2. Sourcing and listing preparation',
+        detail:
+          'Once the product direction is clear, we help with sourcing workflows and prepare the listing structure, copy, and asset plan needed for launch.',
+      },
+      {
+        title: '3. SEO and launch setup',
+        detail:
+          'The listing is optimized with the right keyword structure and launch plan so the product has a stronger foundation from day one.',
+      },
+      {
+        title: '4. Ranking and PPC management',
+        detail:
+          'After launch, we support ranking strategy, PPC setup, and optimization so the product can gain visibility without losing control of spend.',
+      },
+      {
+        title: '5. Ongoing account management',
+        detail:
+          'We keep track of account activity, performance signals, and operational tasks so the seller can manage the business with less friction.',
+      },
+    ],
+    features: [
+      {
+        title: 'Product hunting support',
+        detail:
+          'We evaluate product ideas against demand, competition, and practical launch potential so the seller can focus on better opportunities.',
+      },
+      {
+        title: 'Product sourcing workflow',
+        detail:
+          'Supplier coordination and sourcing planning are handled in a more organized way so the product path stays clear before launch.',
+      },
+      {
+        title: 'Listing creation and SEO',
+        detail:
+          'Titles, bullet points, and listing structure are built to support visibility, clarity, and a stronger marketplace presentation.',
+      },
+      {
+        title: 'Launching and ranking',
+        detail:
+          'The launch plan includes the steps needed to get the product moving and support a better ranking trajectory after publication.',
+      },
+      {
+        title: 'PPC setup and optimization',
+        detail:
+          'Sponsored campaigns are planned and optimized so traffic generation stays aligned with the product goal and budget control.',
+      },
+    ],
+    benefits: [
+      {
+        title: 'More confident product decisions',
+        detail:
+          'A better product selection process reduces guesswork and gives the store a stronger chance of performing after launch.',
+      },
+      {
+        title: 'Cleaner launch execution',
+        detail:
+          'A structured listing and launch workflow helps the product go live with fewer gaps in the setup.',
+      },
+      {
+        title: 'Stronger visibility potential',
+        detail:
+          'SEO, ranking, and PPC are handled together so the product has a better chance of getting discovered.',
+      },
+      {
+        title: 'Easier ongoing management',
+        detail:
+          'Full account management keeps the day-to-day workload more organized and easier to review over time.',
+      },
+    ],
+    technologies: [
+      { group: 'Research', items: ['Market analysis', 'Keyword review', 'Competitor research', 'Margin evaluation'] },
+      { group: 'Launch', items: ['Listing optimization', 'A+ content planning', 'Campaign setup', 'Ranking workflows'] },
+      { group: 'Operations', items: ['Account monitoring', 'Reporting', 'PPC optimization', 'Ongoing support'] },
+      { group: 'Marketplace', items: ['Amazon seller workflows', 'Private label support', 'FBA-style operations', 'Growth planning'] },
+    ],
+    whyChooseUsParagraphs: [
+      'Amazon is a marketplace where small execution mistakes can affect visibility, conversion, and profitability. That is why the service needs a practical structure that keeps product research, sourcing, listing work, and ads aligned instead of handled in isolation. We focus on the parts of the workflow that matter most to sellers who want a cleaner path from idea to launch.',
+      'The goal is to make the marketplace operation more manageable. Whether the work is for a new private label brand or an active seller that needs better structure, the service is designed to support clarity, consistency, and continuous improvement after the product goes live.',
+    ],
+    whyChooseUsPoints: [
+      'Structured Amazon workflow from product hunting to account management',
+      'Better coordination between listings, ranking, and PPC',
+      'Practical support for sellers who want cleaner execution',
+    ],
+    ctaTitle: 'Need Amazon support for your store?',
+    ctaParagraphs: [
+      'If you want help with product hunting, sourcing, listing creation, SEO, ranking, PPC, or account management, we can shape the support around your store goals.',
+      'Use the contact page to share your product stage and current marketplace needs, and we will map the best next step.',
+    ],
+    relatedLinks: [
+      { label: 'E-Commerce Business Startup', path: '/ecommerce-business-startup' },
+      { label: 'Digital Marketing Services', path: '/digital-marketing-services' },
+      { label: 'Shopify Development Services', path: '/shopify-development-services' },
     ],
   },
 };

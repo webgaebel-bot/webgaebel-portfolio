@@ -11,8 +11,9 @@ import {
   Users,
   ChevronLeft,
   ChevronRight,
+  X,
 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useMemo, useState } from 'react';
 import { PROGRAM_REGISTRATION_URL, programs } from '../data/programs';
 
@@ -22,6 +23,7 @@ const TALENT_HUB_WHATSAPP = 'https://wa.me/923700822507';
 const HERO_IMAGE = encodeURI('/program-images/ChatGPT Image May 29, 2026, 12_22_57 PM.png');
 const HERO_IMAGE_2 = encodeURI('/program-images/s1.jpeg');
 const HERO_IMAGE_3 = encodeURI('/program-images/s2.jpeg');
+const PRICING_IMAGE = encodeURI('/program-images/ChatGPT Image May 28, 2026, 11_45_55 PM (1).png');
 
 type ProgramsPageProps = {
   onOpenProgram: (slug: string) => void;
@@ -40,6 +42,7 @@ export default function ProgramsPage({ onOpenProgram }: ProgramsPageProps) {
   );
 
   const [activeSlide, setActiveSlide] = useState(0);
+  const [pricingPreviewOpen, setPricingPreviewOpen] = useState(false);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -48,6 +51,22 @@ export default function ProgramsPage({ onOpenProgram }: ProgramsPageProps) {
 
     return () => window.clearInterval(timer);
   }, [heroSlides.length]);
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setPricingPreviewOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    document.body.style.overflow = pricingPreviewOpen ? 'hidden' : '';
+
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [pricingPreviewOpen]);
 
   const jumpToSlide = (index: number) => {
     setActiveSlide(index);
@@ -65,7 +84,7 @@ export default function ProgramsPage({ onOpenProgram }: ProgramsPageProps) {
         <div className="absolute inset-0 bg-gradient-conic from-teal-400/5 via-cyan-400/5 to-transparent" />
 
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/60 bg-white/70 shadow-[0_24px_90px_rgba(15,23,42,0.08)] backdrop-blur-sm">
+          <div className="relative min-h-[560px] overflow-hidden rounded-[2rem] border border-white/60 bg-white/70 shadow-[0_24px_90px_rgba(15,23,42,0.08)] backdrop-blur-sm sm:min-h-[620px] lg:min-h-[680px]">
             <div className="absolute inset-0">
               {heroSlides.map((slide, index) => (
                 <motion.div
@@ -81,10 +100,10 @@ export default function ProgramsPage({ onOpenProgram }: ProgramsPageProps) {
                   <img
                     src={slide.src}
                     alt={slide.title}
-                    className="h-full w-full object-cover object-center"
+                    className="h-full w-full object-cover object-[center_35%] sm:object-center"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/92 via-white/86 to-white/56" />
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-950/10 via-transparent to-teal-950/10" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/94 via-white/88 to-white/68 sm:from-white/92 sm:via-white/86 sm:to-white/56" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-950/12 via-transparent to-teal-950/10" />
                 </motion.div>
               ))}
             </div>
@@ -128,25 +147,24 @@ export default function ProgramsPage({ onOpenProgram }: ProgramsPageProps) {
                   Join our comprehensive training programs designed to build in-demand technical and professional skills for the modern workforce.
                 </p>
 
-                <div className="mt-8 flex flex-col items-center justify-center gap-4">
+                <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
                   <a
                     href={PROGRAM_REGISTRATION_URL}
                     target="_blank"
                     rel="noreferrer noopener"
                     className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-600 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-cyan-200 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-cyan-300"
-                  >
+                    >
                     Apply Online Now
                     <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                   </a>
-                  {/* <a
-                    href={TALENT_HUB_WHATSAPP}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="inline-flex items-center justify-center gap-2 rounded-2xl border border-cyan-100 bg-white px-8 py-4 font-semibold text-slate-800 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                  <button
+                    type="button"
+                    onClick={() => setPricingPreviewOpen(true)}
+                    className="inline-flex items-center justify-center gap-2 rounded-2xl border border-cyan-200 bg-white/90 px-8 py-4 font-semibold text-slate-800 shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300 hover:shadow-md"
                   >
-                    WhatsApp
-                    <MessageCircle className="h-4 w-4 text-emerald-600" />
-                  </a> */}
+                    View Pricing
+                    <BookOpen className="h-4 w-4 text-cyan-600" />
+                  </button>
                 </div>
 
                 <div className="mt-5 flex items-center justify-center gap-3">
@@ -230,10 +248,10 @@ export default function ProgramsPage({ onOpenProgram }: ProgramsPageProps) {
           >
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-700">Programs</p>
-              <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">Course Cards</h2>
+              <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">Training Tracks</h2>
             </div>
             <p className="max-w-2xl text-sm text-slate-500">
-              Small cards, three in a row on desktop, keeping the focus on the course content.
+              Designed for practical learning, clear outcomes, and a clean mobile-first browsing experience.
             </p>
           </motion.div>
 
@@ -318,6 +336,41 @@ export default function ProgramsPage({ onOpenProgram }: ProgramsPageProps) {
           <div className="mt-12" />
         </div>
       </section>
+
+      <AnimatePresence>
+        {pricingPreviewOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setPricingPreviewOpen(false)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/75 px-4 py-8 backdrop-blur-md"
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 24, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 24, scale: 0.96 }}
+              transition={{ type: 'spring', stiffness: 190, damping: 20 }}
+              onClick={(event) => event.stopPropagation()}
+              className="relative w-auto max-w-[96vw] overflow-visible bg-transparent"
+            >
+              <button
+                type="button"
+                onClick={() => setPricingPreviewOpen(false)}
+                aria-label="Close pricing preview"
+                className="absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-slate-700 shadow-lg transition hover:bg-white"
+              >
+                <X className="h-5 w-5" />
+              </button>
+              <img
+                src={PRICING_IMAGE}
+                alt="Program pricing table"
+                className="block max-h-[90vh] w-auto max-w-[96vw] object-contain"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }

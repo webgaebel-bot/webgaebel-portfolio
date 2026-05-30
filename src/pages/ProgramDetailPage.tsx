@@ -11,14 +11,11 @@ import {
   ExternalLink,
   GraduationCap,
   MessageCircle,
-  Shield,
   Sparkles,
   Star,
   Target,
-  Users,
   Wallet,
   X,
-  Zap,
 } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
@@ -99,7 +96,7 @@ export default function ProgramDetailPage({ program, onBackToPrograms }: Program
                   <span className="text-sm text-slate-700 font-medium">{program.duration}</span>
                 </div>
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-50 rounded-full border border-cyan-100">
-                  <Users className="h-4 w-4 text-cyan-600" />
+                  <CalendarDays className="h-4 w-4 text-cyan-600" />
                   <span className="text-sm text-slate-700 font-medium">{program.schedule}</span>
                 </div>
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-50 rounded-full border border-cyan-100">
@@ -141,13 +138,13 @@ export default function ProgramDetailPage({ program, onBackToPrograms }: Program
             <div>
               <div className="bg-gradient-to-br from-cyan-600 to-teal-600 rounded-2xl p-8 shadow-2xl">
                 <div className="flex items-center gap-3 mb-6">
-                  <Shield className="h-8 w-8 text-white" />
+                  <Star className="h-8 w-8 text-white" />
                   <h3 className="text-white font-bold text-2xl">What You Will Learn</h3>
                 </div>
                 <div className="space-y-4">
                   {program.highlights.slice(0, 4).map((highlight) => (
                     <div key={highlight} className="flex items-start gap-3 text-white/90">
-                      <Zap className="mt-1 h-5 w-5 shrink-0" />
+                      <CheckCircle2 className="mt-1 h-5 w-5 shrink-0" />
                       <span className="text-base leading-7">{highlight}</span>
                     </div>
                   ))}
@@ -427,119 +424,146 @@ export default function ProgramDetailPage({ program, onBackToPrograms }: Program
               exit={{ opacity: 0, y: 30, scale: 0.96 }}
               transition={{ type: 'spring', stiffness: 180, damping: 18 }}
               onClick={(event) => event.stopPropagation()}
-              className="relative w-full max-w-5xl overflow-hidden rounded-[1.75rem] border border-white/20 bg-gradient-to-br from-white via-cyan-50 to-slate-100 shadow-[0_24px_90px_rgba(2,132,199,0.3)]"
+              className="relative w-full max-w-5xl max-h-[90vh] overflow-hidden rounded-[1.75rem] border border-white/20 bg-gradient-to-br from-white via-cyan-50 to-slate-100 shadow-[0_24px_90px_rgba(2,132,199,0.3)]"
             >
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.18),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(15,23,42,0.08),transparent_28%)]" />
-              <div className="relative grid lg:grid-cols-[1.2fr_0.8fr]">
-                <div className="p-5 sm:p-7 lg:p-8">
-                  <div className="mb-6 flex items-start justify-between gap-4">
-                    <div>
-                      <div className="inline-flex items-center gap-2 rounded-full bg-cyan-100 px-4 py-2 text-sm font-semibold text-cyan-800 shadow-sm">
-                        <Wallet className="h-4 w-4" />
-                        Pricing Details
-                      </div>
-                      <h3 className="mt-4 text-2xl sm:text-[2rem] font-bold text-slate-900">
-                        {program.title}
-                      </h3>
-                      <p className="mt-2 max-w-2xl text-sm text-slate-600">
-                        Clear fee structure, monthly plan, and discounted full-payment option for this course.
-                      </p>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => setPricingOpen(false)}
-                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:bg-slate-50"
-                      aria-label="Close pricing modal"
-                    >
-                      <X className="h-5 w-5" />
-                    </button>
-                  </div>
-
-                  <div className="grid gap-3 sm:grid-cols-3">
-                    <div className="rounded-2xl bg-white/90 p-3.5 shadow-lg shadow-cyan-100/30 border border-cyan-100">
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">Admission Fee</p>
-                      <p className="mt-2 text-xl font-bold text-slate-900">{program.pricing.admissionFee}</p>
-                      <p className="mt-1 text-xs text-slate-500">One-time registration amount</p>
-                    </div>
-                    <div className="rounded-2xl bg-white/90 p-3.5 shadow-lg shadow-cyan-100/30 border border-cyan-100">
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">Monthly Plan</p>
-                      <p className="mt-2 text-xl font-bold text-slate-900">{program.pricing.monthlyInstallment}</p>
-                      <p className="mt-1 text-xs text-slate-500">x {program.pricing.installmentCount} months</p>
-                    </div>
-                    <div className="rounded-2xl bg-slate-900 p-3.5 shadow-xl shadow-slate-300/40">
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">Full Payment</p>
-                      <p className="mt-2 text-xl font-bold text-white">{program.pricing.fullPaymentDiscounted}</p>
-                      <p className="mt-1 text-xs text-white/70">Discounted one-time payment</p>
-                    </div>
-                  </div>
-
-                  <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                    <div className="flex items-center gap-2 text-slate-900">
-                      <CheckCircle2 className="h-5 w-5 text-teal-500" />
-                      <h4 className="font-bold">Payment Summary</h4>
-                    </div>
-                    <div className="mt-3 flex items-center justify-between rounded-xl bg-slate-50 px-4 py-2.5">
-                      <span className="text-sm text-slate-600">Total installment plan</span>
-                      <span className="text-sm font-bold text-slate-900">{program.pricing.totalInstallmentCost}</span>
-                    </div>
-                  </div>
-
-                  <div className="mt-5 flex flex-col sm:flex-row gap-3">
-                    <a
-                      href={PROGRAM_REGISTRATION_URL}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-600 to-teal-600 px-5 py-3 font-semibold text-white shadow-lg shadow-cyan-200 transition hover:-translate-y-0.5"
-                    >
-                      Register Now
-                      <ExternalLink className="h-4 w-4" />
-                    </a>
-                    <a
-                      href={TALENT_HUB_WHATSAPP}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      className="inline-flex items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-5 py-3 font-semibold text-emerald-700 transition hover:bg-emerald-100"
-                    >
-                      <MessageCircle className="h-4 w-4" />
-                      Ask on WhatsApp
-                    </a>
-                  </div>
-                </div>
-
-                <div className="relative overflow-hidden bg-gradient-to-br from-cyan-700 via-teal-600 to-slate-900 p-5 sm:p-7 text-white">
-                  <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/10 blur-3xl" />
-                  <div className="absolute -bottom-16 -left-10 h-48 w-48 rounded-full bg-cyan-300/10 blur-3xl" />
-                  <div className="relative">
-                    <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">
-                      <Sparkles className="h-4 w-4" />
-                      Fee Snapshot
-                    </div>
-
-                    <div className="mt-5 space-y-3.5">
-                      <div className="rounded-2xl border border-white/10 bg-white/10 p-3.5 backdrop-blur-sm">
-                        <p className="text-xs uppercase tracking-[0.18em] text-cyan-100">Admission</p>
-                        <p className="mt-1 text-xl font-bold">{program.pricing.admissionFee}</p>
-                      </div>
-
-                      <div className="rounded-2xl border border-white/10 bg-white/10 p-3.5 backdrop-blur-sm">
-                        <p className="text-xs uppercase tracking-[0.18em] text-cyan-100">Installments</p>
-                        <p className="mt-1 text-xl font-bold">
-                          {program.pricing.monthlyInstallment}
+                <div className="relative max-h-[90vh] overflow-y-auto overscroll-contain grid lg:grid-cols-[1.08fr_0.92fr]">
+                  <div className="p-5 sm:p-7 lg:p-8">
+                    <div className="mb-6 flex items-start justify-between gap-4">
+                      <div>
+                        <div className="inline-flex items-center gap-2 rounded-full bg-cyan-100 px-4 py-2 text-sm font-semibold text-cyan-800 shadow-sm">
+                          <Wallet className="h-4 w-4" />
+                          Pricing Details
+                        </div>
+                        <h3 className="mt-4 text-2xl font-bold text-slate-900 sm:text-[2rem]">
+                          {program.title}
+                        </h3>
+                        <p className="mt-2 max-w-2xl text-sm text-slate-600">
+                          Two simple ways to join the program: installment plan or discounted one-time payment.
                         </p>
-                        <p className="mt-1 text-sm text-white/75">x {program.pricing.installmentCount} payments</p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setPricingOpen(false)}
+                        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:bg-slate-50"
+                        aria-label="Close pricing modal"
+                      >
+                        <X className="h-5 w-5" />
+                      </button>
+                    </div>
+
+                    <div className="space-y-4">
+                      <div className="rounded-3xl border border-cyan-100 bg-gradient-to-br from-cyan-50 to-white p-4 shadow-sm sm:p-5">
+                        <div className="flex items-center justify-between gap-4">
+                          <div>
+                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">
+                              Installment Plan
+                            </p>
+                            <h4 className="mt-2 text-base font-bold text-slate-900 sm:text-lg">Start with admission fee + monthly payments</h4>
+                          </div>
+                          <div className="rounded-2xl bg-white px-3 py-2 text-right shadow-sm">
+                            <p className="text-[11px] uppercase tracking-[0.18em] text-slate-500">Admission Fee</p>
+                            <p className="text-lg font-bold text-slate-900">{program.pricing.admissionFee}</p>
+                          </div>
+                        </div>
+
+                        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                          <div className="rounded-2xl bg-white p-4 shadow-sm">
+                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Monthly Installment</p>
+                            <p className="mt-2 text-2xl font-bold text-slate-900">{program.pricing.monthlyInstallment}</p>
+                            <p className="mt-1 text-sm text-slate-500">x {program.pricing.installmentCount} months</p>
+                          </div>
+                          <div className="rounded-2xl bg-white p-4 shadow-sm">
+                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Total Installment Cost</p>
+                            <p className="mt-2 text-2xl font-bold text-slate-900">{program.pricing.totalInstallmentCost}</p>
+                            <p className="mt-1 text-sm text-slate-500">Overall payment across the plan</p>
+                          </div>
+                        </div>
                       </div>
 
-                      <div className="rounded-2xl border border-white/10 bg-white/10 p-3.5 backdrop-blur-sm">
-                        <p className="text-xs uppercase tracking-[0.18em] text-cyan-100">Discounted full pay</p>
-                        <p className="mt-1 text-xl font-bold">{program.pricing.fullPaymentDiscounted}</p>
-                        <p className="mt-1 text-sm text-white/75">One-time discounted option</p>
+                      <div className="rounded-3xl border border-slate-200 bg-slate-900 p-4 text-white shadow-lg sm:p-5">
+                        <div className="flex items-center justify-between gap-4">
+                          <div>
+                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">
+                              One-Time Payment
+                            </p>
+                            <h4 className="mt-2 text-base font-bold sm:text-lg">Best value for the full program</h4>
+                          </div>
+                          <div className="rounded-2xl bg-white/10 px-3 py-2 text-right">
+                            <p className="text-[11px] uppercase tracking-[0.18em] text-cyan-100">Discounted Fee</p>
+                            <p className="text-lg font-bold">{program.pricing.fullPaymentDiscounted}</p>
+                          </div>
+                        </div>
+
+                        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                          <div className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
+                            <p className="text-xs uppercase tracking-[0.18em] text-cyan-100">Pay once</p>
+                            <p className="mt-2 text-base font-semibold text-white">No monthly tracking required</p>
+                            <p className="mt-1 text-sm text-white/70">Useful if you want a simple one-time payment flow.</p>
+                          </div>
+                          <div className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
+                            <p className="text-xs uppercase tracking-[0.18em] text-cyan-100">Admission Fee</p>
+                            <p className="mt-2 text-base font-semibold text-white">{program.pricing.admissionFee}</p>
+                            <p className="mt-1 text-sm text-white/70">Registration amount included at admission.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+                      <a
+                        href={PROGRAM_REGISTRATION_URL}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-600 to-teal-600 px-5 py-3 font-semibold text-white shadow-lg shadow-cyan-200 transition hover:-translate-y-0.5"
+                      >
+                        Register Now
+                        <ExternalLink className="h-4 w-4" />
+                      </a>
+                      <a
+                        href={TALENT_HUB_WHATSAPP}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="inline-flex items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-5 py-3 font-semibold text-emerald-700 transition hover:bg-emerald-100"
+                      >
+                        <MessageCircle className="h-4 w-4" />
+                        Ask on WhatsApp
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="relative overflow-hidden bg-gradient-to-br from-cyan-700 via-teal-600 to-slate-900 p-5 sm:p-7 text-white">
+                    <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/10 blur-3xl" />
+                    <div className="absolute -bottom-16 -left-10 h-48 w-48 rounded-full bg-cyan-300/10 blur-3xl" />
+                    <div className="relative">
+                      <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">
+                        <Sparkles className="h-4 w-4" />
+                        Fee Snapshot
+                      </div>
+
+                      <div className="mt-5 space-y-3.5">
+                        <div className="rounded-2xl border border-white/10 bg-white/10 p-3.5 backdrop-blur-sm">
+                          <p className="text-xs uppercase tracking-[0.18em] text-cyan-100">Installment Admission</p>
+                          <p className="mt-1 text-xl font-bold">{program.pricing.admissionFee}</p>
+                        </div>
+
+                        <div className="rounded-2xl border border-white/10 bg-white/10 p-3.5 backdrop-blur-sm">
+                          <p className="text-xs uppercase tracking-[0.18em] text-cyan-100">Monthly Installment</p>
+                          <p className="mt-1 text-xl font-bold">{program.pricing.monthlyInstallment}</p>
+                          <p className="mt-1 text-sm text-white/75">x {program.pricing.installmentCount} payments</p>
+                        </div>
+
+                        <div className="rounded-2xl border border-white/10 bg-white/10 p-3.5 backdrop-blur-sm">
+                          <p className="text-xs uppercase tracking-[0.18em] text-cyan-100">One-Time Payment</p>
+                          <p className="mt-1 text-xl font-bold">{program.pricing.fullPaymentDiscounted}</p>
+                          <p className="mt-1 text-sm text-white/75">Discounted full-payment option</p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
         )}
       </AnimatePresence>
     </main>

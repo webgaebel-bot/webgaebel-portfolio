@@ -43,6 +43,7 @@ export type RoutePath =
   | '/ai-development-services'
   | '/custom-software-development'
   | '/data-solutions'
+  | '/amazon-services'
   | `/services/${string}`
   | `/projects/${string}`;
 

@@ -93,8 +93,8 @@ export const programs: ProgramItem[] = [
     audience:
       'Traditional marketers, brand owners, agency founders, and individuals aiming to control premium local or international ad spends.',
     summary:
-      'An advanced marketing track focused on Meta, TikTok, Google, budget optimization, and performance systems that support serious media buying.',
-    highlights: ['Meta Ads and Business Manager setup', 'TikTok Spark Ads and creative testing', 'Google Search, Shopping, and Performance Max', 'CBO / ABO budget optimization', 'Conversion API and pixel setup'],
+      'An advanced marketing track focused on business setup, Meta, TikTok, Google, budget optimization, and performance systems that support serious media buying.',
+    highlights: ['Business setup for Meta Ads and Business Manager', 'TikTok Spark Ads and creative testing', 'Google Search, Shopping, and Performance Max', 'CBO / ABO budget optimization', 'Conversion API and pixel setup'],
     modules: [
       {
         title: 'Month 1',
@@ -140,8 +140,8 @@ export const programs: ProgramItem[] = [
     audience:
       'Aspiring entrepreneurs, local dropshippers, and retail manufacturers targeting Pakistan COD or international fulfillment markets.',
     summary:
-      'A rapid-deployment Shopify and e-commerce track built around store architecture, product sourcing, funnel thinking, and scale-ready operations.',
-    highlights: ['Shopify architecture and custom themes', 'Winning product sourcing', 'Pakistan COD setup', 'E-commerce funnels and AI copywriting', 'Courier and refund automation'],
+      'A rapid-deployment Shopify and e-commerce track built around business setup, store architecture, product sourcing, funnel thinking, and scale-ready operations.',
+    highlights: ['Business setup for Shopify stores and custom themes', 'Winning product sourcing', 'Pakistan COD setup', 'E-commerce funnels and AI copywriting', 'Courier and refund automation'],
     modules: [
       {
         title: 'Month 1',
@@ -175,8 +175,8 @@ export const programs: ProgramItem[] = [
     audience:
       'Freelancers struggling with low-ticket orders, remote sales professionals, and consultants trying to secure dollar-denominated contracts.',
     summary:
-      'A practical AI and freelancing track focused on prompt systems, automation pipelines, positioning, and high-ticket client acquisition.',
-    highlights: ['Prompt engineering and custom GPTs', 'Make.com and Zapier pipelines', 'Upwork and Fiverr profile optimization', 'AI-driven proposal writing', 'Cold outreach and discovery closing'],
+      'A practical AI and freelancing track focused on client hunting, prompt systems, automation pipelines, positioning, and high-ticket client acquisition.',
+    highlights: ['Prompt engineering and custom GPTs', 'Make.com and Zapier pipelines', 'Client hunting and profile optimization', 'AI-driven proposal writing', 'Cold outreach and discovery closing'],
     modules: [
       {
         title: 'Month 1',
@@ -187,7 +187,7 @@ export const programs: ProgramItem[] = [
       {
         title: 'Month 2',
         detail:
-          'Upwork and Fiverr profile optimization, AI-driven proposal writing, and LinkedIn inbound positioning.',
+          'Profile optimization, AI-driven proposal writing, and LinkedIn inbound positioning.',
         highlights: ['Freelance profiles', 'Proposal writing', 'LinkedIn positioning'],
       },
       {
@@ -216,8 +216,8 @@ export const programs: ProgramItem[] = [
     audience:
       'Aspiring content creators, video editors, and design assets professionals focused on high-CTR thumbnails and short-form reels.',
     summary:
-      'A creative track built around graphic design and video editing for content, brand assets, and short-form media production.',
-    highlights: ['Graphic design for brand assets', 'Short-form reel editing', 'Thumbnail systems', 'Creative workflow and delivery'],
+      'A creative track built around graphic design and video editing, with work on real projects for content, brand assets, and short-form media production.',
+    highlights: ['Graphic design for brand assets', 'Short-form reel editing', 'Work on real projects', 'Thumbnail systems', 'Creative workflow and delivery'],
     modules: [
       {
         title: 'Track focus 1',
@@ -244,33 +244,33 @@ export const programs: ProgramItem[] = [
   },
   {
     slug: 'amazon-private-label-and-agency-systems',
-    title: 'Amazon Private Label and Agency Systems',
-    duration: '3 months',
+    title: 'Amazon Marketplace Course and Internship',
+    duration: '2 months course + 1 month internship',
     schedule: '3 classes / week',
     instructor: 'Outsourced Elite Framework',
     audience:
-      'Virtual assistants, investors, and wholesale operators entering international FBA marketplaces via data-backed analysis.',
+      'Aspiring Amazon operators, virtual assistants, and e-commerce teams who want practical marketplace training with real execution.',
     summary:
-      'A marketplace-focused track centered on Amazon private label setup, operational systems, and agency-style execution.',
-    highlights: ['Private label planning', 'Amazon marketplace operations', 'Data-backed analysis', 'Agency systems and workflows'],
+      'A hands-on Amazon track that combines 2 months of course work with 1 month of internship-style execution across product hunting, sourcing, listings, SEO, PPC, and account management.',
+    highlights: ['Product hunting and validation', 'Product sourcing workflows', 'Listing creation and optimization', 'Launching, ranking, and PPC', 'Full account management'],
     modules: [
       {
         title: 'Track focus 1',
         detail:
-          'Amazon private label foundations, product research, and marketplace setup workflows.',
-        highlights: ['Product research', 'Listing setup', 'Marketplace entry'],
+          'Amazon marketplace foundations, product hunting, sourcing research, and supplier communication workflows.',
+        highlights: ['Product hunting', 'Sourcing research', 'Supplier communication'],
       },
       {
         title: 'Track focus 2',
         detail:
-          'Operational systems for sourcing, fulfillment, and routine execution across Amazon-style marketplace work.',
-        highlights: ['Sourcing', 'Fulfillment', 'Daily operations'],
+          'Listing creation, listing optimization, SEO, launch planning, ranking strategy, and PPC setup.',
+        highlights: ['Listing creation', 'SEO', 'PPC setup'],
       },
       {
         title: 'Track focus 3',
         detail:
-          'Agency systems that support outsourcing, delegation, reporting, and repeatable delivery.',
-        highlights: ['Delegation', 'Reporting', 'Repeatable systems'],
+          'Internship-style account management with daily operations, reporting, optimization, and hands-on execution.',
+        highlights: ['Account management', 'Reporting', 'Optimization'],
       },
     ],
     imageUrl: '/program-images/program 6.jpeg',
