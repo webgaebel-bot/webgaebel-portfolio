@@ -23,11 +23,10 @@ export type ProgramItem = {
 };
 
 export type ProgramPricing = {
-  admissionFee: string;
-  monthlyInstallment: string;
-  installmentCount: string;
-  totalInstallmentCost: string;
-  fullPaymentDiscounted: string;
+  monthlyFee: string;
+  oneTimePayment: string;
+  installmentPayment: string;
+  admissionFee?: string;
 };
 
 export const programs: ProgramItem[] = [
@@ -77,16 +76,15 @@ export const programs: ProgramItem[] = [
     imageUrl: '/program-images/program 1.jpeg',
     cardImage: '/program-images/program 1.jpeg',
     pricing: {
+      monthlyFee: 'PKR 4,000',
+      oneTimePayment: 'PKR 20,000',
+      installmentPayment: 'PKR 25,000',
       admissionFee: 'PKR 5,000',
-      monthlyInstallment: 'PKR 4,000',
-      installmentCount: '5',
-      totalInstallmentCost: 'PKR 25,000',
-      fullPaymentDiscounted: 'PKR 20,000',
     },
   },
   {
     slug: 'digital-marketing-high-level-performance-ads',
-    title: 'Digital Marketing and High-Level Performance Ads',
+    title: 'Digital Marketing & High-Level Ads Course',
     duration: '4 months',
     schedule: '3 classes / week, 1.5 hours each',
     instructor: 'Taqi & Ali Ashhad',
@@ -124,16 +122,14 @@ export const programs: ProgramItem[] = [
     imageUrl: '/program-images/program 2.jpeg',
     cardImage: '/program-images/program 2.jpeg',
     pricing: {
-      admissionFee: 'PKR 5,000',
-      monthlyInstallment: 'PKR 6,250',
-      installmentCount: '4',
-      totalInstallmentCost: 'PKR 25,000',
-      fullPaymentDiscounted: 'PKR 20,000',
+      monthlyFee: 'PKR 6,250',
+      oneTimePayment: 'PKR 25,000',
+      installmentPayment: 'PKR 30,000',
     },
   },
   {
     slug: 'shopify-and-ecommerce-growth-program',
-    title: 'Shopify and E-Commerce Growth Program',
+    title: 'Shopify & E-commerce Course',
     duration: '2 months',
     schedule: '3 classes / week, 1.5 hours each',
     instructor: 'Taqi & Ali Ashhad',
@@ -159,16 +155,14 @@ export const programs: ProgramItem[] = [
     imageUrl: '/program-images/program 3.jpeg',
     cardImage: '/program-images/program 3.jpeg',
     pricing: {
-      admissionFee: 'PKR 5,000',
-      monthlyInstallment: 'PKR 7,500',
-      installmentCount: '2',
-      totalInstallmentCost: 'PKR 15,000',
-      fullPaymentDiscounted: 'PKR 12,000',
+      monthlyFee: 'PKR 7,500',
+      oneTimePayment: 'PKR 15,000',
+      installmentPayment: 'PKR 20,000',
     },
   },
   {
     slug: 'ai-foundations-and-premium-freelancing',
-    title: 'AI Foundations and Premium Freelancing',
+    title: 'AI Foundation & Freelancing Course',
     duration: '3 months',
     schedule: '3 classes / week, 1.5 hours each',
     instructor: 'Ali Ashhad',
@@ -200,11 +194,9 @@ export const programs: ProgramItem[] = [
     imageUrl: '/program-images/program 4.jpeg',
     cardImage: '/program-images/program 4.jpeg',
     pricing: {
-      admissionFee: 'PKR 5,000',
-      monthlyInstallment: 'PKR 6,666',
-      installmentCount: '3',
-      totalInstallmentCost: 'PKR 20,000',
-      fullPaymentDiscounted: 'PKR 15,000',
+      monthlyFee: 'PKR 6,000',
+      oneTimePayment: 'PKR 18,000',
+      installmentPayment: 'PKR 23,000',
     },
   },
   {
@@ -235,16 +227,15 @@ export const programs: ProgramItem[] = [
     imageUrl: '/program-images/program 5.jpeg',
     cardImage: '/program-images/program 5.jpeg',
     pricing: {
+      monthlyFee: 'PKR 5,000',
+      oneTimePayment: 'PKR 8,000',
+      installmentPayment: 'PKR 10,000',
       admissionFee: 'PKR 5,000',
-      monthlyInstallment: 'PKR 5,000',
-      installmentCount: '2',
-      totalInstallmentCost: 'PKR 10,000',
-      fullPaymentDiscounted: 'PKR 8,000',
     },
   },
   {
     slug: 'amazon-private-label-and-agency-systems',
-    title: 'Amazon Marketplace Course and Internship',
+    title: 'Amazon & Private Level Agency Course',
     duration: '2 months course + 1 month internship',
     schedule: '3 classes / week',
     instructor: 'Outsourced Elite Framework',
@@ -276,11 +267,9 @@ export const programs: ProgramItem[] = [
     imageUrl: '/program-images/program 6.jpeg',
     cardImage: '/program-images/program 6.jpeg',
     pricing: {
-      admissionFee: 'PKR 5,000',
-      monthlyInstallment: 'PKR 8,333',
-      installmentCount: '3',
-      totalInstallmentCost: 'PKR 25,000',
-      fullPaymentDiscounted: 'PKR 20,000',
+      monthlyFee: 'PKR 15,000',
+      oneTimePayment: 'PKR 25,000',
+      installmentPayment: 'PKR 30,000',
     },
   },
 ];

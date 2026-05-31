@@ -11,6 +11,9 @@ import {
   Users,
   ChevronLeft,
   ChevronRight,
+  CalendarDays,
+  Sparkles,
+  Wallet,
   X,
 } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -23,7 +26,6 @@ const TALENT_HUB_WHATSAPP = 'https://wa.me/923700822507';
 const HERO_IMAGE = encodeURI('/program-images/ChatGPT Image May 29, 2026, 12_22_57 PM.png');
 const HERO_IMAGE_2 = encodeURI('/program-images/s1.jpeg');
 const HERO_IMAGE_3 = encodeURI('/program-images/s2.jpeg');
-const PRICING_IMAGE = encodeURI('/program-images/ChatGPT Image May 28, 2026, 11_45_55 PM (1).png');
 
 type ProgramsPageProps = {
   onOpenProgram: (slug: string) => void;
@@ -37,6 +39,31 @@ export default function ProgramsPage({ onOpenProgram }: ProgramsPageProps) {
       { src: HERO_IMAGE_3, title: 'Courses 3' },
       { src: HERO_IMAGE, title: 'Admission Guide' },
       { src: HERO_IMAGE, title: 'Talent Hub' },
+    ],
+    [],
+  );
+
+  const programToolLogos = useMemo(
+    () => [
+      { src: '/program-images/social-media-marketing-removebg-preview.png', alt: 'Social media marketing' },
+      { src: '/program-images/React-removebg-preview.png', alt: 'React' },
+      { src: '/program-images/python-removebg-preview.png', alt: 'Python' },
+      { src: '/program-images/prompt-engineering-logo.png', alt: 'Prompt engineering' },
+      { src: '/program-images/node_js-removebg-preview.png', alt: 'Node.js' },
+      { src: '/program-images/mongo-removebg-preview.png', alt: 'MongoDB' },
+      { src: '/program-images/images-removebg-preview.png', alt: 'Image editing' },
+      { src: '/program-images/images__1_-removebg-preview.png', alt: 'Design assets' },
+      { src: '/program-images/HTML-5-Badge-Logo.png', alt: 'HTML5' },
+      { src: '/program-images/graphic-design-removebg-preview.png', alt: 'Graphic design' },
+      { src: '/program-images/Google-AdWords-logo-rectangle.png', alt: 'Google Ads' },
+      { src: '/program-images/express_js-removebg-preview.png', alt: 'Express.js' },
+      { src: '/program-images/ecommers-removebg-preview.png', alt: 'E-commerce' },
+      { src: '/program-images/dotnet-removebg-preview.png', alt: '.NET' },
+      { src: '/program-images/c-sharp.png', alt: 'C#' },
+      { src: '/program-images/API-removebg-preview.png', alt: 'API' },
+      { src: '/program-images/amazon-removebg-preview.png', alt: 'Amazon' },
+      { src: '/program-images/Ai Workflow.png', alt: 'AI workflow' },
+      { src: '/program-images/shopify-removebg-preview.png', alt: 'Shopify' },
     ],
     [],
   );
@@ -78,13 +105,13 @@ export default function ProgramsPage({ onOpenProgram }: ProgramsPageProps) {
 
   return (
     <main className="min-h-screen pt-20 bg-gradient-to-br from-slate-50 via-white to-cyan-50/30">
-      <section className="relative overflow-hidden py-10 md:py-16">
+      <section className="relative overflow-hidden py-8 md:py-12">
         <div className="absolute inset-0 bg-grid-pattern opacity-10" />
         <div className="absolute inset-0 bg-gradient-radial from-cyan-400/10 via-transparent to-transparent opacity-60" />
         <div className="absolute inset-0 bg-gradient-conic from-teal-400/5 via-cyan-400/5 to-transparent" />
 
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative min-h-[560px] overflow-hidden rounded-[2rem] border border-white/60 bg-white/70 shadow-[0_24px_90px_rgba(15,23,42,0.08)] backdrop-blur-sm sm:min-h-[620px] lg:min-h-[680px]">
+          <div className="relative min-h-[470px] overflow-hidden rounded-[2rem] border border-white/60 bg-white/70 shadow-[0_24px_90px_rgba(15,23,42,0.08)] backdrop-blur-sm sm:min-h-[520px] lg:min-h-[580px]">
             <div className="absolute inset-0">
               {heroSlides.map((slide, index) => (
                 <motion.div
@@ -127,7 +154,7 @@ export default function ProgramsPage({ onOpenProgram }: ProgramsPageProps) {
               </button>
             </div>
 
-            <div className="relative px-4 py-10 sm:px-8 sm:py-14 lg:px-12 lg:py-16">
+            <div className="relative px-4 py-8 sm:px-8 sm:py-10 lg:px-12 lg:py-12">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -234,6 +261,33 @@ export default function ProgramsPage({ onOpenProgram }: ProgramsPageProps) {
               </motion.div>
             ))}
           </div>
+
+          <div className="mt-4 overflow-hidden rounded-2xl border border-white/70 bg-white/75 px-3 py-3 shadow-sm backdrop-blur-sm sm:px-4 sm:py-3.5">
+            <div className="mb-2 px-1">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">
+                Tools & Platforms
+              </p>
+            </div>
+            <div className="relative overflow-hidden">
+              <div className="flex w-max animate-marquee-slow items-center gap-3 sm:gap-3.5">
+                {[...programToolLogos, ...programToolLogos].map((logo, index) => (
+                  <div
+                    key={`${logo.alt}-${index}`}
+                    className="logo-wordmark logo-twist-in flex h-12 min-w-12 items-center justify-center rounded-2xl px-3.5 py-2.5 sm:h-14 sm:min-w-14 sm:px-4"
+                    style={{ animationDelay: `${(index % programToolLogos.length) * 35}ms` }}
+                    title={logo.alt}
+                  >
+                    <img
+                      src={logo.src}
+                      alt={logo.alt}
+                      className="h-8 w-8 object-contain sm:h-9 sm:w-9"
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -250,9 +304,6 @@ export default function ProgramsPage({ onOpenProgram }: ProgramsPageProps) {
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-700">Programs</p>
               <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">Training Tracks</h2>
             </div>
-            <p className="max-w-2xl text-sm text-slate-500">
-              Designed for practical learning, clear outcomes, and a clean mobile-first browsing experience.
-            </p>
           </motion.div>
 
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -352,21 +403,127 @@ export default function ProgramsPage({ onOpenProgram }: ProgramsPageProps) {
               exit={{ opacity: 0, y: 24, scale: 0.96 }}
               transition={{ type: 'spring', stiffness: 190, damping: 20 }}
               onClick={(event) => event.stopPropagation()}
-              className="relative w-auto max-w-[96vw] overflow-visible bg-transparent"
+              className="relative w-full max-w-6xl max-h-[92vh] overflow-hidden rounded-[2rem] border border-white/20 bg-white shadow-[0_24px_90px_rgba(2,132,199,0.28)]"
             >
-              <button
-                type="button"
-                onClick={() => setPricingPreviewOpen(false)}
-                aria-label="Close pricing preview"
-                className="absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-slate-700 shadow-lg transition hover:bg-white"
-              >
-                <X className="h-5 w-5" />
-              </button>
-              <img
-                src={PRICING_IMAGE}
-                alt="Program pricing table"
-                className="block max-h-[90vh] w-auto max-w-[96vw] object-contain"
-              />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.14),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(15,23,42,0.08),transparent_28%)]" />
+              <div className="relative grid max-h-[92vh] overflow-y-auto overscroll-contain lg:grid-cols-[1.08fr_0.92fr]">
+                <div className="p-5 sm:p-7 lg:p-8">
+                  <div className="mb-6 flex items-start justify-between gap-4">
+                    <div>
+                      <div className="inline-flex items-center gap-2 rounded-full bg-cyan-100 px-4 py-2 text-sm font-semibold text-cyan-800 shadow-sm">
+                        <Wallet className="h-4 w-4" />
+                        Pricing Overview
+                      </div>
+                      <h3 className="mt-4 text-2xl font-bold text-slate-900 sm:text-[2rem]">
+                        Live pricing for every program
+                      </h3>
+                      <p className="mt-2 max-w-2xl text-sm text-slate-600">
+                        These rates are pulled from the same program data used across the site, so the modal stays in sync with the current offer.
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setPricingPreviewOpen(false)}
+                      aria-label="Close pricing preview"
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:bg-slate-50"
+                    >
+                      <X className="h-5 w-5" />
+                    </button>
+                  </div>
+
+                  <div className="space-y-4">
+                    {programs.map((program, index) => (
+                      <article
+                        key={program.slug}
+                        className="rounded-3xl border border-slate-200 bg-slate-50 p-4 shadow-sm sm:p-5"
+                      >
+                        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                          <div className="min-w-0">
+                            <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 shadow-sm">
+                              <span>Program {index + 1}</span>
+                            </div>
+                            <h4 className="mt-3 text-lg font-bold text-slate-900 sm:text-xl">{program.title}</h4>
+                            <div className="mt-2 flex flex-wrap gap-2 text-xs text-slate-500">
+                              <span className="inline-flex items-center gap-1 rounded-full bg-white px-3 py-1 font-medium shadow-sm">
+                                <CalendarDays className="h-3.5 w-3.5 text-cyan-600" />
+                                {program.duration}
+                              </span>
+                              <span className="inline-flex items-center gap-1 rounded-full bg-white px-3 py-1 font-medium shadow-sm">
+                                <Sparkles className="h-3.5 w-3.5 text-teal-600" />
+                                {program.schedule.split(',')[0]}
+                              </span>
+                            </div>
+                          </div>
+
+                          <div className="grid min-w-[14rem] gap-3 sm:grid-cols-2 sm:gap-2">
+                            <div className="rounded-2xl bg-white p-3 text-left shadow-sm">
+                              <p className="text-[11px] uppercase tracking-[0.18em] text-slate-500">Monthly Fee</p>
+                              <p className="mt-2 text-lg font-bold text-slate-900">{program.pricing.monthlyFee}</p>
+                            </div>
+                            <div className="rounded-2xl bg-white p-3 text-left shadow-sm">
+                              <p className="text-[11px] uppercase tracking-[0.18em] text-slate-500">One-Time</p>
+                              <p className="mt-2 text-lg font-bold text-slate-900">{program.pricing.oneTimePayment}</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                          <div className="rounded-2xl border border-emerald-100 bg-emerald-50 p-4">
+                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">Installment Payment</p>
+                            <p className="mt-2 text-2xl font-bold text-emerald-900">{program.pricing.installmentPayment}</p>
+                          </div>
+                          <div className="rounded-2xl border border-cyan-100 bg-cyan-50 p-4">
+                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">Duration</p>
+                            <p className="mt-2 text-2xl font-bold text-cyan-900">{program.duration}</p>
+                          </div>
+                        </div>
+
+                        {program.pricing.admissionFee && (
+                          <p className="mt-3 text-sm text-slate-600">
+                            Admission / registration fee: <span className="font-semibold text-slate-900">{program.pricing.admissionFee}</span>
+                          </p>
+                        )}
+                      </article>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="relative overflow-hidden bg-gradient-to-br from-cyan-700 via-teal-600 to-slate-900 p-5 text-white sm:p-7">
+                  <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/10 blur-3xl" />
+                  <div className="absolute -bottom-16 -left-10 h-48 w-48 rounded-full bg-cyan-300/10 blur-3xl" />
+                  <div className="relative">
+                    <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">
+                      <Sparkles className="h-4 w-4" />
+                      Quick View
+                    </div>
+
+                    <div className="mt-5 rounded-3xl border border-white/10 bg-white/10 p-5 backdrop-blur-sm">
+                      <p className="text-xs uppercase tracking-[0.18em] text-cyan-100">What this modal does</p>
+                      <p className="mt-2 text-xl font-bold">Keeps pricing clear, current, and easy to compare.</p>
+                      <p className="mt-3 text-sm leading-6 text-white/80">
+                        No static screenshot, no outdated rates. This view pulls from the live program records so any future pricing change only needs one update.
+                      </p>
+                    </div>
+
+                    <div className="mt-4 space-y-3.5">
+                      <div className="rounded-2xl border border-white/10 bg-white/10 p-3.5 backdrop-blur-sm">
+                        <p className="text-xs uppercase tracking-[0.18em] text-cyan-100">Programs</p>
+                        <p className="mt-1 text-xl font-bold">{programs.length}</p>
+                      </div>
+
+                      <div className="rounded-2xl border border-white/10 bg-white/10 p-3.5 backdrop-blur-sm">
+                        <p className="text-xs uppercase tracking-[0.18em] text-cyan-100">Format</p>
+                        <p className="mt-1 text-xl font-bold">Monthly, one-time, installment</p>
+                      </div>
+
+                      <div className="rounded-2xl border border-white/10 bg-white/10 p-3.5 backdrop-blur-sm">
+                        <p className="text-xs uppercase tracking-[0.18em] text-cyan-100">Need help?</p>
+                        <p className="mt-1 text-sm text-white/75">Open any program detail page for a deeper breakdown and registration options.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </motion.div>
           </motion.div>
         )}

@@ -31,6 +31,7 @@ type ProgramDetailPageProps = {
 export default function ProgramDetailPage({ program, onBackToPrograms }: ProgramDetailPageProps) {
   const [navbarHeight, setNavbarHeight] = useState(80);
   const [pricingOpen, setPricingOpen] = useState(false);
+  const [pricingMode, setPricingMode] = useState<'monthly' | 'one-time'>('monthly');
   const quickHighlights = program.highlights.slice(0, 4);
   
   useEffect(() => {
@@ -49,6 +50,9 @@ export default function ProgramDetailPage({ program, onBackToPrograms }: Program
 
     window.addEventListener('keydown', onKeyDown);
     document.body.style.overflow = pricingOpen ? 'hidden' : '';
+    if (pricingOpen) {
+      setPricingMode('monthly');
+    }
 
     return () => {
       window.removeEventListener('keydown', onKeyDown);
@@ -424,146 +428,190 @@ export default function ProgramDetailPage({ program, onBackToPrograms }: Program
               exit={{ opacity: 0, y: 30, scale: 0.96 }}
               transition={{ type: 'spring', stiffness: 180, damping: 18 }}
               onClick={(event) => event.stopPropagation()}
-              className="relative w-full max-w-5xl max-h-[90vh] overflow-hidden rounded-[1.75rem] border border-white/20 bg-gradient-to-br from-white via-cyan-50 to-slate-100 shadow-[0_24px_90px_rgba(2,132,199,0.3)]"
+              className="relative w-full max-w-5xl max-h-[88vh] overflow-hidden rounded-[2rem] border border-white/20 bg-white shadow-[0_24px_90px_rgba(2,132,199,0.28)]"
             >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.18),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(15,23,42,0.08),transparent_28%)]" />
-                <div className="relative max-h-[90vh] overflow-y-auto overscroll-contain grid lg:grid-cols-[1.08fr_0.92fr]">
-                  <div className="p-5 sm:p-7 lg:p-8">
-                    <div className="mb-6 flex items-start justify-between gap-4">
-                      <div>
-                        <div className="inline-flex items-center gap-2 rounded-full bg-cyan-100 px-4 py-2 text-sm font-semibold text-cyan-800 shadow-sm">
-                          <Wallet className="h-4 w-4" />
-                          Pricing Details
-                        </div>
-                        <h3 className="mt-4 text-2xl font-bold text-slate-900 sm:text-[2rem]">
-                          {program.title}
-                        </h3>
-                        <p className="mt-2 max-w-2xl text-sm text-slate-600">
-                          Two simple ways to join the program: installment plan or discounted one-time payment.
-                        </p>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => setPricingOpen(false)}
-                        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:bg-slate-50"
-                        aria-label="Close pricing modal"
-                      >
-                        <X className="h-5 w-5" />
-                      </button>
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.14),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(15,23,42,0.08),transparent_28%)]" />
+              <div className="relative max-h-[88vh] overflow-y-auto overscroll-contain p-4 sm:p-5 lg:p-6">
+                <div className="mb-4 flex items-start justify-between gap-4">
+                  <div className="min-w-0">
+                    <div className="inline-flex items-center gap-2 rounded-full bg-cyan-100 px-4 py-2 text-sm font-semibold text-cyan-800 shadow-sm">
+                      <Wallet className="h-4 w-4" />
+                      Pricing Details
                     </div>
+                    <h3 className="mt-4 text-2xl font-bold text-slate-900 sm:text-[2rem]">{program.title}</h3>
+                    <p className="mt-2 max-w-2xl text-sm text-slate-600">
+                      Select monthly or one-time payment to see the exact breakdown.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setPricingOpen(false)}
+                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:bg-slate-50"
+                    aria-label="Close pricing modal"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                </div>
 
-                    <div className="space-y-4">
-                      <div className="rounded-3xl border border-cyan-100 bg-gradient-to-br from-cyan-50 to-white p-4 shadow-sm sm:p-5">
-                        <div className="flex items-center justify-between gap-4">
-                          <div>
-                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">
-                              Installment Plan
-                            </p>
-                            <h4 className="mt-2 text-base font-bold text-slate-900 sm:text-lg">Start with admission fee + monthly payments</h4>
-                          </div>
-                          <div className="rounded-2xl bg-white px-3 py-2 text-right shadow-sm">
-                            <p className="text-[11px] uppercase tracking-[0.18em] text-slate-500">Admission Fee</p>
-                            <p className="text-lg font-bold text-slate-900">{program.pricing.admissionFee}</p>
-                          </div>
-                        </div>
-
-                        <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                          <div className="rounded-2xl bg-white p-4 shadow-sm">
-                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Monthly Installment</p>
-                            <p className="mt-2 text-2xl font-bold text-slate-900">{program.pricing.monthlyInstallment}</p>
-                            <p className="mt-1 text-sm text-slate-500">x {program.pricing.installmentCount} months</p>
-                          </div>
-                          <div className="rounded-2xl bg-white p-4 shadow-sm">
-                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Total Installment Cost</p>
-                            <p className="mt-2 text-2xl font-bold text-slate-900">{program.pricing.totalInstallmentCost}</p>
-                            <p className="mt-1 text-sm text-slate-500">Overall payment across the plan</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="rounded-3xl border border-slate-200 bg-slate-900 p-4 text-white shadow-lg sm:p-5">
-                        <div className="flex items-center justify-between gap-4">
-                          <div>
-                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">
-                              One-Time Payment
-                            </p>
-                            <h4 className="mt-2 text-base font-bold sm:text-lg">Best value for the full program</h4>
-                          </div>
-                          <div className="rounded-2xl bg-white/10 px-3 py-2 text-right">
-                            <p className="text-[11px] uppercase tracking-[0.18em] text-cyan-100">Discounted Fee</p>
-                            <p className="text-lg font-bold">{program.pricing.fullPaymentDiscounted}</p>
-                          </div>
-                        </div>
-
-                        <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                          <div className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
-                            <p className="text-xs uppercase tracking-[0.18em] text-cyan-100">Pay once</p>
-                            <p className="mt-2 text-base font-semibold text-white">No monthly tracking required</p>
-                            <p className="mt-1 text-sm text-white/70">Useful if you want a simple one-time payment flow.</p>
-                          </div>
-                          <div className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
-                            <p className="text-xs uppercase tracking-[0.18em] text-cyan-100">Admission Fee</p>
-                            <p className="mt-2 text-base font-semibold text-white">{program.pricing.admissionFee}</p>
-                            <p className="mt-1 text-sm text-white/70">Registration amount included at admission.</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                      <a
-                        href={PROGRAM_REGISTRATION_URL}
-                        target="_blank"
-                        rel="noreferrer noopener"
-                        className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-600 to-teal-600 px-5 py-3 font-semibold text-white shadow-lg shadow-cyan-200 transition hover:-translate-y-0.5"
-                      >
-                        Register Now
-                        <ExternalLink className="h-4 w-4" />
-                      </a>
-                      <a
-                        href={TALENT_HUB_WHATSAPP}
-                        target="_blank"
-                        rel="noreferrer noopener"
-                        className="inline-flex items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-5 py-3 font-semibold text-emerald-700 transition hover:bg-emerald-100"
-                      >
-                        <MessageCircle className="h-4 w-4" />
-                        Ask on WhatsApp
-                      </a>
-                    </div>
+                <div className="rounded-[1.75rem] border border-slate-200 bg-white/85 p-3 shadow-sm backdrop-blur-sm sm:p-4">
+                  <div className="grid grid-cols-2 gap-2 rounded-2xl bg-slate-100 p-1">
+                    <button
+                      type="button"
+                      onClick={() => setPricingMode('monthly')}
+                      className={`rounded-xl px-4 py-3 text-sm font-semibold transition ${
+                        pricingMode === 'monthly'
+                          ? 'bg-white text-cyan-700 shadow-sm'
+                          : 'text-slate-500 hover:text-slate-800'
+                      }`}
+                    >
+                      Monthly
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setPricingMode('one-time')}
+                      className={`rounded-xl px-4 py-3 text-sm font-semibold transition ${
+                        pricingMode === 'one-time'
+                          ? 'bg-white text-cyan-700 shadow-sm'
+                          : 'text-slate-500 hover:text-slate-800'
+                      }`}
+                    >
+                      One-Time
+                    </button>
                   </div>
 
-                  <div className="relative overflow-hidden bg-gradient-to-br from-cyan-700 via-teal-600 to-slate-900 p-5 sm:p-7 text-white">
-                    <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/10 blur-3xl" />
-                    <div className="absolute -bottom-16 -left-10 h-48 w-48 rounded-full bg-cyan-300/10 blur-3xl" />
-                    <div className="relative">
-                      <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">
-                        <Sparkles className="h-4 w-4" />
-                        Fee Snapshot
+                  <div className="mt-4 grid gap-4 lg:grid-cols-[1.12fr_0.88fr]">
+                    <div
+                      className={`overflow-hidden rounded-[1.5rem] border p-5 sm:p-6 ${
+                        pricingMode === 'monthly'
+                          ? 'border-cyan-100 bg-gradient-to-br from-cyan-50 to-white'
+                          : 'border-slate-200 bg-gradient-to-br from-slate-950 to-slate-800 text-white'
+                      }`}
+                    >
+                      {pricingMode === 'monthly' ? (
+                        <>
+                          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">
+                            Monthly Fee
+                          </p>
+                          <div className="mt-3 flex flex-wrap items-end gap-3">
+                            <p className="text-4xl font-bold text-slate-900 sm:text-5xl">{program.pricing.monthlyFee}</p>
+                            <span className="rounded-full bg-cyan-100 px-3 py-1 text-xs font-semibold text-cyan-800">
+                              Per month
+                            </span>
+                          </div>
+                          <p className="mt-3 text-sm text-slate-600">Duration: {program.duration}</p>
+                          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                            <div className="rounded-2xl bg-white p-4 shadow-sm">
+                              <p className="text-[11px] uppercase tracking-[0.18em] text-slate-500">Schedule</p>
+                              <p className="mt-2 text-sm font-semibold text-slate-900">{program.schedule}</p>
+                            </div>
+                            <div className="rounded-2xl bg-white p-4 shadow-sm">
+                              <p className="text-[11px] uppercase tracking-[0.18em] text-slate-500">Monthly focus</p>
+                              <p className="mt-2 text-sm font-semibold text-slate-900">Flexible payment, steady progress</p>
+                            </div>
+                          </div>
+                          {program.pricing.admissionFee && (
+                            <div className="mt-4 rounded-2xl border border-amber-100 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+                              Admission / registration fee: <span className="font-semibold">{program.pricing.admissionFee}</span>
+                            </div>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">
+                            One-Time Payment
+                          </p>
+                          <div className="mt-3 flex flex-wrap items-end gap-3">
+                            <p className="text-4xl font-bold sm:text-5xl">{program.pricing.oneTimePayment}</p>
+                            <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-cyan-100">
+                              Best value
+                            </span>
+                          </div>
+                          <p className="mt-3 text-sm text-white/75">Pay once and keep the whole program simple.</p>
+                          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                            <div className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
+                              <p className="text-[11px] uppercase tracking-[0.18em] text-cyan-100">Monthly fee equivalent</p>
+                              <p className="mt-2 text-sm font-semibold text-white">{program.pricing.monthlyFee}</p>
+                            </div>
+                            <div className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
+                              <p className="text-[11px] uppercase tracking-[0.18em] text-cyan-100">Savings style</p>
+                              <p className="mt-2 text-sm font-semibold text-white">One clean payment, no monthly follow-up</p>
+                            </div>
+                          </div>
+                          {program.pricing.admissionFee && (
+                            <div className="mt-4 rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-white/80 backdrop-blur-sm">
+                              Admission / registration fee: <span className="font-semibold text-white">{program.pricing.admissionFee}</span>
+                            </div>
+                          )}
+                        </>
+                      )}
+
+                      <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+                        <a
+                          href={PROGRAM_REGISTRATION_URL}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          className={`inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold shadow-lg transition hover:-translate-y-0.5 ${
+                            pricingMode === 'monthly'
+                              ? 'bg-gradient-to-r from-cyan-600 to-teal-600 text-white shadow-cyan-200'
+                              : 'bg-white text-slate-900 shadow-slate-900/10'
+                          }`}
+                        >
+                          Register Now
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                        <a
+                          href={TALENT_HUB_WHATSAPP}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          className={`inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold transition ${
+                            pricingMode === 'monthly'
+                              ? 'border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100'
+                              : 'border border-white/10 bg-white/10 text-white hover:bg-white/15'
+                          }`}
+                        >
+                          <MessageCircle className="h-4 w-4" />
+                          Ask on WhatsApp
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="grid gap-4">
+                      <div className="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 sm:p-6">
+                        <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 shadow-sm">
+                          <Sparkles className="h-4 w-4 text-cyan-600" />
+                          Quick Snapshot
+                        </div>
+                        <div className="mt-4 space-y-3">
+                          <div className="rounded-2xl bg-white p-4 shadow-sm">
+                            <p className="text-[11px] uppercase tracking-[0.18em] text-slate-500">Program duration</p>
+                            <p className="mt-2 text-lg font-bold text-slate-900">{program.duration}</p>
+                          </div>
+                          <div className="rounded-2xl bg-white p-4 shadow-sm">
+                            <p className="text-[11px] uppercase tracking-[0.18em] text-slate-500">Payment modes</p>
+                            <p className="mt-2 text-lg font-bold text-slate-900">Monthly / One-Time</p>
+                          </div>
+                          <div className="rounded-2xl bg-white p-4 shadow-sm">
+                            <p className="text-[11px] uppercase tracking-[0.18em] text-slate-500">Installment payment</p>
+                            <p className="mt-2 text-lg font-bold text-slate-900">{program.pricing.installmentPayment}</p>
+                          </div>
+                        </div>
                       </div>
 
-                      <div className="mt-5 space-y-3.5">
-                        <div className="rounded-2xl border border-white/10 bg-white/10 p-3.5 backdrop-blur-sm">
-                          <p className="text-xs uppercase tracking-[0.18em] text-cyan-100">Installment Admission</p>
-                          <p className="mt-1 text-xl font-bold">{program.pricing.admissionFee}</p>
-                        </div>
-
-                        <div className="rounded-2xl border border-white/10 bg-white/10 p-3.5 backdrop-blur-sm">
-                          <p className="text-xs uppercase tracking-[0.18em] text-cyan-100">Monthly Installment</p>
-                          <p className="mt-1 text-xl font-bold">{program.pricing.monthlyInstallment}</p>
-                          <p className="mt-1 text-sm text-white/75">x {program.pricing.installmentCount} payments</p>
-                        </div>
-
-                        <div className="rounded-2xl border border-white/10 bg-white/10 p-3.5 backdrop-blur-sm">
-                          <p className="text-xs uppercase tracking-[0.18em] text-cyan-100">One-Time Payment</p>
-                          <p className="mt-1 text-xl font-bold">{program.pricing.fullPaymentDiscounted}</p>
-                          <p className="mt-1 text-sm text-white/75">Discounted full-payment option</p>
-                        </div>
+                      <div className="rounded-[1.5rem] border border-cyan-100 bg-gradient-to-br from-cyan-50 to-teal-50 p-5 sm:p-6">
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">Need a quick rule?</p>
+                        <p className="mt-3 text-base font-bold text-slate-900">
+                          Monthly = flexible. One-time = simplest.
+                        </p>
+                        <p className="mt-2 text-sm leading-6 text-slate-600">
+                          Switch the toggle above to compare the full payment style you want before registering.
+                        </p>
                       </div>
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
     </main>

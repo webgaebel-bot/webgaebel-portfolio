@@ -71,12 +71,12 @@ export default function SuccessStories({
               whileHover={{ y: -8 }}
               className="theme-panel group flex h-full flex-col overflow-hidden"
             >
-              <div className="relative h-60 overflow-hidden bg-[linear-gradient(180deg,#eff7fb,#dfeef5)]">
+              <div className="relative h-44 overflow-hidden bg-[linear-gradient(180deg,#eff7fb,#dfeef5)] sm:h-48">
                 <img
                   src={project.preview}
                   alt={`${project.title} preview`}
                   loading="lazy"
-                  className="h-full w-full object-cover object-top transition-soft group-hover:scale-[1.03]"
+                  className="h-full w-full object-contain object-center p-3 transition-soft group-hover:scale-[1.02] sm:p-4"
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(7,18,33,0.32))]" />
                 <div className="absolute left-5 top-5 rounded-full border border-white/20 bg-white/14 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-sm">

@@ -77,7 +77,7 @@ export default function Portfolio({
                     className="group/preview block"
                     aria-label={`Open ${project.title} live preview in a new tab`}
                   >
-                    <div className="relative h-[190px] overflow-hidden bg-[linear-gradient(180deg,#eff7fb,#dfeef5)] sm:h-[205px]">
+                    <div className="relative h-[160px] overflow-hidden bg-[linear-gradient(180deg,#eff7fb,#dfeef5)] sm:h-[175px]">
                       <img
                         src={project.preview}
                         alt={`${project.title} preview`}
@@ -175,12 +175,12 @@ export default function Portfolio({
                   key={project.slug}
                   className="group relative flex h-full flex-col overflow-hidden rounded-[24px] border border-[rgba(11,61,102,0.08)] bg-white shadow-[var(--shadow-card)]"
                 >
-                  <div className="relative h-[190px] overflow-hidden bg-[linear-gradient(180deg,#eff7fb,#dfeef5)] sm:h-[205px]">
-                    <img
-                      src={project.preview}
-                      alt={`${project.title} preview`}
-                      className="h-full w-full object-contain object-center bg-[linear-gradient(180deg,#eff7fb,#dfeef5)] p-1"
-                      loading="lazy"
+                    <div className="relative h-[160px] overflow-hidden bg-[linear-gradient(180deg,#eff7fb,#dfeef5)] sm:h-[175px]">
+                      <img
+                        src={project.preview}
+                        alt={`${project.title} preview`}
+                        className="h-full w-full object-contain object-center bg-[linear-gradient(180deg,#eff7fb,#dfeef5)] p-1"
+                        loading="lazy"
                     />
                     <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(8,38,63,0.24))]" />
                   </div>
